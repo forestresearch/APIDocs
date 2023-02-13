@@ -6,10 +6,10 @@ website:
   title: "Forest Research Decision Support System API Documentation"
   navbar:
     left:
-      - href: UsingESCWCC-Pyton.qmd
+      - UsingESCWCC-Pyton.qmd
 format:
   html:
-    theme: sandstone
+    theme: minimal
     mainfont: arial
     fontsize: 1.5rem
     fontcolor: "#0013d5"
