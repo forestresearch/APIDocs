@@ -1,5 +1,5 @@
 ---
-title: "J.T. Smith"
+title: "Outline"
 about:
   template: trestles
   image-shape: round
@@ -7,19 +7,18 @@ about:
   links:
     - text: Email
       icon: envelope
-      href: mailto:noreply@email.zz
+      href: mailto:zeke.marshall@forestresearch.gov.uk
     - text: GitHub
       icon: github
       href: https://github.com/
-    - text: YouTube
-      icon: youtube
-      href: https://youtube.com/
   id: ppc
 ---
 
 :::{#ppc}
-I love my dogs. Here is a picture of my dogs.
 
-If you like dogs too, then you should definitely hire me for
-a highly paid position.
+Download the .Rmd and .ipynb files here:
+
+* ESCWCC in Python documention {{< downloadthis /UsingESC-Python.ipynb >}}
 :::
+
+ESCWCC in Python documention {{ < downloadthis /UsingESC-Python.ipynb > }}
