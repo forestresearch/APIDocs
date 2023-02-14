@@ -16,9 +16,33 @@ about:
 
 :::{#ppc}
 
-Download the .Rmd and .ipynb files here:
-
-* ESCWCC in Python documention {{< downloadthis /UsingESC-Python.ipynb >}}
 :::
 
-ESCWCC in Python documention {{ < downloadthis /UsingESC-Python.ipynb > }}
+:::{}
+
+<br>
+
+:::
+
+:::{}
+
+Download the .Rmd and .ipynb user documentation for each set of FR DSS API end points here:
+
+:::
+
+::: {.callout-note appearance="minimal"}
+
+<i class="bi bi-journal-code"></i> [UsingESC-Python.ipynb](files/UsingESC-Python.ipynb){download="UsingESC-Python.ipynb"}
+:::
+
+::: {.callout-note appearance="minimal"}
+<i class="bi bi-journal-code"></i> [UsingESC-R.Rmd](files/UsingESC-R.Rmd){download="UsingESC-R.Rmd"}
+:::
+
+::: {.callout-note appearance="minimal"}
+<i class="bi bi-journal-code"></i> [UsingESCWCC-Python.ipynb](files/UsingESCWCC-Python.ipynb){download="UsingESCWCC-Python.ipynb"}
+:::
+
+::: {.callout-note appearance="minimal"}
+<i class="bi bi-journal-code"></i> [UsingESCWCC-R.Rmd](files/UsingESCWCC-R.Rmd){download="UsingESCWCC-R.Rmd"}
+:::

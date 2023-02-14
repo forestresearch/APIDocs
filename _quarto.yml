@@ -4,20 +4,26 @@ project:
 
 website:
   title: "Forest Research Decision Support System API Documentation"
-  navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - href: UsingESCWCC-Python.qmd
-        text: ESCWCC in Python
+  sidebar:
+    style: "floating"
+    search: true
+    contents:
+      - section: "ESCWCC"
+        contents:
+          - UsingESCWCC-Python.qmd
+      - section: "ESCTree"
+
 format:
   html:
     theme: default
-    mainfont: serif
-    fontsize: 1.5rem
-    fontcolor: "#0013d5"
-    linkcolor: "#ff33f0"
-    monofont: courier new
-    backgroundcolor: "#ffffff"
+    #mainfont: serif
+    #fontsize: 1.5rem
+    #fontcolor: "#0013d5"
+    #linkcolor: "#ff33f0"
+    #monofont: courier new
+    #backgroundcolor: "#ffffff"
     css: styles.css
     toc: true
+    toc-title: Contents
+    toc-location: left
+    smooth-scroll: true

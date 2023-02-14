@@ -4,13 +4,20 @@
     "href": "UsingESCWCC-Python.html",
     "title": "Using the ESCWCC API in Python",
     "section": "",
-    "text": "1 + 1\n\n2"
+    "text": "import requests\nimport json\nimport pandas\npandas.options.mode.chained_assignment = None"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "J.T. Smith",
+    "title": "Outline",
     "section": "",
-    "text": "Email\n  \n  \n    \n     GitHub\n  \n  \n    \n     YouTube\n  \n\n  \n  \nI love my dogs. Here is a picture of my dogs.\nIf you like dogs too, then you should definitely hire me for a highly paid position."
+    "text": "Download the .Rmd and .ipynb user documentation for each set of FR DSS API end points here:\n\n\n\n\n\n\n\n UsingESC-Python.ipynb\n\n\n\n\n\n\n\n\n\n UsingESC-R.Rmd\n\n\n\n\n\n\n\n\n\n UsingESCWCC-Python.ipynb\n\n\n\n\n\n\n\n\n\n UsingESCWCC-R.Rmd"
+  },
+  {
+    "objectID": "UsingESCWCC-Python.html#establish-api-post-request-url",
+    "href": "UsingESCWCC-Python.html#establish-api-post-request-url",
+    "title": "Using the ESCWCC API in Python",
+    "section": "Establish API POST request URL",
+    "text": "Establish API POST request URL\n\nbase_url = \"http://209.97.132.245:8000/ESCWCC/\"\n\nSet the longitude (lon) and latitude (lat) in EPSG:3857.\n\nlon = -141102.7542\nlat = 6830259.9735\n\nEstablish the site modifier options.\n\ndrainage:int\n\n0 = None.\n1 = Drainage installed.\n\nbrash:int\n\n0 = None (new planting).\n1 = Fresh brash (<18 months).\n2 = Brash (>18 months).\n\nfertiliser:int\n\n0 = None.\n1 = Fertiliser applied.\n\nexposure:int\n\n0 = None.\n1 = Exposed ridge/Coastal zone.\n2 = Local shelter/Less exposed/Underplanting."
   }
 ]
