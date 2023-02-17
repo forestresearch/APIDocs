@@ -3,15 +3,14 @@ project:
   output-dir: docs
 
 website:
-  title: "Forest Research Decision Support System API Documentation"
+  title: "FR DSS API Documentation"
   sidebar:
     style: "floating"
     search: true
     contents:
-      - section: "ESCWCC"
+      - section: "ESC"
         contents:
-          - UsingESCWCC-Python.qmd
-      - section: "ESCTree"
+          - UsingESCWCCAPI.qmd
 
 format:
   html:
@@ -29,5 +28,5 @@ format:
     smooth-scroll: true
     grid:
       sidebar-width: 250px
-      body-width: 900px
+      body-width: 1000px
       margin-width: 300px

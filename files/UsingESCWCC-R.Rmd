@@ -1,2 +1,0 @@
-# Using the ESCWCC API in R
-

@@ -8,15 +8,18 @@ about:
     - text: Email
       icon: envelope
       href: mailto:zeke.marshall@forestresearch.gov.uk
-    - text: GitHub
-      icon: github
-      href: https://github.com/
+    # - text: GitHub
+    #   icon: github
+    #   href: https://github.com/
   id: ppc
 ---
 
 :::{#ppc}
 
+Here the use of various Forest Research (FR) Decision Support System (DSS) tool API endpoints are documented for R and Python.
+
 :::
+
 
 :::{}
 
@@ -24,25 +27,16 @@ about:
 
 :::
 
+
 :::{}
 
-Download the .Rmd and .ipynb user documentation for each set of FR DSS API end points here:
+## ESC
+
+The Ecological Site Classification (ESC) API endpoints are constructed using [FastAPI](https://fastapi.tiangolo.com/), the 
+OpenAPI documentation can be found [here](http://209.97.132.245:8000/docs).
 
 :::
 
-::: {.callout-note appearance="minimal"}
-
+<!-- ::: {.callout-note appearance="minimal"}
 <i class="bi bi-journal-code"></i> [UsingESC-Python.ipynb](files/UsingESC-Python.ipynb){download="UsingESC-Python.ipynb"}
-:::
-
-::: {.callout-note appearance="minimal"}
-<i class="bi bi-journal-code"></i> [UsingESC-R.Rmd](files/UsingESC-R.Rmd){download="UsingESC-R.Rmd"}
-:::
-
-::: {.callout-note appearance="minimal"}
-<i class="bi bi-journal-code"></i> [UsingESCWCC-Python.ipynb](files/UsingESCWCC-Python.ipynb){download="UsingESCWCC-Python.ipynb"}
-:::
-
-::: {.callout-note appearance="minimal"}
-<i class="bi bi-journal-code"></i> [UsingESCWCC-R.Rmd](files/UsingESCWCC-R.Rmd){download="UsingESCWCC-R.Rmd"}
-:::
+::: -->
