@@ -1,9 +1,13 @@
 ---
-title: "Using the ESCWCC API"
-subtitle: "v0.5"
+title: "Using the ESCWCC API v0.5"
+# subtitle: "v0.5"
 execute: 
   enabled: true
+title-block-banner: "#491656"
+css: styles.css
 ---
+
+## Outline
 
 This notebook details how to call the ESCWCC API endpoint and use the response data to obtain woodland carbon code (WCC) metrics
 such as the claimable carbon sequestration using R and Python.
@@ -40,13 +44,13 @@ Establish API POST request URL
 ## Python
 
 ```{python url_py}
-base_url = "http://209.97.132.245:8000/ESCWCC/"  # Develop
+base_url = "http://209.97.132.245:8000/ESCWCC/"
 ```
 
 ## R
 
 ```{r url_r}
-base_url <- "http://209.97.132.245:8000/ESCWCC/"  # Develop
+base_url <- "http://209.97.132.245:8000/ESCWCC/"
 ```
 
 :::
@@ -274,7 +278,7 @@ req_body <- jsonlite::toJSON(req_list, auto_unbox = TRUE)
 
 ## Make the API call
 
-Call the ESCWCC API
+Call the ESCWCC API.
 
 ::: {.panel-tabset}
 
@@ -355,19 +359,19 @@ ESCWCCresponse_list <- deserialize(responseJson = ESCWCCresponse)
 
 ## Explore results
 
-The object produced (`ESCWCCresponse_dict`) is a nested dictionary with the following structure:
+The object produced (`ESCWCCresponse_dict` or `ESCWCCResponse_list`) is a nested dictionary with the following structure:
 
 ```
-ESCresponse_dict (dict)
-├── Metadata (dict)
-│   ├── ESCMetadata (dict)
+ESCresponse_dict (dict or list)
+├── Metadata (dict or list)
+│   ├── ESCMetadata (dict or list)
 │   │   ├── ESCTreeMetadata (DataFrame)
-│   ├── WCCMetadata (dict)
+│   ├── WCCMetadata (dict or list)
 │   │   ├── WCCMetadata (DataFrame)
-│   ├── APIMetadata (dict)
+│   ├── APIMetadata (dict or list)
 │   │   ├── DateTime (DataFrame)
-└───UKCP09 (dict)
-    ├── Baseline (dict)
+└───UKCP09 (dict or list)
+    ├── Baseline (dict or list)
     │   ├── ESCDoseVals (DataFrame)
     │   ├── ESCResponseVals (DataFrame)
     │   ├── ESCSuitMetrics (DataFrame)
@@ -375,7 +379,7 @@ ESCresponse_dict (dict)
     │   ├── WCCSoilLoss (DataFrame)
     │   ├── WCCSoilSeq (DataFrame)
     │   ├── WCCEstablishment (DataFrame)
-    ├── 2050 (dict)
+    ├── 2050 (dict or list)
     │   ├── ESCDoseVals (DataFrame)
     │   ├── ESCResponseVals (DataFrame)
     │   ├── ESCSuitMetrics (DataFrame)
@@ -383,7 +387,7 @@ ESCresponse_dict (dict)
     │   ├── WCCSoilLoss (DataFrame)
     │   ├── WCCSoilSeq (DataFrame)
     │   ├── WCCEstablishment (DataFrame)
-    ├── 2080 (dict)
+    ├── 2080 (dict or list)
     │   ├── ESCDoseVals (DataFrame)
     │   ├── ESCResponseVals (DataFrame)
     │   ├── ESCSuitMetrics (DataFrame)
@@ -509,6 +513,14 @@ Column definitions:
 * remCarbonYr - The quantity of carbon removed from the site yearly. Retrieved from column N in the BCLT tables. Units of tCO2e/ha/yr.
 * periodEnd - The rotation length stipulated in columns F to AK of the "Clearfell_Max_Seq_Values" sheet of the excel tool. Mapped to the last year of the period present in the period column.
 * clearfellCapCarbon - The Clearfell Cap Value associated with the periodEnd, wccCode, spacing, YC, and management. Units of tCO2e.
+
+::: {.callout-warning}
+## Warning
+
+The finalYC may differ considerably from the ESC estimatedYC due to the limited number of species - YC combinations for which data is available from the WCC BCLT tables.
+It is left to the API user to determine whether the use of the BCLT values returned for a given finalYC are appropriate.
+
+:::
 
 ::: {.panel-tabset}
 

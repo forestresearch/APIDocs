@@ -1,32 +1,28 @@
 ---
-title: "Outline"
-about:
-  template: trestles
-  image-shape: round
-  image-width: 15em
-  links:
-    - text: Email
-      icon: envelope
-      href: mailto:zeke.marshall@forestresearch.gov.uk
-    # - text: GitHub
-    #   icon: github
-    #   href: https://github.com/
-  id: ppc
+title: "Forest Research Decision Support System API Documentation"
+# about:
+#   template: trestles
+#   image-shape: round
+#   image-width: 15em
+#   links:
+#     - text: Email
+#       icon: envelope
+#       href: mailto:zeke.marshall@forestresearch.gov.uk
+#     # - text: GitHub
+#     #   icon: github
+#     #   href: https://github.com/
+#   id: ppc
+title-block-banner: "#491656"
+css: styles.css
 ---
 
-:::{#ppc}
+:::{}
+
+## Outline
 
 Here the use of various Forest Research (FR) Decision Support System (DSS) tool API endpoints are documented for R and Python.
 
 :::
-
-
-:::{}
-
-<br>
-
-:::
-
 
 :::{}
 

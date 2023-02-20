@@ -1,0 +1,224 @@
+---
+title: "Using the ESCSiteData API v0.5"
+# subtitle: "v0.5"
+execute: 
+  enabled: true
+title-block-banner: "#491656"
+css: styles.css
+---
+
+## Outline
+
+This notebook details how to call the ESCSiteData API endpoint to retrieve modelled environmental dose values for a given location and climate scenario.
+
+## Import required packages
+
+::: {.panel-tabset}
+
+## Python
+
+```{python import_packages_py}
+import requests
+import json
+import pandas
+pandas.options.mode.chained_assignment = None
+```
+
+## R
+
+```{r import_packages_r}
+library(httr)
+library(jsonlite)
+library(dplyr)
+```
+
+:::
+
+## Compose API request
+
+Establish API POST request URL
+
+::: {.panel-tabset}
+
+## Python
+
+```{python url_py}
+base_url = "http://209.97.132.245:8000/ESCSiteData/"  
+```
+
+## R
+
+```{r url_r}
+base_url <- "http://209.97.132.245:8000/ESCSiteData/"
+```
+
+:::
+
+Set the longitude (lon) and latitude (lat) in EPSG:3857.
+
+::: {.panel-tabset}
+
+## Python
+
+```{python lonlat_py}
+lon = -141102.7542
+lat = 6830259.9735
+```
+
+## R
+
+```{r lonlat_r}
+lon <- -141102.7542
+lat <- 6830259.9735
+```
+
+:::
+
+Establish the climate scenario (climateScen), and climate year(climateYear).
+
+* climateScen:str
+    * A string consisting of one of the following climate scenarios: 'UKCP09', 'RCP2.6', 'RCP4.5', 'RCP6.0', 'RCP8.5'
+* climateYear:str
+    * A string consisting of one of the following climate periods: 'Baseline', '2010', '2020', '2030', '2040', '2050', '2060', '2070', '2080'
+
+Please note that we are currently integrating UKCP18 RCP scenario data, as such RCP2.6, RCP4.5, RCP6.0, and RCP8.5 are currently placeholders.
+
+::: {.panel-tabset}
+
+## Python
+
+```{python clim_py}
+climateScen = 'UKCP09'
+climateYear = 'Baseline'
+```
+
+## R
+
+```{r clim_r}
+climateScen <- 'UKCP09'
+climateYear <- 'Baseline'
+```
+
+:::
+
+Compose the request body.
+
+::: {.panel-tabset}
+
+## Python
+
+```{python reqBody_py}
+req_body = {"lon": lon, "lat": lat, 
+            "climateScen": climateScen, "climateYear": climateYear}
+```
+
+## R
+
+```{r reqBody_r}
+req_list <- list("lon" = lon, "lat" = lat, 
+                 "climateScen" = climateScen, "climateYear" = climateYear)
+
+req_body <- jsonlite::toJSON(req_list, auto_unbox = TRUE)
+```
+
+:::
+
+
+## Make the API call
+
+Call the ESCSiteData API.
+
+::: {.panel-tabset}
+
+## Python
+
+```{python apiCall_py}
+ESCSiteDataresponse = requests.post(url = base_url, json = req_body)
+ESCSiteDataresponse.status_code == 200
+```
+
+## R
+
+```{r apiCall_r}
+ESCSiteDataresponse <- httr::POST(url = base_url, body = req_body)
+ESCSiteDataresponse$status_code == 200
+```
+
+:::
+
+Establish a function to deserialize the json response into a nested dictionary or nested list.
+
+::: {.panel-tabset}
+
+## Python
+
+```{python deserializeFunc_py}
+def deserialize(responseJson:str) -> dict:
+    
+    loadedJson = json.loads(responseJson)
+    responseDataFrame = pandas.DataFrame.from_dict(loadedJson)
+            
+    return responseDataFrame
+```
+
+## R
+
+```{r deserializeFunc_r}
+deserialize <- function(responseJson){
+
+    responseContent <- httr::content(responseJson)
+    responsedf <- jsonlite::fromJSON(responseContent)
+
+    return(responsedf)
+}
+```
+
+:::
+
+Call the `deserializeResults` function on the ESC API output.
+
+::: {.panel-tabset}
+
+## Python
+
+```{python deserialize_py}
+ESCSiteDataresponse_df = deserialize(responseJson = ESCSiteDataresponse.json())
+```
+
+## R
+
+```{r deserialize_r}
+ESCSiteDataresponse_df <- deserialize(responseJson = ESCSiteDataresponse)
+```
+
+:::
+
+
+## Explore results
+
+The object produced (`ESCSiteDataresponse_df`) contains the environmental dose variables obtained from the modelled data.
+For more information on the underlying method see the [Forest Research Bulletin 124](https://www.forestresearch.gov.uk/publications/archive-an-ecological-site-classification-for-forestry-in-great-britain/) and the [Forest Research Technical Paper 20](https://www.forestresearch.gov.uk/publications/archive-an-ecological-site-classification-for-forestry-in-great-britain-with-special-reference-to-grampian-scotland/).
+Column definitions:
+
+* SMR - soil moisture regime
+* SNR - soil nutrient regime
+* AT - accumulated temperature
+* CT - continentality
+* DAMS - detailed aspect method of scoring
+* MD - moisture deficit
+
+::: {.panel-tabset}
+
+## Python
+
+```{python ESCDoseVals_py}
+ESCSiteDataresponse_df
+```
+
+## R
+
+```{r ESCDoseVals_r}
+ESCSiteDataresponse_df
+```
+
+:::

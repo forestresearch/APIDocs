@@ -1,0 +1,425 @@
+---
+title: "Using the ESCTreeModel API v0.5"
+# subtitle: "v0.5"
+execute: 
+  enabled: true
+title-block-banner: "#491656"
+css: styles.css
+---
+
+## Outline
+
+This notebook details how to call the ESCTreeModel API endpoint to retrieve tree species suitability metrics for a given location.
+
+## Import required packages
+
+::: {.panel-tabset}
+
+## Python
+
+```{python import_packages_py}
+import requests
+import json
+import pandas
+pandas.options.mode.chained_assignment = None
+```
+
+## R
+
+```{r import_packages_r}
+library(httr)
+library(jsonlite)
+library(dplyr)
+```
+
+:::
+
+## Compose API request
+
+Establish API POST request URL
+
+::: {.panel-tabset}
+
+## Python
+
+```{python url_py}
+base_url = "http://209.97.132.245:8000/ESCTreeModel/"
+```
+
+## R
+
+```{r url_r}
+base_url <- "http://209.97.132.245:8000/ESCTreeModel/"
+```
+
+:::
+
+Set the longitude (lon) and latitude (lat) in EPSG:3857.
+
+::: {.panel-tabset}
+
+## Python
+
+```{python lonlat_py}
+lon = -141102.7542
+lat = 6830259.9735
+```
+
+## R
+
+```{r lonlat_r}
+lon <- -141102.7542
+lat <- 6830259.9735
+```
+
+:::
+
+Establish the site modifier options.
+
+* drainage:int
+    * 0 = None.
+    * 1 = Drainage installed.
+* brash:int
+    * 0 = None (new planting).
+    * 1 = Fresh brash (<18 months).
+    * 2 = Brash (>18 months).
+* fertiliser:int
+    * 0 = None.
+    * 1 = Fertiliser applied.
+* exposure:int
+    * 0 = None.
+    * 1 = Exposed ridge/Coastal zone.
+    * 2 = Local shelter/Less exposed/Underplanting.
+
+::: {.panel-tabset}
+
+## Python
+
+```{python siteMod_py}
+drainage = 0
+brash = 0
+fertiliser = 0
+exposure = 0
+```
+
+## R
+
+```{r siteMod_r}
+drainage <- 0
+brash <- 0
+fertiliser <- 0
+exposure <- 0
+```
+
+:::
+
+Establish the climate scenario/s (climateScenList), climate years (climateYearList) species group filter (filter), and ESC version.
+
+* climateScenList:List
+    * A list containing any of: ['UKCP09', 'RCP2.6', 'RCP4.5', 'RCP6.0', 'RCP8.5']
+* climateYearList:List
+    * A list containing any of: ['Baseline', '2010', '2020', '2030', '2040', '2050', '2060', '2070', '2080']
+* filter:int
+    * 0 = No filter
+    * 1 = Conifers only
+    * 2 = Broadleaves only
+    * 3 = Natives only
+    * 4 = Non-natives only
+* escVersion:str
+    * "4.33" = "4.33"
+
+Please note that we are currently integrating UKCP18 RCP scenario data, as such RCP2.6, RCP4.5, RCP6.0, and RCP8.5 are currently placeholders.
+
+::: {.panel-tabset}
+
+## Python
+
+```{python clim_py}
+climateScenList = ['UKCP09']
+climateYearList = ['Baseline', '2050', '2080']
+filter = 0
+escVersion = "4.33"
+```
+
+## R
+
+```{r clim_r}
+climateScenList <- list('UKCP09')
+climateYearList <- list('Baseline', '2050', '2080')
+filter <- 0
+escVersion <- "4.33"
+```
+
+:::
+
+Establish the manual Soil Moisture Regime (SMR) and Soil Nutrient Regime (SNR) modifier values.
+Enter None, or omit from the request body (`req_body`) below if you do not wish to manually alter the values.
+
+* smr:float, any number between 0 and 8. Indicative categorical values are as follows:
+    * 1 = Very Wet
+    * 2 = Wet 
+    * 3 = Moist
+    * 4 = Moist
+    * 5 = Fresh
+    * 6 = Slightly Dry
+    * 7 = Moderately Dry
+    * 8 = Very Dry
+* snr:float, any number between 0 and 6. Indicative categorical values are as follows:
+    * 0 = Very Poor (VP1)
+    * 0.5 = Very Poor (VP2)
+    * 1 = Very Poor (VP3)
+    * 1.5 = Very Poor - Poor
+    * 2 = Poor
+    * 3 = Medium
+    * 4 = Rich
+    * 5 = Very Rich
+    * 6 = Carbonate
+
+::: {.panel-tabset}
+
+## Python
+
+```{python soilOpts_py}
+smr = None
+snr = None
+```
+
+## R
+
+```{r soilOpts_r}
+smr <- NA
+snr <- NA
+```
+
+:::
+
+Compose the request body. Optionally, you can accept the default values for all parameters apart from lon and lat by emitting the parameters from the request body (as shown in the commented out code below).
+
+::: {.panel-tabset}
+
+## Python
+
+```{python reqBody_py}
+# req_body = {"lon": lon, "lat": lat}
+
+req_body = {"lon": lon, "lat": lat, 
+            "drainage": drainage, "brash": brash, "fertiliser": fertiliser, "exposure": exposure, 
+            "climateScenList": climateScenList, "climateYearList": climateYearList,
+            "filter": filter, "escVersion": escVersion,
+            "smr": smr, "snr": snr}
+```
+
+## R
+
+```{r reqBody_r}
+# req_list = list("smr" = smr, "snr" = snr)
+
+req_list <- list("lon" = lon, "lat" = lat, 
+                 "drainage" = drainage, "brash" = brash, "fertiliser" =  fertiliser, "exposure" = exposure, 
+                 "climateScenList" = climateScenList, "climateYearList" = climateYearList,
+                 "filter" = filter, "escVersion" = escVersion,
+                 "smr" = smr, "snr" = snr)
+
+req_body <- jsonlite::toJSON(req_list, auto_unbox = TRUE)
+```
+
+:::
+
+
+## Make the API call
+
+Call the ESCTreeModel API
+
+::: {.panel-tabset}
+
+## Python
+
+```{python apiCall_py}
+ESCTreeModelresponse = requests.post(url = base_url, json = req_body)
+ESCTreeModelresponse.status_code == 200
+```
+
+## R
+
+```{r apiCall_r}
+ESCTreeModelresponse <- httr::POST(url = base_url, body = req_body)
+ESCTreeModelresponse$status_code == 200
+```
+
+:::
+
+Establish a function to deserialize the json response into a nested dictionary or nested list.
+
+::: {.panel-tabset}
+
+## Python
+
+```{python deserializeFunc_py}
+def deserialize(responseJson:str) -> dict:
+    
+    loadedJson = json.loads(responseJson)
+
+    for k,v in loadedJson.items():
+        for w,s in loadedJson[k].items():
+            for t,c in loadedJson[k][w].items():
+                loadedJson[k][w][t] = pandas.DataFrame.from_dict(data = json.loads(c))
+            
+    return loadedJson
+```
+
+## R
+
+```{r deserializeFunc_r}
+deserialize <- function(responseJson){
+
+    responseContent <- httr::content(responseJson)
+    responseContent <- jsonlite::fromJSON(responseContent)
+
+    for(i in names(responseContent)){
+        for(j in names(responseContent[[i]])){
+            for(k in names(responseContent[[i]][[j]])){
+                responseContent[[i]][[j]][[k]] = jsonlite::fromJSON(responseContent[[i]][[j]][[k]])
+            }
+        }
+    }
+    return(responseContent)
+}
+```
+
+:::
+
+Call the `deserializeResults` function on the ESC API output.
+
+::: {.panel-tabset}
+
+## Python
+
+```{python deserialize_py}
+ESCTreeModelresponse_dict = deserialize(responseJson = ESCTreeModelresponse.json())
+```
+
+## R
+
+```{r deserialize_r}
+ESCTreeModelresponse_list <- deserialize(responseJson = ESCTreeModelresponse)
+```
+
+:::
+
+
+## Explore results
+
+The object produced (`ESCTreeModelresponse_dict`) is a nested dictionary with the following structure:
+
+```
+ESCresponse_dict (dict)
+├── Metadata (dict)
+│   ├── ESCMetadata (dict)
+│   │   ├── ESCTreeMetadata (DataFrame)
+│   ├── APIMetadata (dict)
+│   │   ├── DateTime (DataFrame)
+└───UKCP09 (dict)
+    ├── Baseline (dict)
+    │   ├── ESCDoseVals (DataFrame)
+    │   ├── ESCResponseVals (DataFrame)
+    │   ├── ESCSuitMetrics (DataFrame)
+    ├── 2050 (dict)
+    │   ├── ESCDoseVals (DataFrame)
+    │   ├── ESCResponseVals (DataFrame)
+    │   ├── ESCSuitMetrics (DataFrame)
+    ├── 2080 (dict)
+    │   ├── ESCDoseVals (DataFrame)
+    │   ├── ESCResponseVals (DataFrame)
+    │   ├── ESCSuitMetrics (DataFrame)
+```
+
+Access the ESC data frames from the API response for a given climate scenario using the following code.
+
+The `ESCDoseVals` data frame contains the environmental dose variables obtained from the modelled data and/or manually entered, which are then modified by the aforementioned API query parameters `drainage`, `brash`, `fertiliser`, and `exposure`.
+For more information on the underlying method see the [Forest Research Bulletin 124](https://www.forestresearch.gov.uk/publications/archive-an-ecological-site-classification-for-forestry-in-great-britain/) and the [Forest Research Technical Paper 20](https://www.forestresearch.gov.uk/publications/archive-an-ecological-site-classification-for-forestry-in-great-britain-with-special-reference-to-grampian-scotland/).
+Column definitions:
+
+* SMR - soil moisture regime
+* SNR - soil nutrient regime
+* AT - accumulated temperature
+* CT - continentality
+* DAMS - direct aspect method of scoring
+* MD - moisture deficit
+* Item - The stage of modification of the environmental dose variable values.
+
+::: {.panel-tabset}
+
+## Python
+
+```{python ESCDoseVals_py}
+baseline_ESCDoseVals = ESCTreeModelresponse_dict.get("UKCP09").get("Baseline").get("ESCDoseVals")
+baseline_ESCDoseVals
+```
+
+## R
+
+```{r ESCDoseVals_r}
+baseline_ESCDoseVals = ESCTreeModelresponse_list$UKCP09$Baseline$ESCDoseVals
+baseline_ESCDoseVals
+```
+
+:::
+
+The `ESCResponseVals` data frame contains data on the response of each tree species to each environmental dose metric.
+Column definitions:
+
+* speciesCode - The Forest Research species code for the species.
+* metric - The environmental dose variable (see above).
+* response - The response of the tree species to the environmental dose variable. A unitless value between 0 and 1.
+
+::: {.panel-tabset}
+
+## Python
+
+```{python ESCResponseVals_py}
+baseline_ESCResponseVals = ESCTreeModelresponse_dict.get("UKCP09").get("Baseline").get("ESCResponseVals")
+baseline_ESCResponseVals.head()
+```
+
+## R
+
+```{r ESCResponseVals_r}
+baseline_ESCResponseVals = ESCTreeModelresponse_list$UKCP09$Baseline$ESCResponseVals
+baseline_ESCResponseVals |> head()
+```
+
+:::
+
+The `ESCSuitMetrics` data frame contains a range of summary data relating to the suitability of each tree species based on the `ESCResponseVals` data.
+Column definitions:
+
+* speciesCode - The Forest Research species code for the species.
+* speciesScientific - The scientific name of the species.
+* speciesName - The common name of the species.
+* maxYC - The maximum yield class of that species
+* threat - Any major threats to that tree species which should be taken into account when considering planting that species.
+* limFactorInclAT - The limiting factor (metric with the lowest response) including AT.
+* limFactorInclATResponse - The response value for limiting factor (metric with the lowest response) including AT.
+* limFactorExclAT - The limiting factor (metric with the lowest response) excluding AT.
+* limFactorExclATResponse - The response value for limiting factor (metric with the lowest response) excluding AT.
+* TimberSuitability - The suitability of that tree species for planting as a timber crop.
+* EcologicalSuitability - The suitability of that tree species for planting.
+* estimatedYC - The estimated yield class.
+
+::: {.panel-tabset}
+
+## Python
+
+```{python ESCSuitMetrics_py}
+baseline_ESCSuitMetrics = ESCTreeModelresponse_dict.get("UKCP09").get("Baseline").get("ESCSuitMetrics")
+baseline_ESCSuitMetrics.head()
+```
+
+## R
+
+```{r ESCSuitMetrics_r}
+baseline_ESCSuitMetrics = ESCTreeModelresponse_list$UKCP09$Baseline$ESCSuitMetrics
+baseline_ESCSuitMetrics |> head()
+```
+
+:::

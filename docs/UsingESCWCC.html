@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>FR DSS API Documentation - Using the ESCWCC API</title>
+<title>Contents - Using the ESCWCC API v0.5</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -122,6 +122,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<style>
+    .quarto-title-block .quarto-title-banner {
+      background: #491656;
+    }
+    </style>
 
 
 <link rel="stylesheet" href="styles.css">
@@ -133,7 +138,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Using the ESCWCC API</h1>
+      <h1 class="quarto-secondary-nav-title">Using the ESCWCC API v0.5</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -141,12 +146,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title d-none d-lg-block">Using the ESCWCC API v0.5</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">FR DSS API Documentation</a> 
+      <a href="./">Contents</a> 
     </div>
       </div>
       <div class="mt-2 flex-shrink-0 align-items-center">
@@ -166,7 +186,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./UsingESCWCCAPI.html" class="sidebar-item-text sidebar-link active">Using the ESCWCC API</a>
+  <a href="./UsingESCSiteData.html" class="sidebar-item-text sidebar-link">Using the ESCSiteData API v0.5</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./UsingESCTreeResults.html" class="sidebar-item-text sidebar-link">Using the ESCTreeResults API v0.5</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./UsingESCTreeModel.html" class="sidebar-item-text sidebar-link">Using the ESCTreeModel API v0.5</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./UsingESCWCC.html" class="sidebar-item-text sidebar-link active">Using the ESCWCC API v0.5</a>
   </div>
 </li>
       </ul>
@@ -177,7 +212,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#import-required-packages" id="toc-import-required-packages" class="nav-link active" data-scroll-target="#import-required-packages">Import required packages</a></li>
+  <li><a href="#outline" id="toc-outline" class="nav-link active" data-scroll-target="#outline">Outline</a></li>
+  <li><a href="#import-required-packages" id="toc-import-required-packages" class="nav-link" data-scroll-target="#import-required-packages">Import required packages</a></li>
   <li><a href="#compose-api-request" id="toc-compose-api-request" class="nav-link" data-scroll-target="#compose-api-request">Compose API request</a></li>
   <li><a href="#make-the-api-call" id="toc-make-the-api-call" class="nav-link" data-scroll-target="#make-the-api-call">Make the API call</a></li>
   <li><a href="#explore-results" id="toc-explore-results" class="nav-link" data-scroll-target="#explore-results">Explore results</a></li>
@@ -189,26 +225,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title d-none d-lg-block">Using the ESCWCC API</h1>
-<p class="subtitle lead">v0.5</p>
-</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
-<div class="quarto-title-meta">
 
-    
-    
-  </div>
-  
-
-</header>
-
+<section id="outline" class="level2">
+<h2 class="anchored" data-anchor-id="outline">Outline</h2>
 <p>This notebook details how to call the ESCWCC API endpoint and use the response data to obtain woodland carbon code (WCC) metrics such as the claimable carbon sequestration using R and Python.</p>
+</section>
 <section id="import-required-packages" class="level2">
 <h2 class="anchored" data-anchor-id="import-required-packages">Import required packages</h2>
 <div class="panel-tabset">
@@ -254,12 +279,12 @@ Attaching package: 'dplyr'</code></pre>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>base_url <span class="op">=</span> <span class="st">"http://209.97.132.245:8000/ESCWCC/"</span>  <span class="co"># Develop</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>base_url <span class="op">=</span> <span class="st">"http://209.97.132.245:8000/ESCWCC/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>base_url <span class="ot">&lt;-</span> <span class="st">"http://209.97.132.245:8000/ESCWCC/"</span>  <span class="co"># Develop</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>base_url <span class="ot">&lt;-</span> <span class="st">"http://209.97.132.245:8000/ESCWCC/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -511,7 +536,7 @@ Attaching package: 'dplyr'</code></pre>
 </section>
 <section id="make-the-api-call" class="level2">
 <h2 class="anchored" data-anchor-id="make-the-api-call">Make the API call</h2>
-<p>Call the ESCWCC API</p>
+<p>Call the ESCWCC API.</p>
 <div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false">R</a></li></ul>
 <div class="tab-content">
@@ -592,17 +617,17 @@ Attaching package: 'dplyr'</code></pre>
 </section>
 <section id="explore-results" class="level2">
 <h2 class="anchored" data-anchor-id="explore-results">Explore results</h2>
-<p>The object produced (<code>ESCWCCresponse_dict</code>) is a nested dictionary with the following structure:</p>
-<pre><code>ESCresponse_dict (dict)
-├── Metadata (dict)
-│&nbsp;&nbsp; ├── ESCMetadata (dict)
+<p>The object produced (<code>ESCWCCresponse_dict</code> or <code>ESCWCCResponse_list</code>) is a nested dictionary with the following structure:</p>
+<pre><code>ESCresponse_dict (dict or list)
+├── Metadata (dict or list)
+│&nbsp;&nbsp; ├── ESCMetadata (dict or list)
 │&nbsp;&nbsp; │   ├── ESCTreeMetadata (DataFrame)
-│&nbsp;&nbsp; ├── WCCMetadata (dict)
+│&nbsp;&nbsp; ├── WCCMetadata (dict or list)
 │&nbsp;&nbsp; │   ├── WCCMetadata (DataFrame)
-│&nbsp;&nbsp; ├── APIMetadata (dict)
+│&nbsp;&nbsp; ├── APIMetadata (dict or list)
 │&nbsp;&nbsp; │   ├── DateTime (DataFrame)
-└───UKCP09 (dict)
-    ├── Baseline (dict)
+└───UKCP09 (dict or list)
+    ├── Baseline (dict or list)
     │&nbsp;&nbsp; ├── ESCDoseVals (DataFrame)
     │&nbsp;&nbsp; ├── ESCResponseVals (DataFrame)
     │&nbsp;&nbsp; ├── ESCSuitMetrics (DataFrame)
@@ -610,7 +635,7 @@ Attaching package: 'dplyr'</code></pre>
     │&nbsp;&nbsp; ├── WCCSoilLoss (DataFrame)
     │&nbsp;&nbsp; ├── WCCSoilSeq (DataFrame)
     │&nbsp;&nbsp; ├── WCCEstablishment (DataFrame)
-    ├── 2050 (dict)
+    ├── 2050 (dict or list)
     │&nbsp;&nbsp; ├── ESCDoseVals (DataFrame)
     │&nbsp;&nbsp; ├── ESCResponseVals (DataFrame)
     │&nbsp;&nbsp; ├── ESCSuitMetrics (DataFrame)
@@ -618,7 +643,7 @@ Attaching package: 'dplyr'</code></pre>
     │&nbsp;&nbsp; ├── WCCSoilLoss (DataFrame)
     │&nbsp;&nbsp; ├── WCCSoilSeq (DataFrame)
     │&nbsp;&nbsp; ├── WCCEstablishment (DataFrame)
-    ├── 2080 (dict)
+    ├── 2080 (dict or list)
     │&nbsp;&nbsp; ├── ESCDoseVals (DataFrame)
     │&nbsp;&nbsp; ├── ESCResponseVals (DataFrame)
     │&nbsp;&nbsp; ├── ESCSuitMetrics (DataFrame)
@@ -808,6 +833,19 @@ Attaching package: 'dplyr'</code></pre>
 <li>periodEnd - The rotation length stipulated in columns F to AK of the “Clearfell_Max_Seq_Values” sheet of the excel tool. Mapped to the last year of the period present in the period column.</li>
 <li>clearfellCapCarbon - The Clearfell Cap Value associated with the periodEnd, wccCode, spacing, YC, and management. Units of tCO2e.</li>
 </ul>
+<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The finalYC may differ considerably from the ESC estimatedYC due to the limited number of species - YC combinations for which data is available from the WCC BCLT tables. It is left to the API user to determine whether the use of the BCLT values returned for a given finalYC are appropriate.</p>
+</div>
+</div>
 <div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-15-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-15-1" role="tab" aria-controls="tabset-15-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-15-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-15-2" role="tab" aria-controls="tabset-15-2" aria-selected="false">R</a></li></ul>
 <div class="tab-content">
