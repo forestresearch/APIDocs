@@ -17,6 +17,7 @@ website:
 
 format:
   html:
+    embed-resources: true
     theme: light
     code-copy: true
     fontsize: 1rem
