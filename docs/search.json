@@ -2,7 +2,7 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Forest Research Decision Support System API Documentation",
+    "title": "FR DSS API Documentation",
     "section": "",
     "text": "Here the use of various Forest Research (FR) Decision Support System (DSS) tool API endpoints are documented for R and Python."
   },
@@ -58,7 +58,7 @@
   {
     "objectID": "index.html#esc",
     "href": "index.html#esc",
-    "title": "Forest Research Decision Support System API Documentation",
+    "title": "FR DSS API Documentation",
     "section": "ESC",
     "text": "ESC\nThe Ecological Site Classification (ESC) API endpoints are constructed using FastAPI, the OpenAPI documentation can be found here."
   },

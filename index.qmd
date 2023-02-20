@@ -1,5 +1,5 @@
 ---
-title: "Forest Research Decision Support System API Documentation"
+title: "FR DSS API Documentation"
 # about:
 #   template: trestles
 #   image-shape: round
