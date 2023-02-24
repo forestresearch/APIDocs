@@ -1,5 +1,5 @@
 ---
-title: "Using the ESCWCC API v0.5"
+title: "Using the ESCWCC API"
 # subtitle: "v0.5"
 execute: 
   enabled: true

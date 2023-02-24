@@ -1,5 +1,5 @@
 ---
-title: "Using the ESCTreeResults API v0.5"
+title: "Using the ESCTreeResults API"
 # subtitle: "v0.5"
 execute: 
   enabled: true
@@ -74,7 +74,7 @@ lat <- 6830259.9735
 
 :::
 
-Establish the Soil Moisture Regime (SMR) and Soil Nutrient Regime (SNR) values.
+Establish the Soil Moisture Regime (SMR) and Soil Nutrient Regime (SNR) manual modifier values, if required. Otherwise set to `NA` (R) or `None` (Python).
 
 * smr:float, any number between 0 and 8. Indicative categorical values are as follows:
     * 1 = Very Wet
@@ -101,42 +101,74 @@ Establish the Soil Moisture Regime (SMR) and Soil Nutrient Regime (SNR) values.
 ## Python
 
 ```{python soilOpts_py}
-smr = 3
-snr = 5
+smr_modVal = 3
+snr_modVal = 5
 ```
 
 ## R
 
 ```{r soilOpts_r}
-smr <- 3
-snr <- 5
+smr_modVal <- 3
+snr_modVal <- 5
 ```
 
 :::
 
-Establish the Accumulated Temperature (AT), Continentality (CT), Direct Aspect Method Scoring (DAMS) and Moisture Deficit (MD) values. 
+Establish the escSiteData dictionary. To do this, a dictionary containing the values can be composed manually be first establishing lists of values.
 
 ::: {.panel-tabset}
 
 ## Python
 
 ```{python otherOpts_py}
-at = 1614
-ct = 10
-dams = 12
-md = 165
+climateScen_vals = ["RCP2.6", "RCP2.6"]
+climateYear_vals = ["Baseline", "2010"]
+smr_vals = [1, 1]
+snr_vals = [2, 2]
+at_vals = [1300.0447, 1538.3716]
+ct_vals = [6.13745, 6.13745]
+dams_vals = [15.321886, 15.321886]
+md_vals = [100.896255, 92.44555]
 ```
 
 ## R
 
 ```{r otherOpts_r}
-at <- 1614
-ct <- 10
-dams <- 12
-md <- 165
+climateScen_vals <- list("RCP2.6", "RCP2.6")
+climateYear_vals <- list("Baseline", "2010")
+smr_vals <- list(1, 1)
+snr_vals <- list(2, 2)
+at_vals <- list(1300.0447, 1538.3716)
+ct_vals <- list(6.13745, 6.13745)
+dams_vals <- list(15.321886, 15.321886)
+md_vals <- list(100.896255, 92.44555)
 ```
 
 :::
+
+Then form the `escSiteData` dictionary:
+
+::: {.panel-tabset}
+
+## Python
+
+```{python formEscSiteData_py}
+escSiteData = {'climateScen': climateScen_vals, 'climateYear': climateYear_vals, 
+               'SMR': smr_vals, 'SNR': snr_vals, 'AT': at_vals, 
+               'CT': ct_vals, 'DAMS': dams_vals, 'MD': md_vals}
+```
+
+## R
+
+```{r formEscSiteData_r}
+escSiteData = list('climateScen' = climateScen_vals, 'climateYear' = climateYear_vals, 
+                   'SMR' = smr_vals, 'SNR' = snr_vals, 'AT' = at_vals, 
+                   'CT' = ct_vals, 'DAMS' = dams_vals, 'MD' = md_vals)
+```
+
+:::
+
+Alternatively, the response from the `ESCSiteData` API can be passed to escSiteData.
 
 Establish the site modifier options.
 
@@ -206,7 +238,8 @@ Compose the request body.
 
 ```{python reqBody_py}
 req_body = {"lon": lon, "lat": lat, 
-            "smr": smr, "snr": snr, "at": at, "ct": ct, "dams": dams, "md": md,
+            "smr": smr_modVal, "snr": snr_modVal,
+            "escSiteData": escSiteData,
             "drainage": drainage, "brash": brash, "fertiliser": fertiliser, "exposure": exposure,
             "escVersion": escVersion}
 ```
@@ -215,7 +248,8 @@ req_body = {"lon": lon, "lat": lat,
 
 ```{r reqBody_r}
 req_list <- list("lon" = lon, "lat" = lat, 
-                 "smr" = smr, "snr" = snr, "at" = at, "ct" = ct, "dams" = dams, "md" = md,
+                 "smr" = smr_modVal, "snr" = snr_modVal,
+                 "escSiteData" = escSiteData,
                  "drainage" = drainage, "brash" = brash, "fertiliser" =  fertiliser, "exposure" = exposure, 
                  "escVersion" = escVersion)
 
@@ -317,8 +351,12 @@ ESCTreeResultsresponse (dict or list)
 │   │   ├── ESCTreeMetadata (DataFrame)
 │   ├── APIMetadata (dict or list)
 │   │   ├── DateTime (DataFrame)
-└───Results (dict or list)
-    ├── ESCTree (dict or list)
+└───RCP2.6 (dict or list)
+    ├── Baseline (dict or list)
+    │   ├── ESCDoseVals (DataFrame)
+    │   ├── ESCResponseVals (DataFrame)
+    │   ├── ESCSuitMetrics (DataFrame)
+    ├── 2010 (dict or list)
     │   ├── ESCDoseVals (DataFrame)
     │   ├── ESCResponseVals (DataFrame)
     │   ├── ESCSuitMetrics (DataFrame)
@@ -343,14 +381,14 @@ Column definitions:
 ## Python
 
 ```{python ESCDoseVals_py}
-baseline_ESCDoseVals = ESCTreeResultsresponse_dict.get("Results").get("ESCTree").get("ESCDoseVals")
+baseline_ESCDoseVals = ESCTreeResultsresponse_dict.get("RCP2.6").get("Baseline").get("ESCDoseVals")
 baseline_ESCDoseVals
 ```
 
 ## R
 
 ```{r ESCDoseVals_r}
-baseline_ESCDoseVals = ESCTreeResultsresponse_list$Results$ESCTree$ESCDoseVals
+baseline_ESCDoseVals = ESCTreeResultsresponse_list$RCP2.6$Baseline$ESCDoseVals
 baseline_ESCDoseVals
 ```
 
@@ -368,14 +406,14 @@ Column definitions:
 ## Python
 
 ```{python ESCResponseVals_py}
-baseline_ESCResponseVals = ESCTreeResultsresponse_dict.get("Results").get("ESCTree").get("ESCResponseVals")
+baseline_ESCResponseVals = ESCTreeResultsresponse_dict.get("RCP2.6").get("Baseline").get("ESCResponseVals")
 baseline_ESCResponseVals.head()
 ```
 
 ## R
 
 ```{r ESCResponseVals_r}
-baseline_ESCResponseVals = ESCTreeResultsresponse_list$Results$ESCTree$ESCResponseVals
+baseline_ESCResponseVals = ESCTreeResultsresponse_list$RCP2.6$Baseline$ESCResponseVals
 baseline_ESCResponseVals |> head()
 ```
 
@@ -402,14 +440,14 @@ Column definitions:
 ## Python
 
 ```{python ESCSuitMetrics_py}
-baseline_ESCSuitMetrics = ESCTreeResultsresponse_dict.get("Results").get("ESCTree").get("ESCSuitMetrics")
+baseline_ESCSuitMetrics = ESCTreeResultsresponse_dict.get("RCP2.6").get("Baseline").get("ESCSuitMetrics")
 baseline_ESCSuitMetrics.head()
 ```
 
 ## R
 
 ```{r ESCSuitMetrics_r}
-baseline_ESCSuitMetrics = ESCTreeResultsresponse_list$Results$ESCTree$ESCSuitMetrics
+baseline_ESCSuitMetrics = ESCTreeResultsresponse_list$RCP2.6$Baseline$ESCSuitMetrics
 baseline_ESCSuitMetrics |> head()
 ```
 

@@ -1,5 +1,5 @@
 ---
-title: "Using the ESCSiteData API v0.5"
+title: "Using the ESCSiteData API"
 # subtitle: "v0.5"
 execute: 
   enabled: true
@@ -43,7 +43,7 @@ Establish API POST request URL
 ## Python
 
 ```{python url_py}
-base_url = "http://209.97.132.245:8000/ESCSiteData/"  
+base_url = "http://209.97.132.245:8000/ESCSiteData/"
 ```
 
 ## R
@@ -74,12 +74,12 @@ lat <- 6830259.9735
 
 :::
 
-Establish the climate scenario (climateScen), and climate year(climateYear).
+Establish the climate scenario/s (climateScenList) and climate years (climateYearList).
 
-* climateScen:str
-    * A string consisting of one of the following climate scenarios: 'UKCP09', 'RCP2.6', 'RCP4.5', 'RCP6.0', 'RCP8.5'
-* climateYear:str
-    * A string consisting of one of the following climate periods: 'Baseline', '2010', '2020', '2030', '2040', '2050', '2060', '2070', '2080'
+* climateScenList:List
+    * A list containing any of: ['UKCP09', 'RCP2.6', 'RCP4.5', 'RCP6.0', 'RCP8.5']
+* climateYearList:List
+    * A list containing any of: ['Baseline', '2010', '2020', '2030', '2040', '2050', '2060', '2070', '2080']
 
 Please note that we are currently integrating UKCP18 RCP scenario data, as such RCP2.6, RCP4.5, RCP6.0, and RCP8.5 are currently placeholders.
 
@@ -88,15 +88,15 @@ Please note that we are currently integrating UKCP18 RCP scenario data, as such 
 ## Python
 
 ```{python clim_py}
-climateScen = 'UKCP09'
-climateYear = 'Baseline'
+climateScenList = ["RCP2.6"]
+climateYearList = ["Baseline", "2010"]
 ```
 
 ## R
 
 ```{r clim_r}
-climateScen <- 'UKCP09'
-climateYear <- 'Baseline'
+climateScenList <- list("RCP2.6")
+climateYearList <- list("Baseline", "2010")
 ```
 
 :::
@@ -109,14 +109,14 @@ Compose the request body.
 
 ```{python reqBody_py}
 req_body = {"lon": lon, "lat": lat, 
-            "climateScen": climateScen, "climateYear": climateYear}
+            "climateScenList": climateScenList, "climateYearList": climateYearList}
 ```
 
 ## R
 
 ```{r reqBody_r}
 req_list <- list("lon" = lon, "lat" = lat, 
-                 "climateScen" = climateScen, "climateYear" = climateYear)
+                 "climateScenList" = climateScenList, "climateYearList" = climateYearList)
 
 req_body <- jsonlite::toJSON(req_list, auto_unbox = TRUE)
 ```
@@ -154,9 +154,8 @@ Establish a function to deserialize the json response into a nested dictionary o
 
 ```{python deserializeFunc_py}
 def deserialize(responseJson:str) -> dict:
-    
-    loadedJson = json.loads(responseJson)
-    responseDataFrame = pandas.DataFrame.from_dict(loadedJson)
+
+    responseDataFrame = pandas.DataFrame.from_dict(data = json.loads(responseJson))
             
     return responseDataFrame
 ```
@@ -196,16 +195,18 @@ ESCSiteDataresponse_df <- deserialize(responseJson = ESCSiteDataresponse)
 
 ## Explore results
 
-The object produced (`ESCSiteDataresponse_df`) contains the environmental dose variables obtained from the modelled data.
+The object produced (`ESCSiteDataresponse_df`) contains the environmental dose variables obtained from the modelled data for a given set of climate parameters.
 For more information on the underlying method see the [Forest Research Bulletin 124](https://www.forestresearch.gov.uk/publications/archive-an-ecological-site-classification-for-forestry-in-great-britain/) and the [Forest Research Technical Paper 20](https://www.forestresearch.gov.uk/publications/archive-an-ecological-site-classification-for-forestry-in-great-britain-with-special-reference-to-grampian-scotland/).
 Column definitions:
 
-* SMR - soil moisture regime
-* SNR - soil nutrient regime
-* AT - accumulated temperature
-* CT - continentality
-* DAMS - detailed aspect method of scoring
-* MD - moisture deficit
+* climateScen - climate scenario.
+* climateYear - climate year.
+* SMR - soil moisture regime.
+* SNR - soil nutrient regime.
+* AT - accumulated temperature.
+* CT - continentality.
+* DAMS - detailed aspect method of scoring.
+* MD - moisture deficit.
 
 ::: {.panel-tabset}
 

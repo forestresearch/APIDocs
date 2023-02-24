@@ -1,5 +1,5 @@
 ---
-title: "Using the ESCTreeModel API v0.5"
+title: "Using the ESCTreeModel API"
 # subtitle: "v0.5"
 execute: 
   enabled: true
