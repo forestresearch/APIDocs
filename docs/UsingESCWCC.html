@@ -4888,21 +4888,21 @@ Warning
 <h2 class="anchored" data-anchor-id="calculate-claimable-carbon-sequestration">Calculate Claimable Carbon Sequestration</h2>
 <p>To calculate the average total claimable sequestration by year in tCO2e/ha perform the following calculations using the API outputs.</p>
 <p>Columns suffixed with (&lt;[A-Z]&gt;) correspond to the columns CB to CM of Version 2.4 (March 2021) of the WCC excel tool.</p>
-<p>First, retrieve the WCC Biomass Carbon Lookup Table (BCLT) and Clearfell Max Seq Values (CMSV) values for selected species, e.g. Rowan (ROW).</p>
+<p>First, retrieve the WCC Biomass Carbon Lookup Table (BCLT) and Clearfell Max Seq Values (CMSV) values for selected species, e.g. the major tree species present in the National Vegetation Classification (NVC) W14 “Beech-oak woodland with bramble”: Beech (BE), Holly (HOL), and Pedunculate oak (POK).</p>
 <div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-19-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-19-1" role="tab" aria-controls="tabset-19-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-19-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-19-2" role="tab" aria-controls="tabset-19-2" aria-selected="false">R</a></li></ul>
 <div class="tab-content">
 <div id="tabset-19-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-19-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>baseline_WCCTreeValues_ROW <span class="op">=</span> baseline_WCCTreeValues[baseline_WCCTreeValues[<span class="st">&quot;speciesCode&quot;</span>] <span class="op">==</span> <span class="st">&quot;ROW&quot;</span>]</span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>baseline_WCCTreeValues_ROW.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>baseline_WCCTreeValues_selSpp <span class="op">=</span> baseline_WCCTreeValues[baseline_WCCTreeValues[<span class="st">&quot;speciesCode&quot;</span>].isin([<span class="st">&quot;BE&quot;</span>, <span class="st">&quot;HOL&quot;</span>, <span class="st">&quot;POK&quot;</span>])]</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>baseline_WCCTreeValues_selSpp.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>     speciesCode wccCode  ... periodEnd clearfellCapCarbon
-1200         ROW     SAB  ...       NaN                NaN
-1201         ROW     SAB  ...       NaN                NaN
-1202         ROW     SAB  ...       NaN                NaN
-1203         ROW     SAB  ...       NaN                NaN
-1204         ROW     SAB  ...       NaN                NaN
+<pre><code>    speciesCode wccCode  ... periodEnd clearfellCapCarbon
+720         HOL     SAB  ...       NaN                NaN
+721         HOL     SAB  ...       NaN                NaN
+722         HOL     SAB  ...       NaN                NaN
+723         HOL     SAB  ...       NaN                NaN
+724         HOL     SAB  ...       NaN                NaN
 
 [5 rows x 22 columns]</code></pre>
 </div>
@@ -4910,17 +4910,17 @@ Warning
 </div>
 <div id="tabset-19-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-19-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>baseline_WCCTreeValues_ROW <span class="ot">&lt;-</span> baseline_WCCTreeValues <span class="sc">|&gt;</span></span>
-<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(speciesCode <span class="sc">==</span> <span class="st">&quot;ROW&quot;</span>)</span>
-<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>baseline_WCCTreeValues_ROW <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>baseline_WCCTreeValues_selSpp <span class="ot">&lt;-</span> baseline_WCCTreeValues <span class="sc">|&gt;</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(speciesCode <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;BE&quot;</span>, <span class="st">&quot;HOL&quot;</span>, <span class="st">&quot;POK&quot;</span>))</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>baseline_WCCTreeValues_selSpp <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  speciesCode wccCode speciesScientific speciesName estimatedYC roundedYC
-1         ROW     SAB  Sorbus aucuparia       Rowan         2.4         2
-2         ROW     SAB  Sorbus aucuparia       Rowan         2.4         2
-3         ROW     SAB  Sorbus aucuparia       Rowan         2.4         2
-4         ROW     SAB  Sorbus aucuparia       Rowan         2.4         2
-5         ROW     SAB  Sorbus aucuparia       Rowan         2.4         2
-6         ROW     SAB  Sorbus aucuparia       Rowan         2.4         2
+1         HOL     SAB   Ilex aquifolium       Holly    1.981833         2
+2         HOL     SAB   Ilex aquifolium       Holly    1.981833         2
+3         HOL     SAB   Ilex aquifolium       Holly    1.981833         2
+4         HOL     SAB   Ilex aquifolium       Holly    1.981833         2
+5         HOL     SAB   Ilex aquifolium       Holly    1.981833         2
+6         HOL     SAB   Ilex aquifolium       Holly    1.981833         2
   minWCCYC maxWCCYC finalYC spacing management period standingCarbonYr
 1        2       12       2     1.5    NO_thin    0-5               NA
 2        2       12       2     1.5    NO_thin   5-10               NA
@@ -4953,15 +4953,15 @@ Warning
 <div class="tab-content">
 <div id="tabset-20-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-20-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>baseline_WCCTreeValues_ROW_1p5_Thinned <span class="op">=</span> baseline_WCCTreeValues_ROW[(baseline_WCCTreeValues_ROW.spacing <span class="op">==</span> <span class="fl">1.5</span>) <span class="op">&amp;</span> (baseline_WCCTreeValues_ROW.management <span class="op">==</span> <span class="st">&quot;Thinned&quot;</span>)]</span>
-<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>baseline_WCCTreeValues_ROW_1p5_Thinned.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>baseline_WCCTreeValues_selSpp_1p5_Thinned <span class="op">=</span> baseline_WCCTreeValues_selSpp[(baseline_WCCTreeValues_selSpp.spacing <span class="op">==</span> <span class="fl">1.5</span>) <span class="op">&amp;</span> (baseline_WCCTreeValues_selSpp.management <span class="op">==</span> <span class="st">&quot;Thinned&quot;</span>)]</span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>baseline_WCCTreeValues_selSpp_1p5_Thinned.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>     speciesCode wccCode  ... periodEnd clearfellCapCarbon
-1240         ROW     SAB  ...       NaN                NaN
-1241         ROW     SAB  ...       NaN                NaN
-1242         ROW     SAB  ...       NaN                NaN
-1243         ROW     SAB  ...       NaN                NaN
-1244         ROW     SAB  ...       NaN                NaN
+<pre><code>    speciesCode wccCode  ... periodEnd clearfellCapCarbon
+760         HOL     SAB  ...       NaN                NaN
+761         HOL     SAB  ...       NaN                NaN
+762         HOL     SAB  ...       NaN                NaN
+763         HOL     SAB  ...       NaN                NaN
+764         HOL     SAB  ...       NaN                NaN
 
 [5 rows x 22 columns]</code></pre>
 </div>
@@ -4969,18 +4969,18 @@ Warning
 </div>
 <div id="tabset-20-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-20-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>baseline_WCCTreeValues_ROW_1p5_Thinned <span class="ot">&lt;-</span> baseline_WCCTreeValues_ROW <span class="sc">|&gt;</span></span>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>baseline_WCCTreeValues_selSpp_1p5_Thinned <span class="ot">&lt;-</span> baseline_WCCTreeValues_selSpp <span class="sc">|&gt;</span></span>
 <span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(spacing <span class="sc">==</span> <span class="fl">1.5</span>,</span>
 <span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>                  management <span class="sc">==</span> <span class="st">&quot;Thinned&quot;</span>)</span>
-<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>baseline_WCCTreeValues_ROW_1p5_Thinned <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>baseline_WCCTreeValues_selSpp_1p5_Thinned <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  speciesCode wccCode speciesScientific speciesName estimatedYC roundedYC
-1         ROW     SAB  Sorbus aucuparia       Rowan         2.4         2
-2         ROW     SAB  Sorbus aucuparia       Rowan         2.4         2
-3         ROW     SAB  Sorbus aucuparia       Rowan         2.4         2
-4         ROW     SAB  Sorbus aucuparia       Rowan         2.4         2
-5         ROW     SAB  Sorbus aucuparia       Rowan         2.4         2
-6         ROW     SAB  Sorbus aucuparia       Rowan         2.4         2
+1         HOL     SAB   Ilex aquifolium       Holly    1.981833         2
+2         HOL     SAB   Ilex aquifolium       Holly    1.981833         2
+3         HOL     SAB   Ilex aquifolium       Holly    1.981833         2
+4         HOL     SAB   Ilex aquifolium       Holly    1.981833         2
+5         HOL     SAB   Ilex aquifolium       Holly    1.981833         2
+6         HOL     SAB   Ilex aquifolium       Holly    1.981833         2
   minWCCYC maxWCCYC finalYC spacing management period standingCarbonYr
 1        2       12       2     1.5    Thinned    0-5               NA
 2        2       12       2     1.5    Thinned   5-10               NA
@@ -5013,21 +5013,25 @@ Warning
 <div class="tab-content">
 <div id="tabset-21-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-21-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>species_composition <span class="op">=</span> pandas.DataFrame.from_dict(data <span class="op">=</span> {<span class="st">&quot;speciesCode&quot;</span>: <span class="st">&quot;ROW&quot;</span>, <span class="st">&quot;proportion&quot;</span>: [<span class="dv">1</span>]})</span>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>species_composition <span class="op">=</span> pandas.DataFrame.from_dict(data <span class="op">=</span> {<span class="st">&quot;speciesCode&quot;</span>: [<span class="st">&quot;BE&quot;</span>, <span class="st">&quot;HOL&quot;</span>, <span class="st">&quot;POK&quot;</span>], <span class="st">&quot;proportion&quot;</span>: [<span class="fl">0.4</span>, <span class="fl">0.2</span>, <span class="fl">0.4</span>]})</span>
 <span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>species_composition</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  speciesCode  proportion
-0         ROW           1</code></pre>
+0          BE         0.4
+1         HOL         0.2
+2         POK         0.4</code></pre>
 </div>
 </div>
 </div>
 <div id="tabset-21-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-21-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>species_composition <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">&quot;speciesCode&quot;</span> <span class="ot">=</span> <span class="st">&quot;ROW&quot;</span>, <span class="st">&quot;proportion&quot;</span> <span class="ot">=</span> <span class="dv">1</span>)</span>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>species_composition <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">&quot;speciesCode&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;BE&quot;</span>, <span class="st">&quot;HOL&quot;</span>, <span class="st">&quot;POK&quot;</span>), <span class="st">&quot;proportion&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">0.4</span>, <span class="fl">0.2</span>, <span class="fl">0.4</span>))</span>
 <span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>species_composition</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  speciesCode proportion
-1         ROW          1</code></pre>
+1          BE        0.4
+2         HOL        0.2
+3         POK        0.4</code></pre>
 </div>
 </div>
 </div>
@@ -5039,23 +5043,23 @@ Warning
 <div class="tab-content">
 <div id="tabset-22-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-22-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> baseline_WCCTreeValues_ROW_1p5_Thinned</span>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> baseline_WCCTreeValues_selSpp_1p5_Thinned</span>
 <span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[[<span class="st">&quot;speciesCode&quot;</span>, <span class="st">&quot;period&quot;</span>, <span class="st">&quot;cumTotalCarbon&quot;</span>]]</span>
 <span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.merge(species_composition, on <span class="op">=</span> [<span class="st">&quot;speciesCode&quot;</span>])</span>
 <span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  speciesCode  period  cumTotalCarbon  proportion
-0         ROW     0-5             2.7           1
-1         ROW    5-10             9.6           1
-2         ROW   10-15            28.9           1
-3         ROW   15-20            70.6           1
-4         ROW   20-25            91.1           1</code></pre>
+0         HOL     0-5             2.7         0.2
+1         HOL    5-10             9.6         0.2
+2         HOL   10-15            28.9         0.2
+3         HOL   15-20            70.6         0.2
+4         HOL   20-25            91.1         0.2</code></pre>
 </div>
 </div>
 </div>
 <div id="tabset-22-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-22-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> baseline_WCCTreeValues_ROW_1p5_Thinned</span>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> baseline_WCCTreeValues_selSpp_1p5_Thinned</span>
 <span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
 <span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(speciesCode, period, cumTotalCarbon) <span class="sc">|&gt;</span></span>
 <span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">left_join</span>(species_composition, <span class="at">on =</span> <span class="st">&quot;speciesCode&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -5065,12 +5069,12 @@ Warning
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  speciesCode period cumTotalCarbon proportion
-1         ROW    0-5            2.7          1
-2         ROW   5-10            9.6          1
-3         ROW  10-15           28.9          1
-4         ROW  15-20           70.6          1
-5         ROW  20-25           91.1          1
-6         ROW  25-30          110.5          1</code></pre>
+1         HOL    0-5            2.7        0.2
+2         HOL   5-10            9.6        0.2
+3         HOL  10-15           28.9        0.2
+4         HOL  15-20           70.6        0.2
+5         HOL  20-25           91.1        0.2
+6         HOL  25-30          110.5        0.2</code></pre>
 </div>
 </div>
 </div>
@@ -5086,11 +5090,11 @@ Warning
 <span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  speciesCode  period  cumTotalCarbon  proportion  cumTotalCarbonSite (A)
-0         ROW     0-5             2.7           1                    32.4
-1         ROW    5-10             9.6           1                   115.2
-2         ROW   10-15            28.9           1                   346.8
-3         ROW   15-20            70.6           1                   847.2
-4         ROW   20-25            91.1           1                  1093.2</code></pre>
+0         HOL     0-5             2.7         0.2                    6.48
+1         HOL    5-10             9.6         0.2                   23.04
+2         HOL   10-15            28.9         0.2                   69.36
+3         HOL   15-20            70.6         0.2                  169.44
+4         HOL   20-25            91.1         0.2                  218.64</code></pre>
 </div>
 </div>
 </div>
@@ -5101,12 +5105,12 @@ Warning
 <span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  speciesCode period cumTotalCarbon proportion cumTotalCarbonSite (A)
-1         ROW    0-5            2.7          1                   32.4
-2         ROW   5-10            9.6          1                  115.2
-3         ROW  10-15           28.9          1                  346.8
-4         ROW  15-20           70.6          1                  847.2
-5         ROW  20-25           91.1          1                 1093.2
-6         ROW  25-30          110.5          1                 1326.0</code></pre>
+1         HOL    0-5            2.7        0.2                   6.48
+2         HOL   5-10            9.6        0.2                  23.04
+3         HOL  10-15           28.9        0.2                  69.36
+4         HOL  15-20           70.6        0.2                 169.44
+5         HOL  20-25           91.1        0.2                 218.64
+6         HOL  25-30          110.5        0.2                 265.20</code></pre>
 </div>
 </div>
 </div>
@@ -5122,18 +5126,18 @@ Warning
 <span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.set_index(<span class="st">&quot;period&quot;</span>)</span>
 <span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>df.<span class="bu">sum</span>(axis <span class="op">=</span> <span class="dv">0</span>).to_frame()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                              0
-cumTotalCarbonSite (A)  77065.2</code></pre>
+<pre><code>                               0
+cumTotalCarbonSite (A)  15413.04</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.reset_index()</span>
 <span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   period  cumTotalCarbonSite (A)
-0     0-5                    32.4
-1    5-10                   115.2
-2   10-15                   346.8
-3   15-20                   847.2
-4   20-25                  1093.2</code></pre>
+0     0-5                    6.48
+1    5-10                   23.04
+2   10-15                   69.36
+3   15-20                  169.44
+4   20-25                  218.64</code></pre>
 </div>
 </div>
 </div>
@@ -5148,12 +5152,12 @@ cumTotalCarbonSite (A)  77065.2</code></pre>
 <pre><code># A tibble: 6 × 2
   period   `cumTotalCarbonSite (A)`
   &lt;chr&gt;                       &lt;dbl&gt;
-1 &quot;  0-5&quot;                      32.4
-2 &quot;  5-10&quot;                    115. 
-3 &quot; 10-15&quot;                    347. 
-4 &quot; 15-20&quot;                    847. 
-5 &quot; 20-25&quot;                   1093. 
-6 &quot; 25-30&quot;                   1326  </code></pre>
+1 &quot;  0-5&quot;                      6.48
+2 &quot;  5-10&quot;                    23.0 
+3 &quot; 10-15&quot;                    69.4 
+4 &quot; 15-20&quot;                   169.  
+5 &quot; 20-25&quot;                   219.  
+6 &quot; 25-30&quot;                   265.  </code></pre>
 </div>
 </div>
 </div>
@@ -5169,11 +5173,11 @@ cumTotalCarbonSite (A)  77065.2</code></pre>
 <span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   period  cumTotalCarbonSite (A)  cumTotalCarbonSiteReduced (B)
-0     0-5                    32.4                          25.92
-1    5-10                   115.2                          92.16
-2   10-15                   346.8                         277.44
-3   15-20                   847.2                         677.76
-4   20-25                  1093.2                         874.56</code></pre>
+0     0-5                    6.48                          5.184
+1    5-10                   23.04                         18.432
+2   10-15                   69.36                         55.488
+3   15-20                  169.44                        135.552
+4   20-25                  218.64                        174.912</code></pre>
 </div>
 </div>
 </div>
@@ -5186,12 +5190,12 @@ cumTotalCarbonSite (A)  77065.2</code></pre>
 <pre><code># A tibble: 6 × 3
   period   `cumTotalCarbonSite (A)` `cumTotalCarbonSiteReduced (B)`
   &lt;chr&gt;                       &lt;dbl&gt;                           &lt;dbl&gt;
-1 &quot;  0-5&quot;                      32.4                            25.9
-2 &quot;  5-10&quot;                    115.                             92.2
-3 &quot; 10-15&quot;                    347.                            277. 
-4 &quot; 15-20&quot;                    847.                            678. 
-5 &quot; 20-25&quot;                   1093.                            875. 
-6 &quot; 25-30&quot;                   1326                            1061. </code></pre>
+1 &quot;  0-5&quot;                      6.48                            5.18
+2 &quot;  5-10&quot;                    23.0                            18.4 
+3 &quot; 10-15&quot;                    69.4                            55.5 
+4 &quot; 15-20&quot;                   169.                            136.  
+5 &quot; 20-25&quot;                   219.                            175.  
+6 &quot; 25-30&quot;                   265.                            212.  </code></pre>
 </div>
 </div>
 </div>
@@ -5237,12 +5241,12 @@ cumTotalCarbonSite (A)  77065.2</code></pre>
 <pre><code># A tibble: 6 × 4
   period   `cumTotalCarbonSite (A)` `cumTotalCarbonSiteReduced (B)` establishm…¹
   &lt;chr&gt;                       &lt;dbl&gt;                           &lt;dbl&gt;        &lt;dbl&gt;
-1 &quot;  0-5&quot;                      32.4                            25.9        -81.4
-2 &quot;  5-10&quot;                    115.                             92.2        -81.4
-3 &quot; 10-15&quot;                    347.                            277.         -81.4
-4 &quot; 15-20&quot;                    847.                            678.         -81.4
-5 &quot; 20-25&quot;                   1093.                            875.         -81.4
-6 &quot; 25-30&quot;                   1326                            1061.         -81.4
+1 &quot;  0-5&quot;                      6.48                            5.18        -81.4
+2 &quot;  5-10&quot;                    23.0                            18.4         -81.4
+3 &quot; 10-15&quot;                    69.4                            55.5         -81.4
+4 &quot; 15-20&quot;                   169.                            136.          -81.4
+5 &quot; 20-25&quot;                   219.                            175.          -81.4
+6 &quot; 25-30&quot;                   265.                            212.          -81.4
 # … with abbreviated variable name ¹​`establishmentCarbonLoss (C)`</code></pre>
 </div>
 </div>
@@ -5393,12 +5397,12 @@ cumTotalCarbonSite (A)  77065.2</code></pre>
 <pre><code># A tibble: 6 × 5
   period   `cumTotalCarbonSite (A)` cumTotalCarbonSiteReduced …¹ estab…² cumSo…³
   &lt;chr&gt;                       &lt;dbl&gt;                        &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-1 &quot;  0-5&quot;                      32.4                         25.9   -81.4   0.367
-2 &quot;  5-10&quot;                    115.                          92.2   -81.4   5.87 
-3 &quot; 10-15&quot;                    347.                         277.    -81.4  11.4  
-4 &quot; 15-20&quot;                    847.                         678.    -81.4  16.9  
-5 &quot; 20-25&quot;                   1093.                         875.    -81.4  22.4  
-6 &quot; 25-30&quot;                   1326                         1061.    -81.4  27.9  
+1 &quot;  0-5&quot;                      6.48                         5.18   -81.4   0.367
+2 &quot;  5-10&quot;                    23.0                         18.4    -81.4   5.87 
+3 &quot; 10-15&quot;                    69.4                         55.5    -81.4  11.4  
+4 &quot; 15-20&quot;                   169.                         136.     -81.4  16.9  
+5 &quot; 20-25&quot;                   219.                         175.     -81.4  22.4  
+6 &quot; 25-30&quot;                   265.                         212.     -81.4  27.9  
 # … with abbreviated variable names ¹​`cumTotalCarbonSiteReduced (B)`,
 #   ²​`establishmentCarbonLoss (C)`, ³​`cumSoilCarbonFlux (D)`</code></pre>
 </div>
@@ -5417,11 +5421,11 @@ cumTotalCarbonSite (A)  77065.2</code></pre>
 <span id="cb111-3"><a href="#cb111-3" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   period  ...  totalProjectCarbonSeq (E)
-0     0-5  ...                 -55.125333
-1    5-10  ...                  16.614667
-2   10-15  ...                 207.394667
-3   15-20  ...                 613.214667
-4   20-25  ...                 815.514667
+0     0-5  ...                 -75.861333
+1    5-10  ...                 -57.113333
+2   10-15  ...                 -14.557333
+3   15-20  ...                  71.006667
+4   20-25  ...                 115.866667
 
 [5 rows x 6 columns]</code></pre>
 </div>
@@ -5437,12 +5441,12 @@ cumTotalCarbonSite (A)  77065.2</code></pre>
 <pre><code># A tibble: 6 × 6
   period   `cumTotalCarbonSite (A)` cumTotalCarbonSite…¹ estab…² cumSo…³ total…⁴
   &lt;chr&gt;                       &lt;dbl&gt;                &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-1 &quot;  0-5&quot;                      32.4                 25.9   -81.4   0.367   -55.1
-2 &quot;  5-10&quot;                    115.                  92.2   -81.4   5.87     16.6
-3 &quot; 10-15&quot;                    347.                 277.    -81.4  11.4     207. 
-4 &quot; 15-20&quot;                    847.                 678.    -81.4  16.9     613. 
-5 &quot; 20-25&quot;                   1093.                 875.    -81.4  22.4     816. 
-6 &quot; 25-30&quot;                   1326                 1061.    -81.4  27.9    1007. 
+1 &quot;  0-5&quot;                      6.48                 5.18   -81.4   0.367   -75.9
+2 &quot;  5-10&quot;                    23.0                 18.4    -81.4   5.87    -57.1
+3 &quot; 10-15&quot;                    69.4                 55.5    -81.4  11.4     -14.6
+4 &quot; 15-20&quot;                   169.                 136.     -81.4  16.9      71.0
+5 &quot; 20-25&quot;                   219.                 175.     -81.4  22.4     116. 
+6 &quot; 25-30&quot;                   265.                 212.     -81.4  27.9     159. 
 # … with abbreviated variable names ¹​`cumTotalCarbonSiteReduced (B)`,
 #   ²​`establishmentCarbonLoss (C)`, ³​`cumSoilCarbonFlux (D)`,
 #   ⁴​`totalProjectCarbonSeq (E)`</code></pre>
@@ -5464,11 +5468,11 @@ cumTotalCarbonSite (A)  77065.2</code></pre>
 <span id="cb115-5"><a href="#cb115-5" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   period  cumTotalCarbonSite (A)  ...  Leakage (G)  netTotalProjectCarbonSeq (H)
-0     0-5                    32.4  ...            0                    -55.125333
-1    5-10                   115.2  ...            0                     16.614667
-2   10-15                   346.8  ...            0                    207.394667
-3   15-20                   847.2  ...            0                    613.214667
-4   20-25                  1093.2  ...            0                    815.514667
+0     0-5                    6.48  ...            0                    -75.861333
+1    5-10                   23.04  ...            0                    -57.113333
+2   10-15                   69.36  ...            0                    -14.557333
+3   15-20                  169.44  ...            0                     71.006667
+4   20-25                  218.64  ...            0                    115.866667
 
 [5 rows x 9 columns]</code></pre>
 </div>
@@ -5485,12 +5489,12 @@ cumTotalCarbonSite (A)  77065.2</code></pre>
 <pre><code># A tibble: 6 × 9
   period   cumTotalCar…¹ cumTo…² estab…³ cumSo…⁴ total…⁵ Basel…⁶ Leaka…⁷ netTo…⁸
   &lt;chr&gt;            &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-1 &quot;  0-5&quot;           32.4    25.9   -81.4   0.367   -55.1       0       0   -55.1
-2 &quot;  5-10&quot;         115.     92.2   -81.4   5.87     16.6       0       0    16.6
-3 &quot; 10-15&quot;         347.    277.    -81.4  11.4     207.        0       0   207. 
-4 &quot; 15-20&quot;         847.    678.    -81.4  16.9     613.        0       0   613. 
-5 &quot; 20-25&quot;        1093.    875.    -81.4  22.4     816.        0       0   816. 
-6 &quot; 25-30&quot;        1326    1061.    -81.4  27.9    1007.        0       0  1007. 
+1 &quot;  0-5&quot;           6.48    5.18   -81.4   0.367   -75.9       0       0   -75.9
+2 &quot;  5-10&quot;         23.0    18.4    -81.4   5.87    -57.1       0       0   -57.1
+3 &quot; 10-15&quot;         69.4    55.5    -81.4  11.4     -14.6       0       0   -14.6
+4 &quot; 15-20&quot;        169.    136.     -81.4  16.9      71.0       0       0    71.0
+5 &quot; 20-25&quot;        219.    175.     -81.4  22.4     116.        0       0   116. 
+6 &quot; 25-30&quot;        265.    212.     -81.4  27.9     159.        0       0   159. 
 # … with abbreviated variable names ¹​`cumTotalCarbonSite (A)`,
 #   ²​`cumTotalCarbonSiteReduced (B)`, ³​`establishmentCarbonLoss (C)`,
 #   ⁴​`cumSoilCarbonFlux (D)`, ⁵​`totalProjectCarbonSeq (E)`, ⁶​`Baseline (F)`,
@@ -5510,11 +5514,11 @@ cumTotalCarbonSite (A)  77065.2</code></pre>
 <span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   period  ...  claimableCarbonSeq (J)
-0     0-5  ...              -44.100267
-1    5-10  ...               13.291733
-2   10-15  ...              165.915733
-3   15-20  ...              490.571733
-4   20-25  ...              652.411733
+0     0-5  ...              -60.689067
+1    5-10  ...              -45.690667
+2   10-15  ...              -11.645867
+3   15-20  ...               56.805333
+4   20-25  ...               92.693333
 
 [5 rows x 10 columns]</code></pre>
 </div>
@@ -5530,12 +5534,12 @@ cumTotalCarbonSite (A)  77065.2</code></pre>
 <pre><code># A tibble: 6 × 10
   period cumTo…¹ cumTo…² estab…³ cumSo…⁴ total…⁵ Basel…⁶ Leaka…⁷ netTo…⁸ claim…⁹
   &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-1 &quot;  0-…    32.4    25.9   -81.4   0.367   -55.1       0       0   -55.1   -44.1
-2 &quot;  5-…   115.     92.2   -81.4   5.87     16.6       0       0    16.6    13.3
-3 &quot; 10-…   347.    277.    -81.4  11.4     207.        0       0   207.    166. 
-4 &quot; 15-…   847.    678.    -81.4  16.9     613.        0       0   613.    491. 
-5 &quot; 20-…  1093.    875.    -81.4  22.4     816.        0       0   816.    652. 
-6 &quot; 25-…  1326    1061.    -81.4  27.9    1007.        0       0  1007.    806. 
+1 &quot;  0-…    6.48    5.18   -81.4   0.367   -75.9       0       0   -75.9   -60.7
+2 &quot;  5-…   23.0    18.4    -81.4   5.87    -57.1       0       0   -57.1   -45.7
+3 &quot; 10-…   69.4    55.5    -81.4  11.4     -14.6       0       0   -14.6   -11.6
+4 &quot; 15-…  169.    136.     -81.4  16.9      71.0       0       0    71.0    56.8
+5 &quot; 20-…  219.    175.     -81.4  22.4     116.        0       0   116.     92.7
+6 &quot; 25-…  265.    212.     -81.4  27.9     159.        0       0   159.    127. 
 # … with abbreviated variable names ¹​`cumTotalCarbonSite (A)`,
 #   ²​`cumTotalCarbonSiteReduced (B)`, ³​`establishmentCarbonLoss (C)`,
 #   ⁴​`cumSoilCarbonFlux (D)`, ⁵​`totalProjectCarbonSeq (E)`, ⁶​`Baseline (F)`,
@@ -5555,11 +5559,11 @@ cumTotalCarbonSite (A)  77065.2</code></pre>
 <span id="cb123-2"><a href="#cb123-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   period  ...  meanClaimableCarbonSeqPerHa (K)
-0     0-5  ...                        -3.675022
-1    5-10  ...                         1.107644
-2   10-15  ...                        13.826311
-3   15-20  ...                        40.880978
-4   20-25  ...                        54.367644
+0     0-5  ...                        -5.057422
+1    5-10  ...                        -3.807556
+2   10-15  ...                        -0.970489
+3   15-20  ...                         4.733778
+4   20-25  ...                         7.724444
 
 [5 rows x 11 columns]</code></pre>
 </div>
@@ -5575,12 +5579,12 @@ cumTotalCarbonSite (A)  77065.2</code></pre>
 <pre><code># A tibble: 6 × 11
   period cumTo…¹ cumTo…² estab…³ cumSo…⁴ total…⁵ Basel…⁶ Leaka…⁷ netTo…⁸ claim…⁹
   &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-1 &quot;  0-…    32.4    25.9   -81.4   0.367   -55.1       0       0   -55.1   -44.1
-2 &quot;  5-…   115.     92.2   -81.4   5.87     16.6       0       0    16.6    13.3
-3 &quot; 10-…   347.    277.    -81.4  11.4     207.        0       0   207.    166. 
-4 &quot; 15-…   847.    678.    -81.4  16.9     613.        0       0   613.    491. 
-5 &quot; 20-…  1093.    875.    -81.4  22.4     816.        0       0   816.    652. 
-6 &quot; 25-…  1326    1061.    -81.4  27.9    1007.        0       0  1007.    806. 
+1 &quot;  0-…    6.48    5.18   -81.4   0.367   -75.9       0       0   -75.9   -60.7
+2 &quot;  5-…   23.0    18.4    -81.4   5.87    -57.1       0       0   -57.1   -45.7
+3 &quot; 10-…   69.4    55.5    -81.4  11.4     -14.6       0       0   -14.6   -11.6
+4 &quot; 15-…  169.    136.     -81.4  16.9      71.0       0       0    71.0    56.8
+5 &quot; 20-…  219.    175.     -81.4  22.4     116.        0       0   116.     92.7
+6 &quot; 25-…  265.    212.     -81.4  27.9     159.        0       0   159.    127. 
 # … with 1 more variable: `meanClaimableCarbonSeqPerHa (K)` &lt;dbl&gt;, and
 #   abbreviated variable names ¹​`cumTotalCarbonSite (A)`,
 #   ²​`cumTotalCarbonSiteReduced (B)`, ³​`establishmentCarbonLoss (C)`,

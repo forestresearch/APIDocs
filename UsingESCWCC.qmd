@@ -628,23 +628,23 @@ To calculate the average total claimable sequestration by year in tCO2e/ha perfo
 
 Columns suffixed with (<[A-Z]>) correspond to the columns CB to CM of Version 2.4 (March 2021) of the WCC excel tool.
 
-First, retrieve the WCC Biomass Carbon Lookup Table (BCLT) and Clearfell Max Seq Values (CMSV) values for selected species, e.g. Rowan (ROW).
+First, retrieve the WCC Biomass Carbon Lookup Table (BCLT) and Clearfell Max Seq Values (CMSV) values for selected species, e.g. the major tree species present in the National Vegetation Classification (NVC) W14 "Beech-oak woodland with bramble": Beech (BE), Holly (HOL), and Pedunculate oak (POK).
 
 ::: {.panel-tabset}
 
 ## Python
 
-```{python rowan_py}
-baseline_WCCTreeValues_ROW = baseline_WCCTreeValues[baseline_WCCTreeValues["speciesCode"] == "ROW"]
-baseline_WCCTreeValues_ROW.head()
+```{python selSpp_py}
+baseline_WCCTreeValues_selSpp = baseline_WCCTreeValues[baseline_WCCTreeValues["speciesCode"].isin(["BE", "HOL", "POK"])]
+baseline_WCCTreeValues_selSpp.head()
 ```
 
 ## R
 
-```{r rowan_r}
-baseline_WCCTreeValues_ROW <- baseline_WCCTreeValues |>
-    dplyr::filter(speciesCode == "ROW")
-baseline_WCCTreeValues_ROW |> head()
+```{r selSpp_r}
+baseline_WCCTreeValues_selSpp <- baseline_WCCTreeValues |>
+    dplyr::filter(speciesCode %in% c("BE", "HOL", "POK"))
+baseline_WCCTreeValues_selSpp |> head()
 ```
 
 :::
@@ -656,17 +656,17 @@ Select the BCLT and CMSV values for a particular spacing and management regime, 
 ## Python
 
 ```{python spman_py}
-baseline_WCCTreeValues_ROW_1p5_Thinned = baseline_WCCTreeValues_ROW[(baseline_WCCTreeValues_ROW.spacing == 1.5) & (baseline_WCCTreeValues_ROW.management == "Thinned")]
-baseline_WCCTreeValues_ROW_1p5_Thinned.head()
+baseline_WCCTreeValues_selSpp_1p5_Thinned = baseline_WCCTreeValues_selSpp[(baseline_WCCTreeValues_selSpp.spacing == 1.5) & (baseline_WCCTreeValues_selSpp.management == "Thinned")]
+baseline_WCCTreeValues_selSpp_1p5_Thinned.head()
 ```
 
 ## R
 
 ```{r spman_r}
-baseline_WCCTreeValues_ROW_1p5_Thinned <- baseline_WCCTreeValues_ROW |>
+baseline_WCCTreeValues_selSpp_1p5_Thinned <- baseline_WCCTreeValues_selSpp |>
     dplyr::filter(spacing == 1.5,
                   management == "Thinned")
-baseline_WCCTreeValues_ROW_1p5_Thinned |> head()
+baseline_WCCTreeValues_selSpp_1p5_Thinned |> head()
 ```
 
 :::
@@ -678,14 +678,14 @@ Define a species composition for the site and join to a trimmed WCCTreeValues da
 ## Python
 
 ```{python sppComp_py}
-species_composition = pandas.DataFrame.from_dict(data = {"speciesCode": "ROW", "proportion": [1]})
+species_composition = pandas.DataFrame.from_dict(data = {"speciesCode": ["BE", "HOL", "POK"], "proportion": [0.4, 0.2, 0.4]})
 species_composition
 ```
 
 ## R
 
 ```{r sppComp_r}
-species_composition <- data.frame("speciesCode" = "ROW", "proportion" = 1)
+species_composition <- data.frame("speciesCode" = c("BE", "HOL", "POK"), "proportion" = c(0.4, 0.2, 0.4))
 species_composition
 ```
 
@@ -698,7 +698,7 @@ Form a new data frame, select the relevant columns, and merge the species compos
 ## Python
 
 ```{python setDF_py}
-df = baseline_WCCTreeValues_ROW_1p5_Thinned
+df = baseline_WCCTreeValues_selSpp_1p5_Thinned
 df = df[["speciesCode", "period", "cumTotalCarbon"]]
 df = df.merge(species_composition, on = ["speciesCode"])
 df.head()
@@ -707,7 +707,7 @@ df.head()
 ## R
 
 ```{r setDF_r}
-df <- baseline_WCCTreeValues_ROW_1p5_Thinned
+df <- baseline_WCCTreeValues_selSpp_1p5_Thinned
 df <- df |>
     dplyr::select(speciesCode, period, cumTotalCarbon) |>
     dplyr::left_join(species_composition, on = "speciesCode")
