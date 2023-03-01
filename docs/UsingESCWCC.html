@@ -4947,32 +4947,104 @@ Warning
 </div>
 </div>
 </div>
-<p>Select the BCLT and CMSV values for a particular spacing and management regime, e.g. 1.5m and Thinned.</p>
+<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Data in WCCTreeValues varies by spacing and management for each wccCode and therefore speciesCode. It is advised that the user checks what spacing and management values are available for the selected species.</p>
+</div>
+</div>
 <div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-20-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-20-1" role="tab" aria-controls="tabset-20-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-20-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-20-2" role="tab" aria-controls="tabset-20-2" aria-selected="false">R</a></li></ul>
 <div class="tab-content">
 <div id="tabset-20-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-20-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>baseline_WCCTreeValues_selSpp_1p5_Thinned <span class="op">=</span> baseline_WCCTreeValues_selSpp[(baseline_WCCTreeValues_selSpp.spacing <span class="op">==</span> <span class="fl">1.5</span>) <span class="op">&amp;</span> (baseline_WCCTreeValues_selSpp.management <span class="op">==</span> <span class="st">&quot;Thinned&quot;</span>)]</span>
-<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>baseline_WCCTreeValues_selSpp_1p5_Thinned.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>baseline_WCCTreeValues_selSpp[[<span class="st">&quot;speciesCode&quot;</span>, <span class="st">&quot;spacing&quot;</span>, <span class="st">&quot;management&quot;</span>]].drop_duplicates()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    speciesCode wccCode  ... periodEnd clearfellCapCarbon
-760         HOL     SAB  ...       NaN                NaN
-761         HOL     SAB  ...       NaN                NaN
-762         HOL     SAB  ...       NaN                NaN
-763         HOL     SAB  ...       NaN                NaN
-764         HOL     SAB  ...       NaN                NaN
-
-[5 rows x 22 columns]</code></pre>
+<pre><code>     speciesCode  spacing management
+720          HOL      1.5    NO_thin
+760          HOL      1.5    Thinned
+800          HOL      2.5    NO_thin
+840          HOL      2.5    Thinned
+880          HOL      3.0    NO_thin
+920          HOL      3.0    Thinned
+5520          BE      1.2    NO_thin
+5560          BE      1.2    Thinned
+5600          BE      2.5    NO_thin
+5640          BE      2.5    Thinned
+5680          BE      3.0    NO_thin
+5720          BE      3.0    Thinned
+8960         POK      1.2    NO_thin
+9000         POK      1.2    Thinned
+9040         POK      2.5    NO_thin
+9080         POK      2.5    Thinned
+9120         POK      3.0    NO_thin
+9160         POK      3.0    Thinned</code></pre>
 </div>
 </div>
 </div>
 <div id="tabset-20-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-20-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>baseline_WCCTreeValues_selSpp_1p5_Thinned <span class="ot">&lt;-</span> baseline_WCCTreeValues_selSpp <span class="sc">|&gt;</span></span>
-<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(spacing <span class="sc">==</span> <span class="fl">1.5</span>,</span>
-<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>                  management <span class="sc">==</span> <span class="st">&quot;Thinned&quot;</span>)</span>
-<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>baseline_WCCTreeValues_selSpp_1p5_Thinned <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>baseline_WCCTreeValues_selSpp <span class="sc">|&gt;</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(speciesCode, spacing, management) <span class="sc">|&gt;</span></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unique</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    speciesCode spacing management
+1           HOL     1.5    NO_thin
+41          HOL     1.5    Thinned
+81          HOL     2.5    NO_thin
+121         HOL     2.5    Thinned
+161         HOL     3.0    NO_thin
+201         HOL     3.0    Thinned
+241          BE     1.2    NO_thin
+281          BE     1.2    Thinned
+321          BE     2.5    NO_thin
+361          BE     2.5    Thinned
+401          BE     3.0    NO_thin
+441          BE     3.0    Thinned
+481         POK     1.2    NO_thin
+521         POK     1.2    Thinned
+561         POK     2.5    NO_thin
+601         POK     2.5    Thinned
+641         POK     3.0    NO_thin
+681         POK     3.0    Thinned</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Select the BCLT and CMSV values for a particular spacing and management regime, e.g. 3m and Thinned, checking that data is available for each as above.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-21-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-21-1" role="tab" aria-controls="tabset-21-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-21-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-21-2" role="tab" aria-controls="tabset-21-2" aria-selected="false">R</a></li></ul>
+<div class="tab-content">
+<div id="tabset-21-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-21-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>baseline_WCCTreeValues_selSpp_3_Thinned <span class="op">=</span> baseline_WCCTreeValues_selSpp[(baseline_WCCTreeValues_selSpp.spacing <span class="op">==</span> <span class="dv">3</span>) <span class="op">&amp;</span> (baseline_WCCTreeValues_selSpp.management <span class="op">==</span> <span class="st">&quot;Thinned&quot;</span>)]</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>baseline_WCCTreeValues_selSpp_3_Thinned.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    speciesCode wccCode  ... periodEnd clearfellCapCarbon
+920         HOL     SAB  ...       NaN                NaN
+921         HOL     SAB  ...       NaN                NaN
+922         HOL     SAB  ...       NaN                NaN
+923         HOL     SAB  ...       NaN                NaN
+924         HOL     SAB  ...       NaN                NaN
+
+[5 rows x 22 columns]</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-21-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-21-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>baseline_WCCTreeValues_selSpp_3_Thinned <span class="ot">&lt;-</span> baseline_WCCTreeValues_selSpp <span class="sc">|&gt;</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(spacing <span class="sc">==</span> <span class="dv">3</span>,</span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>                  management <span class="sc">==</span> <span class="st">&quot;Thinned&quot;</span>)</span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>baseline_WCCTreeValues_selSpp_3_Thinned <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  speciesCode wccCode speciesScientific speciesName estimatedYC roundedYC
 1         HOL     SAB   Ilex aquifolium       Holly    1.981833         2
@@ -4982,12 +5054,12 @@ Warning
 5         HOL     SAB   Ilex aquifolium       Holly    1.981833         2
 6         HOL     SAB   Ilex aquifolium       Holly    1.981833         2
   minWCCYC maxWCCYC finalYC spacing management period standingCarbonYr
-1        2       12       2     1.5    Thinned    0-5               NA
-2        2       12       2     1.5    Thinned   5-10               NA
-3        2       12       2     1.5    Thinned  10-15               NA
-4        2       12       2     1.5    Thinned  15-20               NA
-5        2       12       2     1.5    Thinned  20-25               NA
-6        2       12       2     1.5    Thinned  25-30               NA
+1        2       12       2       3    Thinned    0-5               NA
+2        2       12       2       3    Thinned   5-10               NA
+3        2       12       2       3    Thinned  10-15               NA
+4        2       12       2       3    Thinned  15-20               NA
+5        2       12       2       3    Thinned  20-25               NA
+6        2       12       2       3    Thinned  25-30               NA
   debrisCarbonYr totalCarbonYr cumCarbon5Yr cumBiomassCarbon cumEmissionsMgmt
 1             NA            NA           NA               NA               NA
 2             NA            NA           NA               NA               NA
@@ -4996,10 +5068,10 @@ Warning
 5             NA            NA           NA               NA               NA
 6             NA            NA           NA               NA               NA
   cumTotalCarbon remCarbonYr periodEnd clearfellCapCarbon
-1            2.7          NA        NA                 NA
-2            9.6          NA        NA                 NA
-3           28.9          NA        NA                 NA
-4           70.6          NA        NA                 NA
+1            1.1          NA        NA                 NA
+2            5.3          NA        NA                 NA
+3           20.2          NA        NA                 NA
+4           60.0          NA        NA                 NA
 5           91.1          NA        NA                 NA
 6          110.5          NA        NA                 NA</code></pre>
 </div>
@@ -5009,12 +5081,12 @@ Warning
 </div>
 <p>Define a species composition for the site and join to a trimmed WCCTreeValues dataframe.</p>
 <div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-21-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-21-1" role="tab" aria-controls="tabset-21-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-21-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-21-2" role="tab" aria-controls="tabset-21-2" aria-selected="false">R</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-22-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-22-1" role="tab" aria-controls="tabset-22-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-22-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-22-2" role="tab" aria-controls="tabset-22-2" aria-selected="false">R</a></li></ul>
 <div class="tab-content">
-<div id="tabset-21-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-21-1-tab">
+<div id="tabset-22-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-22-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>species_composition <span class="op">=</span> pandas.DataFrame.from_dict(data <span class="op">=</span> {<span class="st">&quot;speciesCode&quot;</span>: [<span class="st">&quot;BE&quot;</span>, <span class="st">&quot;HOL&quot;</span>, <span class="st">&quot;POK&quot;</span>], <span class="st">&quot;proportion&quot;</span>: [<span class="fl">0.4</span>, <span class="fl">0.2</span>, <span class="fl">0.4</span>]})</span>
-<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>species_composition</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>species_composition <span class="op">=</span> pandas.DataFrame.from_dict(data <span class="op">=</span> {<span class="st">&quot;speciesCode&quot;</span>: [<span class="st">&quot;BE&quot;</span>, <span class="st">&quot;HOL&quot;</span>, <span class="st">&quot;POK&quot;</span>], <span class="st">&quot;proportion&quot;</span>: [<span class="fl">0.4</span>, <span class="fl">0.2</span>, <span class="fl">0.4</span>]})</span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>species_composition</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  speciesCode  proportion
 0          BE         0.4
@@ -5023,10 +5095,10 @@ Warning
 </div>
 </div>
 </div>
-<div id="tabset-21-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-21-2-tab">
+<div id="tabset-22-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-22-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>species_composition <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">&quot;speciesCode&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;BE&quot;</span>, <span class="st">&quot;HOL&quot;</span>, <span class="st">&quot;POK&quot;</span>), <span class="st">&quot;proportion&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">0.4</span>, <span class="fl">0.2</span>, <span class="fl">0.4</span>))</span>
-<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>species_composition</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>species_composition <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">&quot;speciesCode&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;BE&quot;</span>, <span class="st">&quot;HOL&quot;</span>, <span class="st">&quot;POK&quot;</span>), <span class="st">&quot;proportion&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">0.4</span>, <span class="fl">0.2</span>, <span class="fl">0.4</span>))</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>species_composition</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  speciesCode proportion
 1          BE        0.4
@@ -5039,40 +5111,40 @@ Warning
 </div>
 <p>Form a new data frame, select the relevant columns, and merge the species composition data frame.</p>
 <div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-22-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-22-1" role="tab" aria-controls="tabset-22-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-22-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-22-2" role="tab" aria-controls="tabset-22-2" aria-selected="false">R</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-23-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-23-1" role="tab" aria-controls="tabset-23-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-23-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-23-2" role="tab" aria-controls="tabset-23-2" aria-selected="false">R</a></li></ul>
 <div class="tab-content">
-<div id="tabset-22-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-22-1-tab">
+<div id="tabset-23-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-23-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> baseline_WCCTreeValues_selSpp_1p5_Thinned</span>
-<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[[<span class="st">&quot;speciesCode&quot;</span>, <span class="st">&quot;period&quot;</span>, <span class="st">&quot;cumTotalCarbon&quot;</span>]]</span>
-<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.merge(species_composition, on <span class="op">=</span> [<span class="st">&quot;speciesCode&quot;</span>])</span>
-<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> baseline_WCCTreeValues_selSpp_3_Thinned</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[[<span class="st">&quot;speciesCode&quot;</span>, <span class="st">&quot;period&quot;</span>, <span class="st">&quot;cumTotalCarbon&quot;</span>]]</span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.merge(species_composition, on <span class="op">=</span> [<span class="st">&quot;speciesCode&quot;</span>])</span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  speciesCode  period  cumTotalCarbon  proportion
-0         HOL     0-5             2.7         0.2
-1         HOL    5-10             9.6         0.2
-2         HOL   10-15            28.9         0.2
-3         HOL   15-20            70.6         0.2
+0         HOL     0-5             1.1         0.2
+1         HOL    5-10             5.3         0.2
+2         HOL   10-15            20.2         0.2
+3         HOL   15-20            60.0         0.2
 4         HOL   20-25            91.1         0.2</code></pre>
 </div>
 </div>
 </div>
-<div id="tabset-22-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-22-2-tab">
+<div id="tabset-23-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-23-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> baseline_WCCTreeValues_selSpp_1p5_Thinned</span>
-<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
-<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(speciesCode, period, cumTotalCarbon) <span class="sc">|&gt;</span></span>
-<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">left_join</span>(species_composition, <span class="at">on =</span> <span class="st">&quot;speciesCode&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> baseline_WCCTreeValues_selSpp_3_Thinned</span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(speciesCode, period, cumTotalCarbon) <span class="sc">|&gt;</span></span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">left_join</span>(species_composition, <span class="at">on =</span> <span class="st">&quot;speciesCode&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Joining, by = &quot;speciesCode&quot;</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  speciesCode period cumTotalCarbon proportion
-1         HOL    0-5            2.7        0.2
-2         HOL   5-10            9.6        0.2
-3         HOL  10-15           28.9        0.2
-4         HOL  15-20           70.6        0.2
+1         HOL    0-5            1.1        0.2
+2         HOL   5-10            5.3        0.2
+3         HOL  10-15           20.2        0.2
+4         HOL  15-20           60.0        0.2
 5         HOL  20-25           91.1        0.2
 6         HOL  25-30          110.5        0.2</code></pre>
 </div>
@@ -5082,33 +5154,33 @@ Warning
 </div>
 <p>Multiply the ’Cumulative total sequestration” data (cumTotalCarbon) by the species proportion and estimated area.</p>
 <div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-23-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-23-1" role="tab" aria-controls="tabset-23-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-23-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-23-2" role="tab" aria-controls="tabset-23-2" aria-selected="false">R</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-24-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-24-1" role="tab" aria-controls="tabset-24-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-24-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-24-2" role="tab" aria-controls="tabset-24-2" aria-selected="false">R</a></li></ul>
 <div class="tab-content">
-<div id="tabset-23-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-23-1-tab">
+<div id="tabset-24-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-24-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;cumTotalCarbonSite (A)&quot;</span>] <span class="op">=</span> df[<span class="st">&quot;cumTotalCarbon&quot;</span>] <span class="op">*</span> df[<span class="st">&quot;proportion&quot;</span>] <span class="op">*</span> wccEstArea</span>
-<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;cumTotalCarbonSite (A)&quot;</span>] <span class="op">=</span> df[<span class="st">&quot;cumTotalCarbon&quot;</span>] <span class="op">*</span> df[<span class="st">&quot;proportion&quot;</span>] <span class="op">*</span> wccEstArea</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  speciesCode  period  cumTotalCarbon  proportion  cumTotalCarbonSite (A)
-0         HOL     0-5             2.7         0.2                    6.48
-1         HOL    5-10             9.6         0.2                   23.04
-2         HOL   10-15            28.9         0.2                   69.36
-3         HOL   15-20            70.6         0.2                  169.44
+0         HOL     0-5             1.1         0.2                    2.64
+1         HOL    5-10             5.3         0.2                   12.72
+2         HOL   10-15            20.2         0.2                   48.48
+3         HOL   15-20            60.0         0.2                  144.00
 4         HOL   20-25            91.1         0.2                  218.64</code></pre>
 </div>
 </div>
 </div>
-<div id="tabset-23-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-23-2-tab">
+<div id="tabset-24-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-24-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
-<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="st">&quot;cumTotalCarbonSite (A)&quot;</span> <span class="ot">=</span> cumTotalCarbon <span class="sc">*</span> proportion <span class="sc">*</span> wccEstArea)</span>
-<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="st">&quot;cumTotalCarbonSite (A)&quot;</span> <span class="ot">=</span> cumTotalCarbon <span class="sc">*</span> proportion <span class="sc">*</span> wccEstArea)</span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  speciesCode period cumTotalCarbon proportion cumTotalCarbonSite (A)
-1         HOL    0-5            2.7        0.2                   6.48
-2         HOL   5-10            9.6        0.2                  23.04
-3         HOL  10-15           28.9        0.2                  69.36
-4         HOL  15-20           70.6        0.2                 169.44
+1         HOL    0-5            1.1        0.2                   2.64
+2         HOL   5-10            5.3        0.2                  12.72
+3         HOL  10-15           20.2        0.2                  48.48
+4         HOL  15-20           60.0        0.2                 144.00
 5         HOL  20-25           91.1        0.2                 218.64
 6         HOL  25-30          110.5        0.2                 265.20</code></pre>
 </div>
@@ -5118,46 +5190,41 @@ Warning
 </div>
 <p>Sum across all species.</p>
 <div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-24-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-24-1" role="tab" aria-controls="tabset-24-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-24-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-24-2" role="tab" aria-controls="tabset-24-2" aria-selected="false">R</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-25-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-25-1" role="tab" aria-controls="tabset-25-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-25-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-25-2" role="tab" aria-controls="tabset-25-2" aria-selected="false">R</a></li></ul>
 <div class="tab-content">
-<div id="tabset-24-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-24-1-tab">
+<div id="tabset-25-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-25-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop(columns <span class="op">=</span> [<span class="st">&quot;speciesCode&quot;</span>, <span class="st">&quot;cumTotalCarbon&quot;</span>, <span class="st">&quot;proportion&quot;</span>])</span>
-<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.set_index(<span class="st">&quot;period&quot;</span>)</span>
-<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>df.<span class="bu">sum</span>(axis <span class="op">=</span> <span class="dv">0</span>).to_frame()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop(columns <span class="op">=</span> [<span class="st">&quot;speciesCode&quot;</span>, <span class="st">&quot;cumTotalCarbon&quot;</span>, <span class="st">&quot;proportion&quot;</span>])</span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.groupby(<span class="st">&quot;period&quot;</span>).<span class="bu">sum</span>()</span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                               0
-cumTotalCarbonSite (A)  15413.04</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.reset_index()</span>
-<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   period  cumTotalCarbonSite (A)
-0     0-5                    6.48
-1    5-10                   23.04
-2   10-15                   69.36
-3   15-20                  169.44
-4   20-25                  218.64</code></pre>
+<pre><code>        cumTotalCarbonSite (A)
+period                        
+  0-5                    24.72
+  5-10                  130.80
+ 10-15                  522.24
+ 15-20                 1452.00
+ 20-25                 2017.68</code></pre>
 </div>
 </div>
 </div>
-<div id="tabset-24-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-24-2-tab">
+<div id="tabset-25-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-25-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
-<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>speciesCode, <span class="sc">-</span>cumTotalCarbon, <span class="sc">-</span>proportion) <span class="sc">|&gt;</span></span>
-<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">group_by</span>(period) <span class="sc">|&gt;</span></span>
-<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="st">`</span><span class="at">cumTotalCarbonSite (A)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sum</span>(<span class="st">`</span><span class="at">cumTotalCarbonSite (A)</span><span class="st">`</span>))</span>
-<span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>speciesCode, <span class="sc">-</span>cumTotalCarbon, <span class="sc">-</span>proportion) <span class="sc">|&gt;</span></span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">group_by</span>(period) <span class="sc">|&gt;</span></span>
+<span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="st">`</span><span class="at">cumTotalCarbonSite (A)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sum</span>(<span class="st">`</span><span class="at">cumTotalCarbonSite (A)</span><span class="st">`</span>))</span>
+<span id="cb85-5"><a href="#cb85-5" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 2
   period   `cumTotalCarbonSite (A)`
   &lt;chr&gt;                       &lt;dbl&gt;
-1 &quot;  0-5&quot;                      6.48
-2 &quot;  5-10&quot;                    23.0 
-3 &quot; 10-15&quot;                    69.4 
-4 &quot; 15-20&quot;                   169.  
-5 &quot; 20-25&quot;                   219.  
-6 &quot; 25-30&quot;                   265.  </code></pre>
+1 &quot;  0-5&quot;                      24.7
+2 &quot;  5-10&quot;                    131. 
+3 &quot; 10-15&quot;                    522. 
+4 &quot; 15-20&quot;                   1452  
+5 &quot; 20-25&quot;                   2018. 
+6 &quot; 25-30&quot;                   2543. </code></pre>
 </div>
 </div>
 </div>
@@ -5165,37 +5232,38 @@ cumTotalCarbonSite (A)  15413.04</code></pre>
 </div>
 <p>Add a 20% buffer by multiplying the Cumulative total sequestration for the site by 0.8</p>
 <div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-25-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-25-1" role="tab" aria-controls="tabset-25-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-25-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-25-2" role="tab" aria-controls="tabset-25-2" aria-selected="false">R</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-26-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-26-1" role="tab" aria-controls="tabset-26-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-26-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-26-2" role="tab" aria-controls="tabset-26-2" aria-selected="false">R</a></li></ul>
 <div class="tab-content">
-<div id="tabset-25-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-25-1-tab">
+<div id="tabset-26-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-26-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;cumTotalCarbonSiteReduced (B)&quot;</span>] <span class="op">=</span> df[<span class="st">&quot;cumTotalCarbonSite (A)&quot;</span>] <span class="op">*</span> <span class="fl">0.8</span></span>
-<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;cumTotalCarbonSiteReduced (B)&quot;</span>] <span class="op">=</span> df[<span class="st">&quot;cumTotalCarbonSite (A)&quot;</span>] <span class="op">*</span> <span class="fl">0.8</span></span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>   period  cumTotalCarbonSite (A)  cumTotalCarbonSiteReduced (B)
-0     0-5                    6.48                          5.184
-1    5-10                   23.04                         18.432
-2   10-15                   69.36                         55.488
-3   15-20                  169.44                        135.552
-4   20-25                  218.64                        174.912</code></pre>
+<pre><code>        cumTotalCarbonSite (A)  cumTotalCarbonSiteReduced (B)
+period                                                       
+  0-5                    24.72                         19.776
+  5-10                  130.80                        104.640
+ 10-15                  522.24                        417.792
+ 15-20                 1452.00                       1161.600
+ 20-25                 2017.68                       1614.144</code></pre>
 </div>
 </div>
 </div>
-<div id="tabset-25-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-25-2-tab">
+<div id="tabset-26-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-26-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
-<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="st">&quot;cumTotalCarbonSiteReduced (B)&quot;</span> <span class="ot">=</span> <span class="st">`</span><span class="at">cumTotalCarbonSite (A)</span><span class="st">`</span> <span class="sc">*</span> <span class="fl">0.8</span>)</span>
-<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="st">&quot;cumTotalCarbonSiteReduced (B)&quot;</span> <span class="ot">=</span> <span class="st">`</span><span class="at">cumTotalCarbonSite (A)</span><span class="st">`</span> <span class="sc">*</span> <span class="fl">0.8</span>)</span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
   period   `cumTotalCarbonSite (A)` `cumTotalCarbonSiteReduced (B)`
   &lt;chr&gt;                       &lt;dbl&gt;                           &lt;dbl&gt;
-1 &quot;  0-5&quot;                      6.48                            5.18
-2 &quot;  5-10&quot;                    23.0                            18.4 
-3 &quot; 10-15&quot;                    69.4                            55.5 
-4 &quot; 15-20&quot;                   169.                            136.  
-5 &quot; 20-25&quot;                   219.                            175.  
-6 &quot; 25-30&quot;                   265.                            212.  </code></pre>
+1 &quot;  0-5&quot;                      24.7                            19.8
+2 &quot;  5-10&quot;                    131.                            105. 
+3 &quot; 10-15&quot;                    522.                            418. 
+4 &quot; 15-20&quot;                   1452                            1162. 
+5 &quot; 20-25&quot;                   2018.                           1614. 
+6 &quot; 25-30&quot;                   2543.                           2035. </code></pre>
 </div>
 </div>
 </div>
@@ -5203,50 +5271,51 @@ cumTotalCarbonSite (A)  15413.04</code></pre>
 </div>
 <p>Retrieve the total establishment emissions for the selected spacing and add to the dataframe.</p>
 <div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-26-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-26-1" role="tab" aria-controls="tabset-26-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-26-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-26-2" role="tab" aria-controls="tabset-26-2" aria-selected="false">R</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-27-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-27-1" role="tab" aria-controls="tabset-27-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-27-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-27-2" role="tab" aria-controls="tabset-27-2" aria-selected="false">R</a></li></ul>
 <div class="tab-content">
-<div id="tabset-26-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-26-1-tab">
+<div id="tabset-27-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-27-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>totalEstablishmentC <span class="op">=</span> baseline_WCCEstablishment[(baseline_WCCEstablishment.seedlingSpacing <span class="op">==</span> <span class="fl">1.5</span>) <span class="op">&amp;</span> (baseline_WCCEstablishment.variable <span class="op">==</span> <span class="st">&quot;total&quot;</span>)]</span>
-<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>totalEstablishmentC <span class="op">=</span> totalEstablishmentC.drop(columns <span class="op">=</span> [<span class="st">&quot;seedlingSpacing&quot;</span>, <span class="st">&quot;variable&quot;</span>]).reset_index(drop <span class="op">=</span> <span class="va">True</span>)</span>
-<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a>totalEstablishmentC <span class="op">=</span> totalEstablishmentC.rename(columns <span class="op">=</span> {<span class="st">&quot;totalEmissions&quot;</span>: <span class="st">&quot;establishmentCarbonLoss (C)&quot;</span>})</span>
-<span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;establishmentCarbonLoss (C)&quot;</span>] <span class="op">=</span> totalEstablishmentC._get_value(<span class="dv">0</span>, <span class="dv">0</span>, takeable <span class="op">=</span> <span class="va">True</span>)</span>
-<span id="cb89-5"><a href="#cb89-5" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>totalEstablishmentC <span class="op">=</span> baseline_WCCEstablishment[(baseline_WCCEstablishment.seedlingSpacing <span class="op">==</span> <span class="fl">1.5</span>) <span class="op">&amp;</span> (baseline_WCCEstablishment.variable <span class="op">==</span> <span class="st">&quot;total&quot;</span>)]</span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>totalEstablishmentC <span class="op">=</span> totalEstablishmentC.drop(columns <span class="op">=</span> [<span class="st">&quot;seedlingSpacing&quot;</span>, <span class="st">&quot;variable&quot;</span>]).reset_index(drop <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a>totalEstablishmentC <span class="op">=</span> totalEstablishmentC.rename(columns <span class="op">=</span> {<span class="st">&quot;totalEmissions&quot;</span>: <span class="st">&quot;establishmentCarbonLoss (C)&quot;</span>})</span>
+<span id="cb91-4"><a href="#cb91-4" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;establishmentCarbonLoss (C)&quot;</span>] <span class="op">=</span> totalEstablishmentC._get_value(<span class="dv">0</span>, <span class="dv">0</span>, takeable <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb91-5"><a href="#cb91-5" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>   period  ...  establishmentCarbonLoss (C)
-0     0-5  ...                      -81.412
-1    5-10  ...                      -81.412
-2   10-15  ...                      -81.412
-3   15-20  ...                      -81.412
-4   20-25  ...                      -81.412
+<pre><code>        cumTotalCarbonSite (A)  ...  establishmentCarbonLoss (C)
+period                          ...                             
+  0-5                    24.72  ...                      -81.412
+  5-10                  130.80  ...                      -81.412
+ 10-15                  522.24  ...                      -81.412
+ 15-20                 1452.00  ...                      -81.412
+ 20-25                 2017.68  ...                      -81.412
 
-[5 rows x 4 columns]</code></pre>
+[5 rows x 3 columns]</code></pre>
 </div>
 </div>
 </div>
-<div id="tabset-26-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-26-2-tab">
+<div id="tabset-27-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-27-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>totalEstablishmentC <span class="ot">=</span> baseline_WCCEstablishment <span class="sc">|&gt;</span></span>
-<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(seedlingSpacing <span class="sc">==</span> <span class="fl">1.5</span>) <span class="sc">|&gt;</span></span>
-<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(variable <span class="sc">==</span> <span class="st">&quot;total&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb91-4"><a href="#cb91-4" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>seedlingSpacing, <span class="sc">-</span>variable) <span class="sc">|&gt;</span></span>
-<span id="cb91-5"><a href="#cb91-5" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="st">&quot;establishmentCarbonLoss (C)&quot;</span> <span class="ot">=</span> <span class="st">&quot;totalEmissions&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb91-6"><a href="#cb91-6" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">pull</span>(<span class="st">&quot;establishmentCarbonLoss (C)&quot;</span>)</span>
-<span id="cb91-7"><a href="#cb91-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb91-8"><a href="#cb91-8" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
-<span id="cb91-9"><a href="#cb91-9" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="st">&quot;establishmentCarbonLoss (C)&quot;</span> <span class="ot">=</span> totalEstablishmentC)</span>
-<span id="cb91-10"><a href="#cb91-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb91-11"><a href="#cb91-11" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>totalEstablishmentC <span class="ot">=</span> baseline_WCCEstablishment <span class="sc">|&gt;</span></span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(seedlingSpacing <span class="sc">==</span> <span class="fl">1.5</span>) <span class="sc">|&gt;</span></span>
+<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(variable <span class="sc">==</span> <span class="st">&quot;total&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>seedlingSpacing, <span class="sc">-</span>variable) <span class="sc">|&gt;</span></span>
+<span id="cb93-5"><a href="#cb93-5" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="st">&quot;establishmentCarbonLoss (C)&quot;</span> <span class="ot">=</span> <span class="st">&quot;totalEmissions&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb93-6"><a href="#cb93-6" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">pull</span>(<span class="st">&quot;establishmentCarbonLoss (C)&quot;</span>)</span>
+<span id="cb93-7"><a href="#cb93-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-8"><a href="#cb93-8" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb93-9"><a href="#cb93-9" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="st">&quot;establishmentCarbonLoss (C)&quot;</span> <span class="ot">=</span> totalEstablishmentC)</span>
+<span id="cb93-10"><a href="#cb93-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-11"><a href="#cb93-11" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
   period   `cumTotalCarbonSite (A)` `cumTotalCarbonSiteReduced (B)` establishm…¹
   &lt;chr&gt;                       &lt;dbl&gt;                           &lt;dbl&gt;        &lt;dbl&gt;
-1 &quot;  0-5&quot;                      6.48                            5.18        -81.4
-2 &quot;  5-10&quot;                    23.0                            18.4         -81.4
-3 &quot; 10-15&quot;                    69.4                            55.5         -81.4
-4 &quot; 15-20&quot;                   169.                            136.          -81.4
-5 &quot; 20-25&quot;                   219.                            175.          -81.4
-6 &quot; 25-30&quot;                   265.                            212.          -81.4
+1 &quot;  0-5&quot;                      24.7                            19.8        -81.4
+2 &quot;  5-10&quot;                    131.                            105.         -81.4
+3 &quot; 10-15&quot;                    522.                            418.         -81.4
+4 &quot; 15-20&quot;                   1452                            1162.         -81.4
+5 &quot; 20-25&quot;                   2018.                           1614.         -81.4
+6 &quot; 25-30&quot;                   2543.                           2035.         -81.4
 # … with abbreviated variable name ¹​`establishmentCarbonLoss (C)`</code></pre>
 </div>
 </div>
@@ -5255,34 +5324,34 @@ cumTotalCarbonSite (A)  15413.04</code></pre>
 </div>
 <p>Calculate soil carbon flux by summing soil loss and soil sequestration data . To do this first identify the % topsoil carbon (0-30cm) loss associated with the method of site preparation and soil type.</p>
 <div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-27-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-27-1" role="tab" aria-controls="tabset-27-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-27-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-27-2" role="tab" aria-controls="tabset-27-2" aria-selected="false">R</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-28-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-28-1" role="tab" aria-controls="tabset-28-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-28-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-28-2" role="tab" aria-controls="tabset-28-2" aria-selected="false">R</a></li></ul>
 <div class="tab-content">
-<div id="tabset-27-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-27-1-tab">
+<div id="tabset-28-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-28-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>establishmentMethods <span class="op">=</span> pandas.DataFrame.from_dict(data <span class="op">=</span> {<span class="st">&quot;MethodSitePrep&quot;</span>: [<span class="st">&quot;Negligible Disturbance&quot;</span>, <span class="st">&quot;Low Disturbance&quot;</span>, <span class="st">&quot;Medium Disturbance&quot;</span>, <span class="st">&quot;High Disturbance&quot;</span>, <span class="st">&quot;Very High Disturbance&quot;</span>],</span>
-<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>                                                          <span class="st">&quot;Organomineral&quot;</span>: [<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">40</span>],</span>
-<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a>                                                          <span class="st">&quot;Mineral&quot;</span>: [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>]})</span>
-<span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb93-5"><a href="#cb93-5" aria-hidden="true" tabindex="-1"></a>establishmentMethods <span class="op">=</span> establishmentMethods.set_index(<span class="st">&quot;MethodSitePrep&quot;</span>)</span>
-<span id="cb93-6"><a href="#cb93-6" aria-hidden="true" tabindex="-1"></a>percSoilLoss <span class="op">=</span> establishmentMethods._get_value(<span class="st">&quot;Medium Disturbance&quot;</span>, <span class="st">&quot;Mineral&quot;</span>)</span>
-<span id="cb93-7"><a href="#cb93-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb93-8"><a href="#cb93-8" aria-hidden="true" tabindex="-1"></a>percSoilLoss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>establishmentMethods <span class="op">=</span> pandas.DataFrame.from_dict(data <span class="op">=</span> {<span class="st">&quot;MethodSitePrep&quot;</span>: [<span class="st">&quot;Negligible Disturbance&quot;</span>, <span class="st">&quot;Low Disturbance&quot;</span>, <span class="st">&quot;Medium Disturbance&quot;</span>, <span class="st">&quot;High Disturbance&quot;</span>, <span class="st">&quot;Very High Disturbance&quot;</span>],</span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>                                                          <span class="st">&quot;Organomineral&quot;</span>: [<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">40</span>],</span>
+<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a>                                                          <span class="st">&quot;Mineral&quot;</span>: [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>]})</span>
+<span id="cb95-4"><a href="#cb95-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb95-5"><a href="#cb95-5" aria-hidden="true" tabindex="-1"></a>establishmentMethods <span class="op">=</span> establishmentMethods.set_index(<span class="st">&quot;MethodSitePrep&quot;</span>)</span>
+<span id="cb95-6"><a href="#cb95-6" aria-hidden="true" tabindex="-1"></a>percSoilLoss <span class="op">=</span> establishmentMethods._get_value(<span class="st">&quot;Medium Disturbance&quot;</span>, <span class="st">&quot;Mineral&quot;</span>)</span>
+<span id="cb95-7"><a href="#cb95-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb95-8"><a href="#cb95-8" aria-hidden="true" tabindex="-1"></a>percSoilLoss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>2</code></pre>
 </div>
 </div>
 </div>
-<div id="tabset-27-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-27-2-tab">
+<div id="tabset-28-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-28-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>establishmentMethods <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">&quot;MethodSitePrep&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;Negligible Disturbance&quot;</span>, <span class="st">&quot;Low Disturbance&quot;</span>, <span class="st">&quot;Medium Disturbance&quot;</span>, <span class="st">&quot;High Disturbance&quot;</span>, <span class="st">&quot;Very High Disturbance&quot;</span>),</span>
-<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;Organomineral&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">40</span>),</span>
-<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;Mineral&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>))</span>
-<span id="cb95-4"><a href="#cb95-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb95-5"><a href="#cb95-5" aria-hidden="true" tabindex="-1"></a>percSoilLoss <span class="ot">&lt;-</span> establishmentMethods <span class="sc">|&gt;</span></span>
-<span id="cb95-6"><a href="#cb95-6" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(MethodSitePrep <span class="sc">==</span> <span class="st">&quot;Medium Disturbance&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb95-7"><a href="#cb95-7" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">pull</span>(Mineral)</span>
-<span id="cb95-8"><a href="#cb95-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb95-9"><a href="#cb95-9" aria-hidden="true" tabindex="-1"></a>percSoilLoss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>establishmentMethods <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">&quot;MethodSitePrep&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;Negligible Disturbance&quot;</span>, <span class="st">&quot;Low Disturbance&quot;</span>, <span class="st">&quot;Medium Disturbance&quot;</span>, <span class="st">&quot;High Disturbance&quot;</span>, <span class="st">&quot;Very High Disturbance&quot;</span>),</span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;Organomineral&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">40</span>),</span>
+<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;Mineral&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>))</span>
+<span id="cb97-4"><a href="#cb97-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-5"><a href="#cb97-5" aria-hidden="true" tabindex="-1"></a>percSoilLoss <span class="ot">&lt;-</span> establishmentMethods <span class="sc">|&gt;</span></span>
+<span id="cb97-6"><a href="#cb97-6" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(MethodSitePrep <span class="sc">==</span> <span class="st">&quot;Medium Disturbance&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb97-7"><a href="#cb97-7" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">pull</span>(Mineral)</span>
+<span id="cb97-8"><a href="#cb97-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-9"><a href="#cb97-9" aria-hidden="true" tabindex="-1"></a>percSoilLoss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
 </div>
@@ -5292,28 +5361,28 @@ cumTotalCarbonSite (A)  15413.04</code></pre>
 </div>
 <p>Retrieve the soil carbon lost for the selected country, previous land use, and % topsoil carbon (0-30cm) loss identified above.</p>
 <div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-28-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-28-1" role="tab" aria-controls="tabset-28-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-28-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-28-2" role="tab" aria-controls="tabset-28-2" aria-selected="false">R</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-29-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-29-1" role="tab" aria-controls="tabset-29-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-29-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-29-2" role="tab" aria-controls="tabset-29-2" aria-selected="false">R</a></li></ul>
 <div class="tab-content">
-<div id="tabset-28-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-28-1-tab">
+<div id="tabset-29-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-29-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>soilCLoss <span class="op">=</span> baseline_WCCSoilLoss[baseline_WCCSoilLoss[<span class="st">&quot;topsoilCarbonSubtract&quot;</span>] <span class="op">==</span> percSoilLoss]</span>
-<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>soilCLoss <span class="op">=</span> soilCLoss.set_index(<span class="st">&quot;Country&quot;</span>)</span>
-<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a>soilCLoss <span class="op">=</span> soilCLoss._get_value(<span class="st">&quot;England&quot;</span>, <span class="st">&quot;Arable&quot;</span>)</span>
-<span id="cb97-4"><a href="#cb97-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb97-5"><a href="#cb97-5" aria-hidden="true" tabindex="-1"></a>soilCLoss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>soilCLoss <span class="op">=</span> baseline_WCCSoilLoss[baseline_WCCSoilLoss[<span class="st">&quot;topsoilCarbonSubtract&quot;</span>] <span class="op">==</span> percSoilLoss]</span>
+<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a>soilCLoss <span class="op">=</span> soilCLoss.set_index(<span class="st">&quot;Country&quot;</span>)</span>
+<span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a>soilCLoss <span class="op">=</span> soilCLoss._get_value(<span class="st">&quot;England&quot;</span>, <span class="st">&quot;Arable&quot;</span>)</span>
+<span id="cb99-4"><a href="#cb99-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-5"><a href="#cb99-5" aria-hidden="true" tabindex="-1"></a>soilCLoss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>-5.133333333</code></pre>
 </div>
 </div>
 </div>
-<div id="tabset-28-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-28-2-tab">
+<div id="tabset-29-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-29-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>soilCLoss <span class="ot">&lt;-</span> baseline_WCCSoilLoss <span class="sc">|&gt;</span></span>
-<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(topsoilCarbonSubtract <span class="sc">==</span> percSoilLoss,</span>
-<span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a>                  Country <span class="sc">==</span> <span class="st">&quot;England&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb99-4"><a href="#cb99-4" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">pull</span>(Arable)</span>
-<span id="cb99-5"><a href="#cb99-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb99-6"><a href="#cb99-6" aria-hidden="true" tabindex="-1"></a>soilCLoss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>soilCLoss <span class="ot">&lt;-</span> baseline_WCCSoilLoss <span class="sc">|&gt;</span></span>
+<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(topsoilCarbonSubtract <span class="sc">==</span> percSoilLoss,</span>
+<span id="cb101-3"><a href="#cb101-3" aria-hidden="true" tabindex="-1"></a>                  Country <span class="sc">==</span> <span class="st">&quot;England&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb101-4"><a href="#cb101-4" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">pull</span>(Arable)</span>
+<span id="cb101-5"><a href="#cb101-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-6"><a href="#cb101-6" aria-hidden="true" tabindex="-1"></a>soilCLoss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -5.133333</code></pre>
 </div>
@@ -5323,16 +5392,16 @@ cumTotalCarbonSite (A)  15413.04</code></pre>
 </div>
 <p>Calculate the total net soil carbon flux.</p>
 <div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-29-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-29-1" role="tab" aria-controls="tabset-29-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-29-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-29-2" role="tab" aria-controls="tabset-29-2" aria-selected="false">R</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-30-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-30-1" role="tab" aria-controls="tabset-30-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-30-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-30-2" role="tab" aria-controls="tabset-30-2" aria-selected="false">R</a></li></ul>
 <div class="tab-content">
-<div id="tabset-29-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-29-1-tab">
+<div id="tabset-30-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-30-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>soilCFlux <span class="op">=</span> baseline_WCCSoilSeq</span>
-<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a>soilCFlux[<span class="st">&quot;cumSoilLoss&quot;</span>] <span class="op">=</span> soilCLoss</span>
-<span id="cb101-3"><a href="#cb101-3" aria-hidden="true" tabindex="-1"></a>soilCFlux[<span class="st">&quot;cumSoilCarbonFlux (D)&quot;</span>] <span class="op">=</span> soilCFlux[<span class="st">&quot;cumSoilLoss&quot;</span>] <span class="op">+</span> soilCFlux[<span class="st">&quot;cumSoilSeq&quot;</span>]</span>
-<span id="cb101-4"><a href="#cb101-4" aria-hidden="true" tabindex="-1"></a>soilCFlux <span class="op">=</span> soilCFlux.drop(columns <span class="op">=</span> [<span class="st">&quot;cumSoilSeq&quot;</span>, <span class="st">&quot;cumSoilLoss&quot;</span>])</span>
-<span id="cb101-5"><a href="#cb101-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb101-6"><a href="#cb101-6" aria-hidden="true" tabindex="-1"></a>soilCFlux.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>soilCFlux <span class="op">=</span> baseline_WCCSoilSeq</span>
+<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>soilCFlux[<span class="st">&quot;cumSoilLoss&quot;</span>] <span class="op">=</span> soilCLoss</span>
+<span id="cb103-3"><a href="#cb103-3" aria-hidden="true" tabindex="-1"></a>soilCFlux[<span class="st">&quot;cumSoilCarbonFlux (D)&quot;</span>] <span class="op">=</span> soilCFlux[<span class="st">&quot;cumSoilLoss&quot;</span>] <span class="op">+</span> soilCFlux[<span class="st">&quot;cumSoilSeq&quot;</span>]</span>
+<span id="cb103-4"><a href="#cb103-4" aria-hidden="true" tabindex="-1"></a>soilCFlux <span class="op">=</span> soilCFlux.drop(columns <span class="op">=</span> [<span class="st">&quot;cumSoilSeq&quot;</span>, <span class="st">&quot;cumSoilLoss&quot;</span>])</span>
+<span id="cb103-5"><a href="#cb103-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb103-6"><a href="#cb103-6" aria-hidden="true" tabindex="-1"></a>soilCFlux.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   period  cumSoilCarbonFlux (D)
 0     0-5               0.366667
@@ -5343,14 +5412,14 @@ cumTotalCarbonSite (A)  15413.04</code></pre>
 </div>
 </div>
 </div>
-<div id="tabset-29-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-29-2-tab">
+<div id="tabset-30-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-30-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>soilCFlux <span class="ot">&lt;-</span> baseline_WCCSoilSeq <span class="sc">|&gt;</span></span>
-<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="st">&quot;cumSoilLoss&quot;</span> <span class="ot">=</span> soilCLoss,</span>
-<span id="cb103-3"><a href="#cb103-3" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&quot;cumSoilCarbonFlux (D)&quot;</span> <span class="ot">=</span> cumSoilLoss <span class="sc">+</span> cumSoilSeq) <span class="sc">|&gt;</span></span>
-<span id="cb103-4"><a href="#cb103-4" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>cumSoilSeq, <span class="sc">-</span>cumSoilLoss)</span>
-<span id="cb103-5"><a href="#cb103-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb103-6"><a href="#cb103-6" aria-hidden="true" tabindex="-1"></a>soilCFlux <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>soilCFlux <span class="ot">&lt;-</span> baseline_WCCSoilSeq <span class="sc">|&gt;</span></span>
+<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="st">&quot;cumSoilLoss&quot;</span> <span class="ot">=</span> soilCLoss,</span>
+<span id="cb105-3"><a href="#cb105-3" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&quot;cumSoilCarbonFlux (D)&quot;</span> <span class="ot">=</span> cumSoilLoss <span class="sc">+</span> cumSoilSeq) <span class="sc">|&gt;</span></span>
+<span id="cb105-4"><a href="#cb105-4" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>cumSoilSeq, <span class="sc">-</span>cumSoilLoss)</span>
+<span id="cb105-5"><a href="#cb105-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb105-6"><a href="#cb105-6" aria-hidden="true" tabindex="-1"></a>soilCFlux <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  period cumSoilCarbonFlux (D)
 1    0-5             0.3666667
@@ -5366,13 +5435,13 @@ cumTotalCarbonSite (A)  15413.04</code></pre>
 </div>
 <p>Merge soil carbon flux.</p>
 <div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-30-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-30-1" role="tab" aria-controls="tabset-30-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-30-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-30-2" role="tab" aria-controls="tabset-30-2" aria-selected="false">R</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-31-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-31-1" role="tab" aria-controls="tabset-31-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-31-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-31-2" role="tab" aria-controls="tabset-31-2" aria-selected="false">R</a></li></ul>
 <div class="tab-content">
-<div id="tabset-30-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-30-1-tab">
+<div id="tabset-31-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-31-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.merge(soilCFlux, on <span class="op">=</span> [<span class="st">&quot;period&quot;</span>])</span>
-<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb105-3"><a href="#cb105-3" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.merge(soilCFlux, on <span class="op">=</span> [<span class="st">&quot;period&quot;</span>])</span>
+<span id="cb107-2"><a href="#cb107-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-3"><a href="#cb107-3" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   period  ...  cumSoilCarbonFlux (D)
 0     0-5  ...               0.366667
@@ -5385,24 +5454,24 @@ cumTotalCarbonSite (A)  15413.04</code></pre>
 </div>
 </div>
 </div>
-<div id="tabset-30-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-30-2-tab">
+<div id="tabset-31-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-31-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
-<span id="cb107-2"><a href="#cb107-2" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">left_join</span>(soilCFlux, <span class="at">on =</span> <span class="st">&quot;period&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">left_join</span>(soilCFlux, <span class="at">on =</span> <span class="st">&quot;period&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Joining, by = &quot;period&quot;</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 5
   period   `cumTotalCarbonSite (A)` cumTotalCarbonSiteReduced …¹ estab…² cumSo…³
   &lt;chr&gt;                       &lt;dbl&gt;                        &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-1 &quot;  0-5&quot;                      6.48                         5.18   -81.4   0.367
-2 &quot;  5-10&quot;                    23.0                         18.4    -81.4   5.87 
-3 &quot; 10-15&quot;                    69.4                         55.5    -81.4  11.4  
-4 &quot; 15-20&quot;                   169.                         136.     -81.4  16.9  
-5 &quot; 20-25&quot;                   219.                         175.     -81.4  22.4  
-6 &quot; 25-30&quot;                   265.                         212.     -81.4  27.9  
+1 &quot;  0-5&quot;                      24.7                         19.8   -81.4   0.367
+2 &quot;  5-10&quot;                    131.                         105.    -81.4   5.87 
+3 &quot; 10-15&quot;                    522.                         418.    -81.4  11.4  
+4 &quot; 15-20&quot;                   1452                         1162.    -81.4  16.9  
+5 &quot; 20-25&quot;                   2018.                        1614.    -81.4  22.4  
+6 &quot; 25-30&quot;                   2543.                        2035.    -81.4  27.9  
 # … with abbreviated variable names ¹​`cumTotalCarbonSiteReduced (B)`,
 #   ²​`establishmentCarbonLoss (C)`, ³​`cumSoilCarbonFlux (D)`</code></pre>
 </div>
@@ -5412,41 +5481,41 @@ cumTotalCarbonSite (A)  15413.04</code></pre>
 </div>
 <p>Calculate the total cumulative carbon sequestration.</p>
 <div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-31-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-31-1" role="tab" aria-controls="tabset-31-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-31-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-31-2" role="tab" aria-controls="tabset-31-2" aria-selected="false">R</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-32-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-32-1" role="tab" aria-controls="tabset-32-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-32-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-32-2" role="tab" aria-controls="tabset-32-2" aria-selected="false">R</a></li></ul>
 <div class="tab-content">
-<div id="tabset-31-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-31-1-tab">
+<div id="tabset-32-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-32-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;totalProjectCarbonSeq (E)&quot;</span>] <span class="op">=</span> df[<span class="st">&quot;cumTotalCarbonSiteReduced (B)&quot;</span>] <span class="op">+</span> df[<span class="st">&quot;establishmentCarbonLoss (C)&quot;</span>] <span class="op">+</span> df[<span class="st">&quot;cumSoilCarbonFlux (D)&quot;</span>]</span>
-<span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb111-3"><a href="#cb111-3" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;totalProjectCarbonSeq (E)&quot;</span>] <span class="op">=</span> df[<span class="st">&quot;cumTotalCarbonSiteReduced (B)&quot;</span>] <span class="op">+</span> df[<span class="st">&quot;establishmentCarbonLoss (C)&quot;</span>] <span class="op">+</span> df[<span class="st">&quot;cumSoilCarbonFlux (D)&quot;</span>]</span>
+<span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb113-3"><a href="#cb113-3" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   period  ...  totalProjectCarbonSeq (E)
-0     0-5  ...                 -75.861333
-1    5-10  ...                 -57.113333
-2   10-15  ...                 -14.557333
-3   15-20  ...                  71.006667
-4   20-25  ...                 115.866667
+0     0-5  ...                 -61.269333
+1    5-10  ...                  29.094667
+2   10-15  ...                 347.746667
+3   15-20  ...                1097.054667
+4   20-25  ...                1555.098667
 
 [5 rows x 6 columns]</code></pre>
 </div>
 </div>
 </div>
-<div id="tabset-31-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-31-2-tab">
+<div id="tabset-32-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-32-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
-<span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="st">&quot;totalProjectCarbonSeq (E)&quot;</span> <span class="ot">=</span> <span class="st">`</span><span class="at">cumTotalCarbonSiteReduced (B)</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">establishmentCarbonLoss (C)</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">cumSoilCarbonFlux (D)</span><span class="st">`</span>)</span>
-<span id="cb113-3"><a href="#cb113-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb113-4"><a href="#cb113-4" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="st">&quot;totalProjectCarbonSeq (E)&quot;</span> <span class="ot">=</span> <span class="st">`</span><span class="at">cumTotalCarbonSiteReduced (B)</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">establishmentCarbonLoss (C)</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">cumSoilCarbonFlux (D)</span><span class="st">`</span>)</span>
+<span id="cb115-3"><a href="#cb115-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb115-4"><a href="#cb115-4" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 6
   period   `cumTotalCarbonSite (A)` cumTotalCarbonSite…¹ estab…² cumSo…³ total…⁴
   &lt;chr&gt;                       &lt;dbl&gt;                &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-1 &quot;  0-5&quot;                      6.48                 5.18   -81.4   0.367   -75.9
-2 &quot;  5-10&quot;                    23.0                 18.4    -81.4   5.87    -57.1
-3 &quot; 10-15&quot;                    69.4                 55.5    -81.4  11.4     -14.6
-4 &quot; 15-20&quot;                   169.                 136.     -81.4  16.9      71.0
-5 &quot; 20-25&quot;                   219.                 175.     -81.4  22.4     116. 
-6 &quot; 25-30&quot;                   265.                 212.     -81.4  27.9     159. 
+1 &quot;  0-5&quot;                      24.7                 19.8   -81.4   0.367   -61.3
+2 &quot;  5-10&quot;                    131.                 105.    -81.4   5.87     29.1
+3 &quot; 10-15&quot;                    522.                 418.    -81.4  11.4     348. 
+4 &quot; 15-20&quot;                   1452                 1162.    -81.4  16.9    1097. 
+5 &quot; 20-25&quot;                   2018.                1614.    -81.4  22.4    1555. 
+6 &quot; 25-30&quot;                   2543.                2035.    -81.4  27.9    1981. 
 # … with abbreviated variable names ¹​`cumTotalCarbonSiteReduced (B)`,
 #   ²​`establishmentCarbonLoss (C)`, ³​`cumSoilCarbonFlux (D)`,
 #   ⁴​`totalProjectCarbonSeq (E)`</code></pre>
@@ -5457,44 +5526,44 @@ cumTotalCarbonSite (A)  15413.04</code></pre>
 </div>
 <p>Optionally, add Baseline and Leakage data then calculate the adjusted, net total project carbon sequestration.</p>
 <div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-32-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-32-1" role="tab" aria-controls="tabset-32-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-32-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-32-2" role="tab" aria-controls="tabset-32-2" aria-selected="false">R</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-33-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-33-1" role="tab" aria-controls="tabset-33-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-33-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-33-2" role="tab" aria-controls="tabset-33-2" aria-selected="false">R</a></li></ul>
 <div class="tab-content">
-<div id="tabset-32-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-32-1-tab">
+<div id="tabset-33-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-33-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;Baseline (F)&quot;</span>] <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;Leakage (G)&quot;</span>] <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb115-3"><a href="#cb115-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;netTotalProjectCarbonSeq (H)&quot;</span>] <span class="op">=</span> df[<span class="st">&quot;totalProjectCarbonSeq (E)&quot;</span>]<span class="op">+</span> df[<span class="st">&quot;Baseline (F)&quot;</span>] <span class="op">+</span> df[<span class="st">&quot;Leakage (G)&quot;</span>]</span>
-<span id="cb115-4"><a href="#cb115-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb115-5"><a href="#cb115-5" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;Baseline (F)&quot;</span>] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;Leakage (G)&quot;</span>] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb117-3"><a href="#cb117-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;netTotalProjectCarbonSeq (H)&quot;</span>] <span class="op">=</span> df[<span class="st">&quot;totalProjectCarbonSeq (E)&quot;</span>]<span class="op">+</span> df[<span class="st">&quot;Baseline (F)&quot;</span>] <span class="op">+</span> df[<span class="st">&quot;Leakage (G)&quot;</span>]</span>
+<span id="cb117-4"><a href="#cb117-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb117-5"><a href="#cb117-5" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   period  cumTotalCarbonSite (A)  ...  Leakage (G)  netTotalProjectCarbonSeq (H)
-0     0-5                    6.48  ...            0                    -75.861333
-1    5-10                   23.04  ...            0                    -57.113333
-2   10-15                   69.36  ...            0                    -14.557333
-3   15-20                  169.44  ...            0                     71.006667
-4   20-25                  218.64  ...            0                    115.866667
+0     0-5                   24.72  ...            0                    -61.269333
+1    5-10                  130.80  ...            0                     29.094667
+2   10-15                  522.24  ...            0                    347.746667
+3   15-20                 1452.00  ...            0                   1097.054667
+4   20-25                 2017.68  ...            0                   1555.098667
 
 [5 rows x 9 columns]</code></pre>
 </div>
 </div>
 </div>
-<div id="tabset-32-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-32-2-tab">
+<div id="tabset-33-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-33-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
-<span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="st">&quot;Baseline (F)&quot;</span> <span class="ot">=</span> <span class="dv">0</span>, <span class="st">&quot;Leakage (G)&quot;</span> <span class="ot">=</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
-<span id="cb117-3"><a href="#cb117-3" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="st">&quot;netTotalProjectCarbonSeq (H)&quot;</span> <span class="ot">=</span> <span class="st">`</span><span class="at">totalProjectCarbonSeq (E)</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">Baseline (F)</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">Leakage (G)</span><span class="st">`</span>)</span>
-<span id="cb117-4"><a href="#cb117-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb117-5"><a href="#cb117-5" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="st">&quot;Baseline (F)&quot;</span> <span class="ot">=</span> <span class="dv">0</span>, <span class="st">&quot;Leakage (G)&quot;</span> <span class="ot">=</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb119-3"><a href="#cb119-3" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="st">&quot;netTotalProjectCarbonSeq (H)&quot;</span> <span class="ot">=</span> <span class="st">`</span><span class="at">totalProjectCarbonSeq (E)</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">Baseline (F)</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">Leakage (G)</span><span class="st">`</span>)</span>
+<span id="cb119-4"><a href="#cb119-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb119-5"><a href="#cb119-5" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 9
   period   cumTotalCar…¹ cumTo…² estab…³ cumSo…⁴ total…⁵ Basel…⁶ Leaka…⁷ netTo…⁸
   &lt;chr&gt;            &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-1 &quot;  0-5&quot;           6.48    5.18   -81.4   0.367   -75.9       0       0   -75.9
-2 &quot;  5-10&quot;         23.0    18.4    -81.4   5.87    -57.1       0       0   -57.1
-3 &quot; 10-15&quot;         69.4    55.5    -81.4  11.4     -14.6       0       0   -14.6
-4 &quot; 15-20&quot;        169.    136.     -81.4  16.9      71.0       0       0    71.0
-5 &quot; 20-25&quot;        219.    175.     -81.4  22.4     116.        0       0   116. 
-6 &quot; 25-30&quot;        265.    212.     -81.4  27.9     159.        0       0   159. 
+1 &quot;  0-5&quot;           24.7    19.8   -81.4   0.367   -61.3       0       0   -61.3
+2 &quot;  5-10&quot;         131.    105.    -81.4   5.87     29.1       0       0    29.1
+3 &quot; 10-15&quot;         522.    418.    -81.4  11.4     348.        0       0   348. 
+4 &quot; 15-20&quot;        1452    1162.    -81.4  16.9    1097.        0       0  1097. 
+5 &quot; 20-25&quot;        2018.   1614.    -81.4  22.4    1555.        0       0  1555. 
+6 &quot; 25-30&quot;        2543.   2035.    -81.4  27.9    1981.        0       0  1981. 
 # … with abbreviated variable names ¹​`cumTotalCarbonSite (A)`,
 #   ²​`cumTotalCarbonSiteReduced (B)`, ³​`establishmentCarbonLoss (C)`,
 #   ⁴​`cumSoilCarbonFlux (D)`, ⁵​`totalProjectCarbonSeq (E)`, ⁶​`Baseline (F)`,
@@ -5506,40 +5575,40 @@ cumTotalCarbonSite (A)  15413.04</code></pre>
 </div>
 <p>Calculate the claimable carbon sequestration by adding a final 20% buffer.</p>
 <div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-33-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-33-1" role="tab" aria-controls="tabset-33-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-33-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-33-2" role="tab" aria-controls="tabset-33-2" aria-selected="false">R</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-34-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-34-1" role="tab" aria-controls="tabset-34-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-34-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-34-2" role="tab" aria-controls="tabset-34-2" aria-selected="false">R</a></li></ul>
 <div class="tab-content">
-<div id="tabset-33-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-33-1-tab">
+<div id="tabset-34-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-34-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;claimableCarbonSeq (J)&quot;</span>] <span class="op">=</span> df[<span class="st">&quot;netTotalProjectCarbonSeq (H)&quot;</span>] <span class="op">*</span> <span class="fl">0.8</span></span>
-<span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;claimableCarbonSeq (J)&quot;</span>] <span class="op">=</span> df[<span class="st">&quot;netTotalProjectCarbonSeq (H)&quot;</span>] <span class="op">*</span> <span class="fl">0.8</span></span>
+<span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   period  ...  claimableCarbonSeq (J)
-0     0-5  ...              -60.689067
-1    5-10  ...              -45.690667
-2   10-15  ...              -11.645867
-3   15-20  ...               56.805333
-4   20-25  ...               92.693333
+0     0-5  ...              -49.015467
+1    5-10  ...               23.275733
+2   10-15  ...              278.197333
+3   15-20  ...              877.643733
+4   20-25  ...             1244.078933
 
 [5 rows x 10 columns]</code></pre>
 </div>
 </div>
 </div>
-<div id="tabset-33-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-33-2-tab">
+<div id="tabset-34-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-34-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
-<span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="st">&quot;claimableCarbonSeq (J)&quot;</span> <span class="ot">=</span> <span class="st">`</span><span class="at">netTotalProjectCarbonSeq (H)</span><span class="st">`</span> <span class="sc">*</span> <span class="fl">0.8</span>)</span>
-<span id="cb121-3"><a href="#cb121-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb121-4"><a href="#cb121-4" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb123-2"><a href="#cb123-2" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="st">&quot;claimableCarbonSeq (J)&quot;</span> <span class="ot">=</span> <span class="st">`</span><span class="at">netTotalProjectCarbonSeq (H)</span><span class="st">`</span> <span class="sc">*</span> <span class="fl">0.8</span>)</span>
+<span id="cb123-3"><a href="#cb123-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-4"><a href="#cb123-4" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 10
   period cumTo…¹ cumTo…² estab…³ cumSo…⁴ total…⁵ Basel…⁶ Leaka…⁷ netTo…⁸ claim…⁹
   &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-1 &quot;  0-…    6.48    5.18   -81.4   0.367   -75.9       0       0   -75.9   -60.7
-2 &quot;  5-…   23.0    18.4    -81.4   5.87    -57.1       0       0   -57.1   -45.7
-3 &quot; 10-…   69.4    55.5    -81.4  11.4     -14.6       0       0   -14.6   -11.6
-4 &quot; 15-…  169.    136.     -81.4  16.9      71.0       0       0    71.0    56.8
-5 &quot; 20-…  219.    175.     -81.4  22.4     116.        0       0   116.     92.7
-6 &quot; 25-…  265.    212.     -81.4  27.9     159.        0       0   159.    127. 
+1 &quot;  0-…    24.7    19.8   -81.4   0.367   -61.3       0       0   -61.3   -49.0
+2 &quot;  5-…   131.    105.    -81.4   5.87     29.1       0       0    29.1    23.3
+3 &quot; 10-…   522.    418.    -81.4  11.4     348.        0       0   348.    278. 
+4 &quot; 15-…  1452    1162.    -81.4  16.9    1097.        0       0  1097.    878. 
+5 &quot; 20-…  2018.   1614.    -81.4  22.4    1555.        0       0  1555.   1244. 
+6 &quot; 25-…  2543.   2035.    -81.4  27.9    1981.        0       0  1981.   1585. 
 # … with abbreviated variable names ¹​`cumTotalCarbonSite (A)`,
 #   ²​`cumTotalCarbonSiteReduced (B)`, ³​`establishmentCarbonLoss (C)`,
 #   ⁴​`cumSoilCarbonFlux (D)`, ⁵​`totalProjectCarbonSeq (E)`, ⁶​`Baseline (F)`,
@@ -5551,40 +5620,40 @@ cumTotalCarbonSite (A)  15413.04</code></pre>
 </div>
 <p>Calculate the mean claimable carbon sequestration per hectare, in tCO2e per ha per year</p>
 <div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-34-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-34-1" role="tab" aria-controls="tabset-34-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-34-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-34-2" role="tab" aria-controls="tabset-34-2" aria-selected="false">R</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-35-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-35-1" role="tab" aria-controls="tabset-35-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-35-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-35-2" role="tab" aria-controls="tabset-35-2" aria-selected="false">R</a></li></ul>
 <div class="tab-content">
-<div id="tabset-34-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-34-1-tab">
+<div id="tabset-35-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-35-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;meanClaimableCarbonSeqPerHa (K)&quot;</span>] <span class="op">=</span> df[<span class="st">&quot;claimableCarbonSeq (J)&quot;</span>] <span class="op">/</span> wccEstArea</span>
-<span id="cb123-2"><a href="#cb123-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb125"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;meanClaimableCarbonSeqPerHa (K)&quot;</span>] <span class="op">=</span> df[<span class="st">&quot;claimableCarbonSeq (J)&quot;</span>] <span class="op">/</span> wccEstArea</span>
+<span id="cb125-2"><a href="#cb125-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   period  ...  meanClaimableCarbonSeqPerHa (K)
-0     0-5  ...                        -5.057422
-1    5-10  ...                        -3.807556
-2   10-15  ...                        -0.970489
-3   15-20  ...                         4.733778
-4   20-25  ...                         7.724444
+0     0-5  ...                        -4.084622
+1    5-10  ...                         1.939644
+2   10-15  ...                        23.183111
+3   15-20  ...                        73.136978
+4   20-25  ...                       103.673244
 
 [5 rows x 11 columns]</code></pre>
 </div>
 </div>
 </div>
-<div id="tabset-34-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-34-2-tab">
+<div id="tabset-35-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-35-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb125"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
-<span id="cb125-2"><a href="#cb125-2" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="st">&quot;meanClaimableCarbonSeqPerHa (K)&quot;</span> <span class="ot">=</span> <span class="st">`</span><span class="at">claimableCarbonSeq (J)</span><span class="st">`</span> <span class="sc">/</span> wccEstArea)</span>
-<span id="cb125-3"><a href="#cb125-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-4"><a href="#cb125-4" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb127"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb127-2"><a href="#cb127-2" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="st">&quot;meanClaimableCarbonSeqPerHa (K)&quot;</span> <span class="ot">=</span> <span class="st">`</span><span class="at">claimableCarbonSeq (J)</span><span class="st">`</span> <span class="sc">/</span> wccEstArea)</span>
+<span id="cb127-3"><a href="#cb127-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb127-4"><a href="#cb127-4" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 11
   period cumTo…¹ cumTo…² estab…³ cumSo…⁴ total…⁵ Basel…⁶ Leaka…⁷ netTo…⁸ claim…⁹
   &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-1 &quot;  0-…    6.48    5.18   -81.4   0.367   -75.9       0       0   -75.9   -60.7
-2 &quot;  5-…   23.0    18.4    -81.4   5.87    -57.1       0       0   -57.1   -45.7
-3 &quot; 10-…   69.4    55.5    -81.4  11.4     -14.6       0       0   -14.6   -11.6
-4 &quot; 15-…  169.    136.     -81.4  16.9      71.0       0       0    71.0    56.8
-5 &quot; 20-…  219.    175.     -81.4  22.4     116.        0       0   116.     92.7
-6 &quot; 25-…  265.    212.     -81.4  27.9     159.        0       0   159.    127. 
+1 &quot;  0-…    24.7    19.8   -81.4   0.367   -61.3       0       0   -61.3   -49.0
+2 &quot;  5-…   131.    105.    -81.4   5.87     29.1       0       0    29.1    23.3
+3 &quot; 10-…   522.    418.    -81.4  11.4     348.        0       0   348.    278. 
+4 &quot; 15-…  1452    1162.    -81.4  16.9    1097.        0       0  1097.    878. 
+5 &quot; 20-…  2018.   1614.    -81.4  22.4    1555.        0       0  1555.   1244. 
+6 &quot; 25-…  2543.   2035.    -81.4  27.9    1981.        0       0  1981.   1585. 
 # … with 1 more variable: `meanClaimableCarbonSeqPerHa (K)` &lt;dbl&gt;, and
 #   abbreviated variable names ¹​`cumTotalCarbonSite (A)`,
 #   ²​`cumTotalCarbonSiteReduced (B)`, ³​`establishmentCarbonLoss (C)`,

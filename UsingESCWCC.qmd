@@ -649,24 +649,49 @@ baseline_WCCTreeValues_selSpp |> head()
 
 :::
 
-Select the BCLT and CMSV values for a particular spacing and management regime, e.g. 1.5m and Thinned.
+::: {.callout-warning}
+## Warning
+
+Data in WCCTreeValues varies by spacing and management for each wccCode and therefore speciesCode. It is advised that the user checks what spacing and management values are available for the selected species.
+
+:::
+
+::: {.panel-tabset}
+
+## Python
+
+```{python checkMeta_py}
+baseline_WCCTreeValues_selSpp[["speciesCode", "spacing", "management"]].drop_duplicates()
+```
+
+## R
+
+```{r checkMeta_r}
+baseline_WCCTreeValues_selSpp |>
+    dplyr::select(speciesCode, spacing, management) |>
+    unique()
+```
+
+:::
+
+Select the BCLT and CMSV values for a particular spacing and management regime, e.g. 3m and Thinned, checking that data is available for each as above.
 
 ::: {.panel-tabset}
 
 ## Python
 
 ```{python spman_py}
-baseline_WCCTreeValues_selSpp_1p5_Thinned = baseline_WCCTreeValues_selSpp[(baseline_WCCTreeValues_selSpp.spacing == 1.5) & (baseline_WCCTreeValues_selSpp.management == "Thinned")]
-baseline_WCCTreeValues_selSpp_1p5_Thinned.head()
+baseline_WCCTreeValues_selSpp_3_Thinned = baseline_WCCTreeValues_selSpp[(baseline_WCCTreeValues_selSpp.spacing == 3) & (baseline_WCCTreeValues_selSpp.management == "Thinned")]
+baseline_WCCTreeValues_selSpp_3_Thinned.head()
 ```
 
 ## R
 
 ```{r spman_r}
-baseline_WCCTreeValues_selSpp_1p5_Thinned <- baseline_WCCTreeValues_selSpp |>
-    dplyr::filter(spacing == 1.5,
+baseline_WCCTreeValues_selSpp_3_Thinned <- baseline_WCCTreeValues_selSpp |>
+    dplyr::filter(spacing == 3,
                   management == "Thinned")
-baseline_WCCTreeValues_selSpp_1p5_Thinned |> head()
+baseline_WCCTreeValues_selSpp_3_Thinned |> head()
 ```
 
 :::
@@ -698,7 +723,7 @@ Form a new data frame, select the relevant columns, and merge the species compos
 ## Python
 
 ```{python setDF_py}
-df = baseline_WCCTreeValues_selSpp_1p5_Thinned
+df = baseline_WCCTreeValues_selSpp_3_Thinned
 df = df[["speciesCode", "period", "cumTotalCarbon"]]
 df = df.merge(species_composition, on = ["speciesCode"])
 df.head()
@@ -707,7 +732,7 @@ df.head()
 ## R
 
 ```{r setDF_r}
-df <- baseline_WCCTreeValues_selSpp_1p5_Thinned
+df <- baseline_WCCTreeValues_selSpp_3_Thinned
 df <- df |>
     dplyr::select(speciesCode, period, cumTotalCarbon) |>
     dplyr::left_join(species_composition, on = "speciesCode")
@@ -745,9 +770,7 @@ Sum across all species.
 
 ```{python sumSpp_py}
 df = df.drop(columns = ["speciesCode", "cumTotalCarbon", "proportion"])
-df = df.set_index("period")
-df.sum(axis = 0).to_frame()
-df = df.reset_index()
+df = df.groupby("period").sum()
 df.head()
 ```
 
