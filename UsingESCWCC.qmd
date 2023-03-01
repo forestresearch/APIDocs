@@ -661,7 +661,7 @@ Data in WCCTreeValues varies by spacing and management for each wccCode and ther
 ## Python
 
 ```{python checkMeta_py}
-baseline_WCCTreeValues_selSpp[["speciesCode", "spacing", "management"]].drop_duplicates()
+baseline_WCCTreeValues_selSpp[["speciesCode", "spacing", "management"]].drop_duplicates().reset_index()
 ```
 
 ## R
@@ -770,7 +770,7 @@ Sum across all species.
 
 ```{python sumSpp_py}
 df = df.drop(columns = ["speciesCode", "cumTotalCarbon", "proportion"])
-df = df.groupby("period").sum()
+df = df.groupby("period").sum().reset_index()
 df.head()
 ```
 
