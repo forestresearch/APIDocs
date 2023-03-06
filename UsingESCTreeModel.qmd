@@ -113,12 +113,16 @@ exposure <- 0
 
 :::
 
-Establish the climate scenario/s (climateScenList), climate years (climateYearList) species group filter (filter), and ESC version.
+Establish the climate model (climateModel), climate scenario/s (climateScenList), climate years (climateYearList), species group filter (filter), and ESC version (escVersion).
 
+* climateModel:str
+    * A string, either "UKCP09" or "UKCP18-1km"
 * climateScenList:List
-    * A list containing any of: ['UKCP09', 'RCP2.6', 'RCP4.5', 'RCP6.0', 'RCP8.5']
+    * For "UKCP09" a list containing any of: ["A1b3q0"]
+    * For "UKCP18-1km" a list containing any of: ["RCP2.6", "RCP4.5", "RCP6.0", "RCP8.5"]
 * climateYearList:List
-    * A list containing any of: ['Baseline', '2010', '2020', '2030', '2040', '2050', '2060', '2070', '2080']
+    * For "UKCP09" a list containing any of the following timeslices: ["1961_1990", "2000_2020", "2010_2030", "2020_2040", "2030_2050", "2040_2060", "2050_2070", "2060_2080", "2070_2090"]
+    * For "UKCP18-1km" a list containing any of the following timeslices: ["1980_2000", "1990_2010", "2000_2020", "2010_2030", "2020_2040", "2030_2050", "2040_2060", "2050_2070", "2060_2080"]
 * filter:int
     * 0 = No filter
     * 1 = Conifers only
@@ -128,15 +132,14 @@ Establish the climate scenario/s (climateScenList), climate years (climateYearLi
 * escVersion:str
     * "4.33" = "4.33"
 
-Please note that we are currently integrating UKCP18 RCP scenario data, as such RCP2.6, RCP4.5, RCP6.0, and RCP8.5 are currently placeholders.
-
 ::: {.panel-tabset}
 
 ## Python
 
 ```{python clim_py}
-climateScenList = ['UKCP09']
-climateYearList = ['Baseline', '2050', '2080']
+climateModel = "UKCP18-1km"
+climateScenList = ["RCP2.6", "RCP8.5"]
+climateYearList = ["1980_2000", "2060_2080"]
 filter = 0
 escVersion = "4.33"
 ```
@@ -144,8 +147,9 @@ escVersion = "4.33"
 ## R
 
 ```{r clim_r}
-climateScenList <- list('UKCP09')
-climateYearList <- list('Baseline', '2050', '2080')
+climateModel <- "UKCP18-1km"
+climateScenList <- list("RCP2.6", "RCP8.5")
+climateYearList <- list("1980_2000", "2060_2080")
 filter <- 0
 escVersion <- "4.33"
 ```
@@ -204,6 +208,7 @@ Compose the request body. Optionally, you can accept the default values for all 
 
 req_body = {"lon": lon, "lat": lat, 
             "drainage": drainage, "brash": brash, "fertiliser": fertiliser, "exposure": exposure, 
+            "climateModel": climateModel,
             "climateScenList": climateScenList, "climateYearList": climateYearList,
             "filter": filter, "escVersion": escVersion,
             "smr": smr, "snr": snr}
@@ -216,6 +221,7 @@ req_body = {"lon": lon, "lat": lat,
 
 req_list <- list("lon" = lon, "lat" = lat, 
                  "drainage" = drainage, "brash" = brash, "fertiliser" =  fertiliser, "exposure" = exposure, 
+                 "climateModel" = climateModel,
                  "climateScenList" = climateScenList, "climateYearList" = climateYearList,
                  "filter" = filter, "escVersion" = escVersion,
                  "smr" = smr, "snr" = snr)
@@ -318,19 +324,25 @@ ESCresponse_dict (dict)
 │   │   ├── ESCTreeMetadata (DataFrame)
 │   ├── APIMetadata (dict)
 │   │   ├── DateTime (DataFrame)
-└───UKCP09 (dict)
-    ├── Baseline (dict)
+└───RCP2.6 (dict)
+│   ├── 1980_2000 (dict)
+│   │   ├── ESCDoseVals (DataFrame)
+│   │   ├── ESCResponseVals (DataFrame)
+│   │   ├── ESCSuitMetrics (DataFrame)
+│   ├── 2060_2080 (dict)
+│   │   ├── ESCDoseVals (DataFrame)
+│   │   ├── ESCResponseVals (DataFrame)
+│   │   ├── ESCSuitMetrics (DataFrame)
+└───RCP8.5 (dict)
+    ├── 1980_2000 (dict)
     │   ├── ESCDoseVals (DataFrame)
     │   ├── ESCResponseVals (DataFrame)
     │   ├── ESCSuitMetrics (DataFrame)
-    ├── 2050 (dict)
+    ├── 2060_2080 (dict)
     │   ├── ESCDoseVals (DataFrame)
     │   ├── ESCResponseVals (DataFrame)
     │   ├── ESCSuitMetrics (DataFrame)
-    ├── 2080 (dict)
-    │   ├── ESCDoseVals (DataFrame)
-    │   ├── ESCResponseVals (DataFrame)
-    │   ├── ESCSuitMetrics (DataFrame)
+
 ```
 
 Access the ESC data frames from the API response for a given climate scenario using the following code.
@@ -352,15 +364,15 @@ Column definitions:
 ## Python
 
 ```{python ESCDoseVals_py}
-baseline_ESCDoseVals = ESCTreeModelresponse_dict.get("UKCP09").get("Baseline").get("ESCDoseVals")
-baseline_ESCDoseVals
+ESCDoseVals = ESCTreeModelresponse_dict.get("RCP2.6").get("1980_2000").get("ESCDoseVals")
+ESCDoseVals
 ```
 
 ## R
 
 ```{r ESCDoseVals_r}
-baseline_ESCDoseVals = ESCTreeModelresponse_list$UKCP09$Baseline$ESCDoseVals
-baseline_ESCDoseVals
+ESCDoseVals = ESCTreeModelresponse_list$`RCP2.6`$`1980_2000`$ESCDoseVals
+ESCDoseVals
 ```
 
 :::
@@ -377,15 +389,15 @@ Column definitions:
 ## Python
 
 ```{python ESCResponseVals_py}
-baseline_ESCResponseVals = ESCTreeModelresponse_dict.get("UKCP09").get("Baseline").get("ESCResponseVals")
-baseline_ESCResponseVals.head()
+ESCResponseVals = ESCTreeModelresponse_dict.get("RCP2.6").get("1980_2000").get("ESCResponseVals")
+ESCResponseVals.head()
 ```
 
 ## R
 
 ```{r ESCResponseVals_r}
-baseline_ESCResponseVals = ESCTreeModelresponse_list$UKCP09$Baseline$ESCResponseVals
-baseline_ESCResponseVals |> head()
+ESCResponseVals = ESCTreeModelresponse_list$`RCP2.6`$`1980_2000`$ESCResponseVals
+ESCResponseVals |> head()
 ```
 
 :::
@@ -411,15 +423,15 @@ Column definitions:
 ## Python
 
 ```{python ESCSuitMetrics_py}
-baseline_ESCSuitMetrics = ESCTreeModelresponse_dict.get("UKCP09").get("Baseline").get("ESCSuitMetrics")
-baseline_ESCSuitMetrics.head()
+ESCSuitMetrics = ESCTreeModelresponse_dict.get("RCP2.6").get("1980_2000").get("ESCSuitMetrics")
+ESCSuitMetrics.head()
 ```
 
 ## R
 
 ```{r ESCSuitMetrics_r}
-baseline_ESCSuitMetrics = ESCTreeModelresponse_list$UKCP09$Baseline$ESCSuitMetrics
-baseline_ESCSuitMetrics |> head()
+ESCSuitMetrics = ESCTreeModelresponse_list$`RCP2.6`$`1980_2000`$ESCSuitMetrics
+ESCSuitMetrics |> head()
 ```
 
 :::

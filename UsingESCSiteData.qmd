@@ -74,29 +74,33 @@ lat <- 6830259.9735
 
 :::
 
-Establish the climate scenario/s (climateScenList) and climate years (climateYearList).
+Establish the climate model (climateModel), climate scenario/s (climateScenList) and climate years (climateYearList).
 
+* climateModel:str
+    * A string, either "UKCP09" or "UKCP18-1km"
 * climateScenList:List
-    * A list containing any of: ['UKCP09', 'RCP2.6', 'RCP4.5', 'RCP6.0', 'RCP8.5']
+    * For "UKCP09" a list containing any of: ["A1b3q0"]
+    * For "UKCP18-1km" a list containing any of: ["RCP2.6", "RCP4.5", "RCP6.0", "RCP8.5"]
 * climateYearList:List
-    * A list containing any of: ['Baseline', '2010', '2020', '2030', '2040', '2050', '2060', '2070', '2080']
-
-Please note that we are currently integrating UKCP18 RCP scenario data, as such RCP2.6, RCP4.5, RCP6.0, and RCP8.5 are currently placeholders.
+    * For "UKCP09" a list containing any of the following timeslices: ["1961_1990", "2000_2020", "2010_2030", "2020_2040", "2030_2050", "2040_2060", "2050_2070", "2060_2080", "2070_2090"]
+    * For "UKCP18-1km" a list containing any of the following timeslices: ["1980_2000", "1990_2010", "2000_2020", "2010_2030", "2020_2040", "2030_2050", "2040_2060", "2050_2070", "2060_2080"]
 
 ::: {.panel-tabset}
 
 ## Python
 
 ```{python clim_py}
-climateScenList = ["RCP2.6"]
-climateYearList = ["Baseline", "2010"]
+climateModel = "UKCP18-1km"
+climateScenList = ["RCP2.6", "RCP8.5"]
+climateYearList = ["1980_2000", "2060_2080"]
 ```
 
 ## R
 
 ```{r clim_r}
-climateScenList <- list("RCP2.6")
-climateYearList <- list("Baseline", "2010")
+climateModel <- "UKCP18-1km"
+climateScenList <- list("RCP2.6", "RCP8.5")
+climateYearList <- list("1980_2000", "2060_2080")
 ```
 
 :::
@@ -109,14 +113,18 @@ Compose the request body.
 
 ```{python reqBody_py}
 req_body = {"lon": lon, "lat": lat, 
-            "climateScenList": climateScenList, "climateYearList": climateYearList}
+            "climateModel": climateModel,
+            "climateScenList": climateScenList, 
+            "climateYearList": climateYearList}
 ```
 
 ## R
 
 ```{r reqBody_r}
 req_list <- list("lon" = lon, "lat" = lat, 
-                 "climateScenList" = climateScenList, "climateYearList" = climateYearList)
+                 "climateModel" = climateModel,
+                 "climateScenList" = climateScenList, 
+                 "climateYearList" = climateYearList)
 
 req_body <- jsonlite::toJSON(req_list, auto_unbox = TRUE)
 ```

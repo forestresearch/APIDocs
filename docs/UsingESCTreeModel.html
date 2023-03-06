@@ -4203,15 +4203,21 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 </div>
 </div>
 </div>
-<p>Establish the climate scenario/s (climateScenList), climate years (climateYearList) species group filter (filter), and ESC version.</p>
+<p>Establish the climate model (climateModel), climate scenario/s (climateScenList), climate years (climateYearList), species group filter (filter), and ESC version (escVersion).</p>
 <ul>
+<li>climateModel:str
+<ul>
+<li>A string, either “UKCP09” or “UKCP18-1km”</li>
+</ul></li>
 <li>climateScenList:List
 <ul>
-<li>A list containing any of: [‘UKCP09’, ‘RCP2.6’, ‘RCP4.5’, ‘RCP6.0’, ‘RCP8.5’]</li>
+<li>For “UKCP09” a list containing any of: [“A1b3q0”]</li>
+<li>For “UKCP18-1km” a list containing any of: [“RCP2.6”, “RCP4.5”, “RCP6.0”, “RCP8.5”]</li>
 </ul></li>
 <li>climateYearList:List
 <ul>
-<li>A list containing any of: [‘Baseline’, ‘2010’, ‘2020’, ‘2030’, ‘2040’, ‘2050’, ‘2060’, ‘2070’, ‘2080’]</li>
+<li>For “UKCP09” a list containing any of the following timeslices: [“1961_1990”, “2000_2020”, “2010_2030”, “2020_2040”, “2030_2050”, “2040_2060”, “2050_2070”, “2060_2080”, “2070_2090”]</li>
+<li>For “UKCP18-1km” a list containing any of the following timeslices: [“1980_2000”, “1990_2010”, “2000_2020”, “2010_2030”, “2020_2040”, “2030_2050”, “2040_2060”, “2050_2070”, “2060_2080”]</li>
 </ul></li>
 <li>filter:int
 <ul>
@@ -4226,24 +4232,25 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <li>“4.33” = “4.33”</li>
 </ul></li>
 </ul>
-<p>Please note that we are currently integrating UKCP18 RCP scenario data, as such RCP2.6, RCP4.5, RCP6.0, and RCP8.5 are currently placeholders.</p>
 <div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">R</a></li></ul>
 <div class="tab-content">
 <div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>climateScenList <span class="op">=</span> [<span class="st">&#39;UKCP09&#39;</span>]</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>climateYearList <span class="op">=</span> [<span class="st">&#39;Baseline&#39;</span>, <span class="st">&#39;2050&#39;</span>, <span class="st">&#39;2080&#39;</span>]</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">filter</span> <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>escVersion <span class="op">=</span> <span class="st">&quot;4.33&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>climateModel <span class="op">=</span> <span class="st">&quot;UKCP18-1km&quot;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>climateScenList <span class="op">=</span> [<span class="st">&quot;RCP2.6&quot;</span>, <span class="st">&quot;RCP8.5&quot;</span>]</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>climateYearList <span class="op">=</span> [<span class="st">&quot;1980_2000&quot;</span>, <span class="st">&quot;2060_2080&quot;</span>]</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="bu">filter</span> <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>escVersion <span class="op">=</span> <span class="st">&quot;4.33&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>climateScenList <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&#39;UKCP09&#39;</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>climateYearList <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&#39;Baseline&#39;</span>, <span class="st">&#39;2050&#39;</span>, <span class="st">&#39;2080&#39;</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>filter <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>escVersion <span class="ot">&lt;-</span> <span class="st">&quot;4.33&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>climateModel <span class="ot">&lt;-</span> <span class="st">&quot;UKCP18-1km&quot;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>climateScenList <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;RCP2.6&quot;</span>, <span class="st">&quot;RCP8.5&quot;</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>climateYearList <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;1980_2000&quot;</span>, <span class="st">&quot;2060_2080&quot;</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>filter <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>escVersion <span class="ot">&lt;-</span> <span class="st">&quot;4.33&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -4301,9 +4308,10 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>req_body <span class="op">=</span> {<span class="st">&quot;lon&quot;</span>: lon, <span class="st">&quot;lat&quot;</span>: lat, </span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;drainage&quot;</span>: drainage, <span class="st">&quot;brash&quot;</span>: brash, <span class="st">&quot;fertiliser&quot;</span>: fertiliser, <span class="st">&quot;exposure&quot;</span>: exposure, </span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;climateScenList&quot;</span>: climateScenList, <span class="st">&quot;climateYearList&quot;</span>: climateYearList,</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;filter&quot;</span>: <span class="bu">filter</span>, <span class="st">&quot;escVersion&quot;</span>: escVersion,</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;smr&quot;</span>: smr, <span class="st">&quot;snr&quot;</span>: snr}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;climateModel&quot;</span>: climateModel,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;climateScenList&quot;</span>: climateScenList, <span class="st">&quot;climateYearList&quot;</span>: climateYearList,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;filter&quot;</span>: <span class="bu">filter</span>, <span class="st">&quot;escVersion&quot;</span>: escVersion,</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;smr&quot;</span>: smr, <span class="st">&quot;snr&quot;</span>: snr}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
@@ -4312,11 +4320,12 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>req_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;lon&quot;</span> <span class="ot">=</span> lon, <span class="st">&quot;lat&quot;</span> <span class="ot">=</span> lat, </span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;drainage&quot;</span> <span class="ot">=</span> drainage, <span class="st">&quot;brash&quot;</span> <span class="ot">=</span> brash, <span class="st">&quot;fertiliser&quot;</span> <span class="ot">=</span>  fertiliser, <span class="st">&quot;exposure&quot;</span> <span class="ot">=</span> exposure, </span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;climateScenList&quot;</span> <span class="ot">=</span> climateScenList, <span class="st">&quot;climateYearList&quot;</span> <span class="ot">=</span> climateYearList,</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;filter&quot;</span> <span class="ot">=</span> filter, <span class="st">&quot;escVersion&quot;</span> <span class="ot">=</span> escVersion,</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;smr&quot;</span> <span class="ot">=</span> smr, <span class="st">&quot;snr&quot;</span> <span class="ot">=</span> snr)</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>req_body <span class="ot">&lt;-</span> jsonlite<span class="sc">::</span><span class="fu">toJSON</span>(req_list, <span class="at">auto_unbox =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;climateModel&quot;</span> <span class="ot">=</span> climateModel,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;climateScenList&quot;</span> <span class="ot">=</span> climateScenList, <span class="st">&quot;climateYearList&quot;</span> <span class="ot">=</span> climateYearList,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;filter&quot;</span> <span class="ot">=</span> filter, <span class="st">&quot;escVersion&quot;</span> <span class="ot">=</span> escVersion,</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;smr&quot;</span> <span class="ot">=</span> smr, <span class="st">&quot;snr&quot;</span> <span class="ot">=</span> snr)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>req_body <span class="ot">&lt;-</span> jsonlite<span class="sc">::</span><span class="fu">toJSON</span>(req_list, <span class="at">auto_unbox =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -4412,19 +4421,25 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 │   │   ├── ESCTreeMetadata (DataFrame)
 │   ├── APIMetadata (dict)
 │   │   ├── DateTime (DataFrame)
-└───UKCP09 (dict)
-    ├── Baseline (dict)
+└───RCP2.6 (dict)
+│   ├── 1980_2000 (dict)
+│   │   ├── ESCDoseVals (DataFrame)
+│   │   ├── ESCResponseVals (DataFrame)
+│   │   ├── ESCSuitMetrics (DataFrame)
+│   ├── 2060_2080 (dict)
+│   │   ├── ESCDoseVals (DataFrame)
+│   │   ├── ESCResponseVals (DataFrame)
+│   │   ├── ESCSuitMetrics (DataFrame)
+└───RCP8.5 (dict)
+    ├── 1980_2000 (dict)
     │   ├── ESCDoseVals (DataFrame)
     │   ├── ESCResponseVals (DataFrame)
     │   ├── ESCSuitMetrics (DataFrame)
-    ├── 2050 (dict)
+    ├── 2060_2080 (dict)
     │   ├── ESCDoseVals (DataFrame)
     │   ├── ESCResponseVals (DataFrame)
     │   ├── ESCSuitMetrics (DataFrame)
-    ├── 2080 (dict)
-    │   ├── ESCDoseVals (DataFrame)
-    │   ├── ESCResponseVals (DataFrame)
-    │   ├── ESCSuitMetrics (DataFrame)</code></pre>
+</code></pre>
 <p>Access the ESC data frames from the API response for a given climate scenario using the following code.</p>
 <p>The <code>ESCDoseVals</code> data frame contains the environmental dose variables obtained from the modelled data and/or manually entered, which are then modified by the aforementioned API query parameters <code>drainage</code>, <code>brash</code>, <code>fertiliser</code>, and <code>exposure</code>. For more information on the underlying method see the <a href="https://www.forestresearch.gov.uk/publications/archive-an-ecological-site-classification-for-forestry-in-great-britain/">Forest Research Bulletin 124</a> and the <a href="https://www.forestresearch.gov.uk/publications/archive-an-ecological-site-classification-for-forestry-in-great-britain-with-special-reference-to-grampian-scotland/">Forest Research Technical Paper 20</a>. Column definitions:</p>
 <ul>
@@ -4441,18 +4456,18 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <div class="tab-content">
 <div id="tabset-11-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-11-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>baseline_ESCDoseVals <span class="op">=</span> ESCTreeModelresponse_dict.get(<span class="st">&quot;UKCP09&quot;</span>).get(<span class="st">&quot;Baseline&quot;</span>).get(<span class="st">&quot;ESCDoseVals&quot;</span>)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>baseline_ESCDoseVals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>ESCDoseVals <span class="op">=</span> ESCTreeModelresponse_dict.get(<span class="st">&quot;RCP2.6&quot;</span>).get(<span class="st">&quot;1980_2000&quot;</span>).get(<span class="st">&quot;ESCDoseVals&quot;</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>ESCDoseVals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   SMR  SNR           AT  ...       DAMS          MD                   Item
-0  3.0  5.0  1614.226929  ...  12.258021  165.391876          Values - Base
+0  3.0  5.0  1694.748779  ...  12.258021  178.133179          Values - Base
 1  NaN  NaN          NaN  ...        NaN         NaN        Values - Manual
-2  3.0  5.0  1614.226929  ...  12.258021  165.391876        Values - PreMod
+2  3.0  5.0  1694.748779  ...  12.258021  178.133179        Values - PreMod
 3  0.0  0.0     0.000000  ...   0.000000    0.000000    Modifier - Drainage
 4  0.0  0.0     0.000000  ...   0.000000    0.000000       Modifier - Brash
 5  0.0  0.0     0.000000  ...   0.000000    0.000000  Modifier - Fertiliser
 6  0.0  0.0     0.000000  ...   0.000000    0.000000    Modifier - Exposure
-7  3.0  5.0  1614.226929  ...  12.258021  165.391876         Values - Final
+7  3.0  5.0  1694.748779  ...  12.258021  178.133179         Values - Final
 
 [8 rows x 7 columns]</code></pre>
 </div>
@@ -4460,18 +4475,18 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 </div>
 <div id="tabset-11-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>baseline_ESCDoseVals <span class="ot">=</span> ESCTreeModelresponse_list<span class="sc">$</span>UKCP09<span class="sc">$</span>Baseline<span class="sc">$</span>ESCDoseVals</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>baseline_ESCDoseVals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>ESCDoseVals <span class="ot">=</span> ESCTreeModelresponse_list<span class="sc">$</span><span class="st">`</span><span class="at">RCP2.6</span><span class="st">`</span><span class="sc">$</span><span class="st">`</span><span class="at">1980_2000</span><span class="st">`</span><span class="sc">$</span>ESCDoseVals</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>ESCDoseVals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  SMR SNR       AT       CT     DAMS       MD                  Item
-1   3   5 1614.227 10.86863 12.25802 165.3919         Values - Base
+1   3   5 1694.749 10.86863 12.25802 178.1332         Values - Base
 2  NA  NA       NA       NA       NA       NA       Values - Manual
-3   3   5 1614.227 10.86863 12.25802 165.3919       Values - PreMod
+3   3   5 1694.749 10.86863 12.25802 178.1332       Values - PreMod
 4   0   0    0.000  0.00000  0.00000   0.0000   Modifier - Drainage
 5   0   0    0.000  0.00000  0.00000   0.0000      Modifier - Brash
 6   0   0    0.000  0.00000  0.00000   0.0000 Modifier - Fertiliser
 7   0   0    0.000  0.00000  0.00000   0.0000   Modifier - Exposure
-8   3   5 1614.227 10.86863 12.25802 165.3919        Values - Final</code></pre>
+8   3   5 1694.749 10.86863 12.25802 178.1332        Values - Final</code></pre>
 </div>
 </div>
 </div>
@@ -4488,28 +4503,28 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <div class="tab-content">
 <div id="tabset-12-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-12-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>baseline_ESCResponseVals <span class="op">=</span> ESCTreeModelresponse_dict.get(<span class="st">&quot;UKCP09&quot;</span>).get(<span class="st">&quot;Baseline&quot;</span>).get(<span class="st">&quot;ESCResponseVals&quot;</span>)</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>baseline_ESCResponseVals.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>ESCResponseVals <span class="op">=</span> ESCTreeModelresponse_dict.get(<span class="st">&quot;RCP2.6&quot;</span>).get(<span class="st">&quot;1980_2000&quot;</span>).get(<span class="st">&quot;ESCResponseVals&quot;</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>ESCResponseVals.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  speciesCode metric  response
 0          AH     AT  1.000000
 1          AH     CT  1.000000
 2          AH   DAMS  0.964892
-3          AH     MD  0.909465
+3          AH     MD  0.793451
 4          AH    SMR  0.755714</code></pre>
 </div>
 </div>
 </div>
 <div id="tabset-12-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>baseline_ESCResponseVals <span class="ot">=</span> ESCTreeModelresponse_list<span class="sc">$</span>UKCP09<span class="sc">$</span>Baseline<span class="sc">$</span>ESCResponseVals</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>baseline_ESCResponseVals <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>ESCResponseVals <span class="ot">=</span> ESCTreeModelresponse_list<span class="sc">$</span><span class="st">`</span><span class="at">RCP2.6</span><span class="st">`</span><span class="sc">$</span><span class="st">`</span><span class="at">1980_2000</span><span class="st">`</span><span class="sc">$</span>ESCResponseVals</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>ESCResponseVals <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  speciesCode metric  response
 1          AH     AT 1.0000000
 2          AH     CT 1.0000000
 3          AH   DAMS 0.9648923
-4          AH     MD 0.9094654
+4          AH     MD 0.7934513
 5          AH    SMR 0.7557143
 6          AH    SNR 1.0000000</code></pre>
 </div>
@@ -4537,8 +4552,8 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <div class="tab-content">
 <div id="tabset-13-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-13-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>baseline_ESCSuitMetrics <span class="op">=</span> ESCTreeModelresponse_dict.get(<span class="st">&quot;UKCP09&quot;</span>).get(<span class="st">&quot;Baseline&quot;</span>).get(<span class="st">&quot;ESCSuitMetrics&quot;</span>)</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>baseline_ESCSuitMetrics.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>ESCSuitMetrics <span class="op">=</span> ESCTreeModelresponse_dict.get(<span class="st">&quot;RCP2.6&quot;</span>).get(<span class="st">&quot;1980_2000&quot;</span>).get(<span class="st">&quot;ESCSuitMetrics&quot;</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>ESCSuitMetrics.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  speciesCode   speciesScientific  ... EcologicalSuitability  estimatedYC
 0          AH  Fraxinus excelsior  ...              0.755714     9.068572
@@ -4553,8 +4568,8 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 </div>
 <div id="tabset-13-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-13-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>baseline_ESCSuitMetrics <span class="ot">=</span> ESCTreeModelresponse_list<span class="sc">$</span>UKCP09<span class="sc">$</span>Baseline<span class="sc">$</span>ESCSuitMetrics</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>baseline_ESCSuitMetrics <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>ESCSuitMetrics <span class="ot">=</span> ESCTreeModelresponse_list<span class="sc">$</span><span class="st">`</span><span class="at">RCP2.6</span><span class="st">`</span><span class="sc">$</span><span class="st">`</span><span class="at">1980_2000</span><span class="st">`</span><span class="sc">$</span>ESCSuitMetrics</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>ESCSuitMetrics <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  speciesCode  speciesScientific    speciesName maxYC  threat limFactorInclAT
 1          AH Fraxinus excelsior            Ash    12 Chalara             SMR

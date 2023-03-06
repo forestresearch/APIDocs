@@ -101,15 +101,15 @@ Establish the Soil Moisture Regime (SMR) and Soil Nutrient Regime (SNR) manual m
 ## Python
 
 ```{python soilOpts_py}
-smr_modVal = 3
-snr_modVal = 5
+smr_modVal = 0
+snr_modVal = 0
 ```
 
 ## R
 
 ```{r soilOpts_r}
-smr_modVal <- 3
-snr_modVal <- 5
+smr_modVal <- 0
+snr_modVal <- 0
 ```
 
 :::
@@ -122,7 +122,7 @@ Establish the escSiteData dictionary. To do this, a dictionary containing the va
 
 ```{python otherOpts_py}
 climateScen_vals = ["RCP2.6", "RCP2.6"]
-climateYear_vals = ["Baseline", "2010"]
+climateYear_vals = ["1980_2000", "2060_2080"]
 smr_vals = [1, 1]
 snr_vals = [2, 2]
 at_vals = [1300.0447, 1538.3716]
@@ -135,7 +135,7 @@ md_vals = [100.896255, 92.44555]
 
 ```{r otherOpts_r}
 climateScen_vals <- list("RCP2.6", "RCP2.6")
-climateYear_vals <- list("Baseline", "2010")
+climateYear_vals <- list("1980_2000", "2060_2080")
 smr_vals <- list(1, 1)
 snr_vals <- list(2, 2)
 at_vals <- list(1300.0447, 1538.3716)
@@ -261,7 +261,7 @@ req_body <- jsonlite::toJSON(req_list, auto_unbox = TRUE)
 
 ## Make the API call
 
-Call the ESCWCC API
+Call the ESCTreeResults API
 
 ::: {.panel-tabset}
 
@@ -345,18 +345,27 @@ ESCTreeResultsresponse_list <- deserialize(responseJson = ESCTreeResultsresponse
 The object produced (`ESCTreeResultsresponse_dict` or `ESCTreeResultsresponse_list`) is a nested dictionary with the following structure:
 
 ```
-ESCTreeResultsresponse (dict or list)
-├── Metadata (dict or list)
-│   ├── ESCMetadata (dict or list)
+ESCresponse_dict (dict)
+├── Metadata (dict)
+│   ├── ESCMetadata (dict)
 │   │   ├── ESCTreeMetadata (DataFrame)
-│   ├── APIMetadata (dict or list)
+│   ├── APIMetadata (dict)
 │   │   ├── DateTime (DataFrame)
-└───RCP2.6 (dict or list)
-    ├── Baseline (dict or list)
+└───RCP2.6 (dict)
+│   ├── 1980_2000 (dict)
+│   │   ├── ESCDoseVals (DataFrame)
+│   │   ├── ESCResponseVals (DataFrame)
+│   │   ├── ESCSuitMetrics (DataFrame)
+│   ├── 2060_2080 (dict)
+│   │   ├── ESCDoseVals (DataFrame)
+│   │   ├── ESCResponseVals (DataFrame)
+│   │   ├── ESCSuitMetrics (DataFrame)
+└───RCP8.5 (dict)
+    ├── 1980_2000 (dict)
     │   ├── ESCDoseVals (DataFrame)
     │   ├── ESCResponseVals (DataFrame)
     │   ├── ESCSuitMetrics (DataFrame)
-    ├── 2010 (dict or list)
+    ├── 2060_2080 (dict)
     │   ├── ESCDoseVals (DataFrame)
     │   ├── ESCResponseVals (DataFrame)
     │   ├── ESCSuitMetrics (DataFrame)
@@ -381,15 +390,15 @@ Column definitions:
 ## Python
 
 ```{python ESCDoseVals_py}
-baseline_ESCDoseVals = ESCTreeResultsresponse_dict.get("RCP2.6").get("Baseline").get("ESCDoseVals")
-baseline_ESCDoseVals
+ESCDoseVals = ESCTreeResultsresponse_dict.get("RCP2.6").get("1980_2000").get("ESCDoseVals")
+ESCDoseVals
 ```
 
 ## R
 
 ```{r ESCDoseVals_r}
-baseline_ESCDoseVals = ESCTreeResultsresponse_list$RCP2.6$Baseline$ESCDoseVals
-baseline_ESCDoseVals
+ESCDoseVals = ESCTreeResultsresponse_list$`RCP2.6`$`1980_2000`$ESCDoseVals
+ESCDoseVals
 ```
 
 :::
@@ -406,15 +415,15 @@ Column definitions:
 ## Python
 
 ```{python ESCResponseVals_py}
-baseline_ESCResponseVals = ESCTreeResultsresponse_dict.get("RCP2.6").get("Baseline").get("ESCResponseVals")
-baseline_ESCResponseVals.head()
+ESCResponseVals = ESCTreeResultsresponse_dict.get("RCP2.6").get("1980_2000").get("ESCResponseVals")
+ESCResponseVals.head()
 ```
 
 ## R
 
 ```{r ESCResponseVals_r}
-baseline_ESCResponseVals = ESCTreeResultsresponse_list$RCP2.6$Baseline$ESCResponseVals
-baseline_ESCResponseVals |> head()
+ESCResponseVals = ESCTreeResultsresponse_list$`RCP2.6`$`1980_2000`$ESCResponseVals
+ESCResponseVals |> head()
 ```
 
 :::
@@ -440,15 +449,15 @@ Column definitions:
 ## Python
 
 ```{python ESCSuitMetrics_py}
-baseline_ESCSuitMetrics = ESCTreeResultsresponse_dict.get("RCP2.6").get("Baseline").get("ESCSuitMetrics")
-baseline_ESCSuitMetrics.head()
+ESCSuitMetrics = ESCTreeResultsresponse_dict.get("RCP2.6").get("1980_2000").get("ESCSuitMetrics")
+ESCSuitMetrics.head()
 ```
 
 ## R
 
 ```{r ESCSuitMetrics_r}
-baseline_ESCSuitMetrics = ESCTreeResultsresponse_list$RCP2.6$Baseline$ESCSuitMetrics
-baseline_ESCSuitMetrics |> head()
+ESCSuitMetrics = ESCTreeResultsresponse_list$`RCP2.6`$`1980_2000`$ESCSuitMetrics
+ESCSuitMetrics |> head()
 ```
 
 :::

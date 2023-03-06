@@ -4157,31 +4157,38 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 </div>
 </div>
 </div>
-<p>Establish the climate scenario/s (climateScenList) and climate years (climateYearList).</p>
+<p>Establish the climate model (climateModel), climate scenario/s (climateScenList) and climate years (climateYearList).</p>
 <ul>
+<li>climateModel:str
+<ul>
+<li>A string, either “UKCP09” or “UKCP18-1km”</li>
+</ul></li>
 <li>climateScenList:List
 <ul>
-<li>A list containing any of: [‘UKCP09’, ‘RCP2.6’, ‘RCP4.5’, ‘RCP6.0’, ‘RCP8.5’]</li>
+<li>For “UKCP09” a list containing any of: [“A1b3q0”]</li>
+<li>For “UKCP18-1km” a list containing any of: [“RCP2.6”, “RCP4.5”, “RCP6.0”, “RCP8.5”]</li>
 </ul></li>
 <li>climateYearList:List
 <ul>
-<li>A list containing any of: [‘Baseline’, ‘2010’, ‘2020’, ‘2030’, ‘2040’, ‘2050’, ‘2060’, ‘2070’, ‘2080’]</li>
+<li>For “UKCP09” a list containing any of the following timeslices: [“1961_1990”, “2000_2020”, “2010_2030”, “2020_2040”, “2030_2050”, “2040_2060”, “2050_2070”, “2060_2080”, “2070_2090”]</li>
+<li>For “UKCP18-1km” a list containing any of the following timeslices: [“1980_2000”, “1990_2010”, “2000_2020”, “2010_2030”, “2020_2040”, “2030_2050”, “2040_2060”, “2050_2070”, “2060_2080”]</li>
 </ul></li>
 </ul>
-<p>Please note that we are currently integrating UKCP18 RCP scenario data, as such RCP2.6, RCP4.5, RCP6.0, and RCP8.5 are currently placeholders.</p>
 <div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">R</a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>climateScenList <span class="op">=</span> [<span class="st">&quot;RCP2.6&quot;</span>]</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>climateYearList <span class="op">=</span> [<span class="st">&quot;Baseline&quot;</span>, <span class="st">&quot;2010&quot;</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>climateModel <span class="op">=</span> <span class="st">&quot;UKCP18-1km&quot;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>climateScenList <span class="op">=</span> [<span class="st">&quot;RCP2.6&quot;</span>, <span class="st">&quot;RCP8.5&quot;</span>]</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>climateYearList <span class="op">=</span> [<span class="st">&quot;1980_2000&quot;</span>, <span class="st">&quot;2060_2080&quot;</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>climateScenList <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;RCP2.6&quot;</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>climateYearList <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;Baseline&quot;</span>, <span class="st">&quot;2010&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>climateModel <span class="ot">&lt;-</span> <span class="st">&quot;UKCP18-1km&quot;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>climateScenList <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;RCP2.6&quot;</span>, <span class="st">&quot;RCP8.5&quot;</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>climateYearList <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;1980_2000&quot;</span>, <span class="st">&quot;2060_2080&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -4193,15 +4200,19 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>req_body <span class="op">=</span> {<span class="st">&quot;lon&quot;</span>: lon, <span class="st">&quot;lat&quot;</span>: lat, </span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;climateScenList&quot;</span>: climateScenList, <span class="st">&quot;climateYearList&quot;</span>: climateYearList}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;climateModel&quot;</span>: climateModel,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;climateScenList&quot;</span>: climateScenList, </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;climateYearList&quot;</span>: climateYearList}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>req_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;lon&quot;</span> <span class="ot">=</span> lon, <span class="st">&quot;lat&quot;</span> <span class="ot">=</span> lat, </span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;climateScenList&quot;</span> <span class="ot">=</span> climateScenList, <span class="st">&quot;climateYearList&quot;</span> <span class="ot">=</span> climateYearList)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>req_body <span class="ot">&lt;-</span> jsonlite<span class="sc">::</span><span class="fu">toJSON</span>(req_list, <span class="at">auto_unbox =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;climateModel&quot;</span> <span class="ot">=</span> climateModel,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;climateScenList&quot;</span> <span class="ot">=</span> climateScenList, </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;climateYearList&quot;</span> <span class="ot">=</span> climateYearList)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>req_body <span class="ot">&lt;-</span> jsonlite<span class="sc">::</span><span class="fu">toJSON</span>(req_list, <span class="at">auto_unbox =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -4297,10 +4308,12 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>ESCSiteDataresponse_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  climateScen climateYear  SMR  ...         CT       DAMS          MD
-0      RCP2.6    Baseline    3  ...  10.868632  12.258021  165.391876
-1      RCP2.6        2010    3  ...  10.868632  12.258021  166.670975
+0      RCP2.6   1980_2000    3  ...  10.868632  12.258021  178.133179
+1      RCP2.6   2060_2080    3  ...  10.868632  12.258021  261.113190
+2      RCP8.5   1980_2000    3  ...  10.868632  12.258021  178.133179
+3      RCP8.5   2060_2080    3  ...  10.868632  12.258021  361.762329
 
-[2 rows x 8 columns]</code></pre>
+[4 rows x 8 columns]</code></pre>
 </div>
 </div>
 </div>
@@ -4309,8 +4322,10 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>ESCSiteDataresponse_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  climateScen climateYear SMR SNR       AT       CT     DAMS       MD
-1      RCP2.6    Baseline   3   5 1614.227 10.86863 12.25802 165.3919
-2      RCP2.6        2010   3   5 1961.461 10.86863 12.25802 166.6710</code></pre>
+1      RCP2.6   1980_2000   3   5 1694.749 10.86863 12.25802 178.1332
+2      RCP2.6   2060_2080   3   5 2292.860 10.86863 12.25802 261.1132
+3      RCP8.5   1980_2000   3   5 1694.749 10.86863 12.25802 178.1332
+4      RCP8.5   2060_2080   3   5 2941.911 10.86863 12.25802 361.7623</code></pre>
 </div>
 </div>
 </div>

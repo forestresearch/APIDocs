@@ -114,30 +114,25 @@ exposure <- 0
 
 :::
 
-Establish the climate scenario/s (climateScenList), climate years (climateYearList) species group filter (filter), and ESC version.
+Establish the climate model (climateModel), climate scenario/s (climateScenList), climate years (climateYearList), species group filter (filter), and ESC version (escVersion).
 
+* climateModel:str
+    * A string, either "UKCP09" or "UKCP18-1km"
 * climateScenList:List
-    * A list containing any of: ['UKCP09', 'RCP2.6', 'RCP4.5', 'RCP6.0', 'RCP8.5']
+    * For "UKCP09" a list containing any of: ["A1b3q0"]
+    * For "UKCP18-1km" a list containing any of: ["RCP2.6", "RCP4.5", "RCP6.0", "RCP8.5"]
 * climateYearList:List
-    * A list containing any of: ['Baseline', '2010', '2020', '2030', '2040', '2050', '2060', '2070', '2080']
-* filter:int
-    * 0 = No filter
-    * 1 = Conifers only
-    * 2 = Broadleaves only
-    * 3 = Natives only
-    * 4 = Non-natives only
-* escVersion:str
-    * "4.33" = "4.33"
-
-Please note that we are currently integrating UKCP18 RCP scenario data, as such RCP2.6, RCP4.5, RCP6.0, and RCP8.5 are currently placeholders.
+    * For "UKCP09" a list containing any of the following timeslices: ["1961_1990", "2000_2020", "2010_2030", "2020_2040", "2030_2050", "2040_2060", "2050_2070", "2060_2080", "2070_2090"]
+    * For "UKCP18-1km" a list containing any of the following timeslices: ["1980_2000", "1990_2010", "2000_2020", "2010_2030", "2020_2040", "2030_2050", "2040_2060", "2050_2070", "2060_2080"]
 
 ::: {.panel-tabset}
 
 ## Python
 
 ```{python clim_py}
-climateScenList = ['UKCP09']
-climateYearList = ['Baseline', '2050', '2080']
+climateModel = "UKCP18-1km"
+climateScenList = ["RCP2.6", "RCP8.5"]
+climateYearList = ["1980_2000", "2060_2080"]
 filter = 0
 escVersion = "4.33"
 ```
@@ -145,8 +140,9 @@ escVersion = "4.33"
 ## R
 
 ```{r clim_r}
-climateScenList <- list('UKCP09')
-climateYearList <- list('Baseline', '2050', '2080')
+climateModel <- "UKCP18-1km"
+climateScenList <- list("RCP2.6", "RCP8.5")
+climateYearList <- list("1980_2000", "2060_2080")
 filter <- 0
 escVersion <- "4.33"
 ```
@@ -250,6 +246,7 @@ Compose the request body. Optionally, you can accept the default values for all 
 
 req_body = {"lon": lon, "lat": lat, 
             "drainage": drainage, "brash": brash, "fertiliser": fertiliser, "exposure": exposure, 
+            "climateModel": climateModel,
             "climateScenList": climateScenList, "climateYearList": climateYearList,
             "filter": filter, "escVersion": escVersion, "wccVersion": wccVersion, 
             "smr": smr, "snr": snr,
@@ -263,7 +260,8 @@ req_body = {"lon": lon, "lat": lat,
 # req_list = list("smr" = smr, "snr" = snr)
 
 req_list <- list("lon" = lon, "lat" = lat, 
-                 "drainage" = drainage, "brash" = brash, "fertiliser" =  fertiliser, "exposure" = exposure, 
+                 "drainage" = drainage, "brash" = brash, "fertiliser" =  fertiliser, "exposure" = exposure,
+                 "climateModel" = climateModel,
                  "climateScenList" = climateScenList, "climateYearList" = climateYearList,
                  "filter" = filter, "escVersion" = escVersion, "wccVersion" = wccVersion, 
                  "smr" = smr, "snr" = snr,
@@ -370,8 +368,25 @@ ESCresponse_dict (dict or list)
 │   │   ├── WCCMetadata (DataFrame)
 │   ├── APIMetadata (dict or list)
 │   │   ├── DateTime (DataFrame)
-└───UKCP09 (dict or list)
-    ├── Baseline (dict or list)
+└───RCP2.6 (dict)
+│   ├── 1980_2000 (dict)
+│   │   ├── ESCDoseVals (DataFrame)
+│   │   ├── ESCResponseVals (DataFrame)
+│   │   ├── ESCSuitMetrics (DataFrame)
+│   │   ├── WCCTreeValues (DataFrame)
+│   │   ├── WCCSoilLoss (DataFrame)
+│   │   ├── WCCSoilSeq (DataFrame)
+│   │   ├── WCCEstablishment (DataFrame)
+│   ├── 2060_2080 (dict)
+│   │   ├── ESCDoseVals (DataFrame)
+│   │   ├── ESCResponseVals (DataFrame)
+│   │   ├── ESCSuitMetrics (DataFrame)
+│   │   ├── WCCTreeValues (DataFrame)
+│   │   ├── WCCSoilLoss (DataFrame)
+│   │   ├── WCCSoilSeq (DataFrame)
+│   │   ├── WCCEstablishment (DataFrame)
+└───RCP8.5 (dict)
+    ├── 1980_2000 (dict)
     │   ├── ESCDoseVals (DataFrame)
     │   ├── ESCResponseVals (DataFrame)
     │   ├── ESCSuitMetrics (DataFrame)
@@ -379,15 +394,7 @@ ESCresponse_dict (dict or list)
     │   ├── WCCSoilLoss (DataFrame)
     │   ├── WCCSoilSeq (DataFrame)
     │   ├── WCCEstablishment (DataFrame)
-    ├── 2050 (dict or list)
-    │   ├── ESCDoseVals (DataFrame)
-    │   ├── ESCResponseVals (DataFrame)
-    │   ├── ESCSuitMetrics (DataFrame)
-    │   ├── WCCTreeValues (DataFrame)
-    │   ├── WCCSoilLoss (DataFrame)
-    │   ├── WCCSoilSeq (DataFrame)
-    │   ├── WCCEstablishment (DataFrame)
-    ├── 2080 (dict or list)
+    ├── 2060_2080 (dict)
     │   ├── ESCDoseVals (DataFrame)
     │   ├── ESCResponseVals (DataFrame)
     │   ├── ESCSuitMetrics (DataFrame)
@@ -416,15 +423,15 @@ Column definitions:
 ## Python
 
 ```{python ESCDoseVals_py}
-baseline_ESCDoseVals = ESCWCCresponse_dict.get("UKCP09").get("Baseline").get("ESCDoseVals")
-baseline_ESCDoseVals
+ESCDoseVals = ESCWCCresponse_dict.get("RCP2.6").get("1980_2000").get("ESCDoseVals")
+ESCDoseVals
 ```
 
 ## R
 
 ```{r ESCDoseVals_r}
-baseline_ESCDoseVals = ESCWCCresponse_list$UKCP09$Baseline$ESCDoseVals
-baseline_ESCDoseVals
+ESCDoseVals = ESCWCCresponse_list$`RCP2.6`$`1980_2000`$ESCDoseVals
+ESCDoseVals
 ```
 
 :::
@@ -441,15 +448,15 @@ Column definitions:
 ## Python
 
 ```{python ESCResponseVals_py}
-baseline_ESCResponseVals = ESCWCCresponse_dict.get("UKCP09").get("Baseline").get("ESCResponseVals")
-baseline_ESCResponseVals.head()
+ESCResponseVals = ESCWCCresponse_dict.get("RCP2.6").get("1980_2000").get("ESCResponseVals")
+ESCResponseVals.head()
 ```
 
 ## R
 
 ```{r ESCResponseVals_r}
-baseline_ESCResponseVals = ESCWCCresponse_list$UKCP09$Baseline$ESCResponseVals
-baseline_ESCResponseVals |> head()
+ESCResponseVals = ESCWCCresponse_list$`RCP2.6`$`1980_2000`$ESCResponseVals
+ESCResponseVals |> head()
 ```
 
 :::
@@ -475,15 +482,15 @@ Column definitions:
 ## Python
 
 ```{python ESCSuitMetrics_py}
-baseline_ESCSuitMetrics = ESCWCCresponse_dict.get("UKCP09").get("Baseline").get("ESCSuitMetrics")
-baseline_ESCSuitMetrics.head()
+ESCSuitMetrics = ESCWCCresponse_dict.get("RCP2.6").get("1980_2000").get("ESCSuitMetrics")
+ESCSuitMetrics.head()
 ```
 
 ## R
 
 ```{r ESCSuitMetrics_r}
-baseline_ESCSuitMetrics = ESCWCCresponse_list$UKCP09$Baseline$ESCSuitMetrics
-baseline_ESCSuitMetrics |> head()
+ESCSuitMetrics = ESCWCCresponse_list$`RCP2.6`$`1980_2000`$ESCSuitMetrics
+ESCSuitMetrics |> head()
 ```
 
 :::
@@ -527,15 +534,15 @@ It is left to the API user to determine whether the use of the BCLT values retur
 ## Python
 
 ```{python WCCTreeValues_py}
-baseline_WCCTreeValues = ESCWCCresponse_dict.get("UKCP09").get("Baseline").get("WCCTreeValues")
-baseline_WCCTreeValues.head()
+WCCTreeValues = ESCWCCresponse_dict.get("RCP2.6").get("1980_2000").get("WCCTreeValues")
+WCCTreeValues.head()
 ```
 
 ## R
 
 ```{r WCCTreeValues_r}
-baseline_WCCTreeValues = ESCWCCresponse_list$UKCP09$Baseline$WCCTreeValues
-baseline_WCCTreeValues |> head()
+WCCTreeValues = ESCWCCresponse_list$`RCP2.6`$`1980_2000`$WCCTreeValues
+WCCTreeValues |> head()
 ```
 
 :::
@@ -558,15 +565,15 @@ Column definitions:
 ## Python
 
 ```{python WCCEstablishment_py}
-baseline_WCCEstablishment = ESCWCCresponse_dict.get("UKCP09").get("Baseline").get("WCCEstablishment")
-baseline_WCCEstablishment.head()
+WCCEstablishment = ESCWCCresponse_dict.get("RCP2.6").get("1980_2000").get("WCCEstablishment")
+WCCEstablishment.head()
 ```
 
 ## R
 
 ```{r WCCEstablishment_r}
-baseline_WCCEstablishment = ESCWCCresponse_list$UKCP09$Baseline$WCCEstablishment
-baseline_WCCEstablishment |> head()
+WCCEstablishment = ESCWCCresponse_list$`RCP2.6`$`1980_2000`$WCCEstablishment
+WCCEstablishment |> head()
 ```
 
 :::
@@ -585,15 +592,15 @@ Column definitions:
 ## Python
 
 ```{python WCCSoilLoss_py}
-baseline_WCCSoilLoss = ESCWCCresponse_dict.get("UKCP09").get("Baseline").get("WCCSoilLoss")
-baseline_WCCSoilLoss.head()
+WCCSoilLoss = ESCWCCresponse_dict.get("RCP2.6").get("1980_2000").get("WCCSoilLoss")
+WCCSoilLoss.head()
 ```
 
 ## R
 
 ```{r WCCSoilLoss_r}
-baseline_WCCSoilLoss = ESCWCCresponse_list$UKCP09$Baseline$WCCSoilLoss
-baseline_WCCSoilLoss |> head()
+WCCSoilLoss = ESCWCCresponse_list$`RCP2.6`$`1980_2000`$WCCSoilLoss
+WCCSoilLoss |> head()
 ```
 
 :::
@@ -609,15 +616,15 @@ Column definitions:
 ## Python
 
 ```{python WCCSoilSeq_py}
-baseline_WCCSoilSeq = ESCWCCresponse_dict.get("UKCP09").get("Baseline").get("WCCSoilSeq")
-baseline_WCCSoilSeq.head()
+WCCSoilSeq = ESCWCCresponse_dict.get("RCP2.6").get("1980_2000").get("WCCSoilSeq")
+WCCSoilSeq.head()
 ```
 
 ## R
 
 ```{r WCCSoilSeq_r}
-baseline_WCCSoilSeq = ESCWCCresponse_list$UKCP09$Baseline$WCCSoilSeq
-baseline_WCCSoilSeq |> head()
+WCCSoilSeq = ESCWCCresponse_list$`RCP2.6`$`1980_2000`$WCCSoilSeq
+WCCSoilSeq |> head()
 ```
 
 :::
@@ -635,16 +642,16 @@ First, retrieve the WCC Biomass Carbon Lookup Table (BCLT) and Clearfell Max Seq
 ## Python
 
 ```{python selSpp_py}
-baseline_WCCTreeValues_selSpp = baseline_WCCTreeValues[baseline_WCCTreeValues["speciesCode"].isin(["BE", "HOL", "POK"])]
-baseline_WCCTreeValues_selSpp.head()
+WCCTreeValues_selSpp = WCCTreeValues[WCCTreeValues["speciesCode"].isin(["BE", "HOL", "POK"])]
+WCCTreeValues_selSpp.head()
 ```
 
 ## R
 
 ```{r selSpp_r}
-baseline_WCCTreeValues_selSpp <- baseline_WCCTreeValues |>
+WCCTreeValues_selSpp <- WCCTreeValues |>
     dplyr::filter(speciesCode %in% c("BE", "HOL", "POK"))
-baseline_WCCTreeValues_selSpp |> head()
+WCCTreeValues_selSpp |> head()
 ```
 
 :::
@@ -661,13 +668,13 @@ Data in WCCTreeValues varies by spacing and management for each wccCode and ther
 ## Python
 
 ```{python checkMeta_py}
-baseline_WCCTreeValues_selSpp[["speciesCode", "spacing", "management"]].drop_duplicates().reset_index()
+WCCTreeValues_selSpp[["speciesCode", "spacing", "management"]].drop_duplicates().reset_index()
 ```
 
 ## R
 
 ```{r checkMeta_r}
-baseline_WCCTreeValues_selSpp |>
+WCCTreeValues_selSpp |>
     dplyr::select(speciesCode, spacing, management) |>
     unique()
 ```
@@ -681,17 +688,17 @@ Select the BCLT and CMSV values for a particular spacing and management regime, 
 ## Python
 
 ```{python spman_py}
-baseline_WCCTreeValues_selSpp_3_Thinned = baseline_WCCTreeValues_selSpp[(baseline_WCCTreeValues_selSpp.spacing == 3) & (baseline_WCCTreeValues_selSpp.management == "Thinned")]
-baseline_WCCTreeValues_selSpp_3_Thinned.head()
+WCCTreeValues_selSpp_3_Thinned = WCCTreeValues_selSpp[(WCCTreeValues_selSpp.spacing == 3) & (WCCTreeValues_selSpp.management == "Thinned")]
+WCCTreeValues_selSpp_3_Thinned.head()
 ```
 
 ## R
 
 ```{r spman_r}
-baseline_WCCTreeValues_selSpp_3_Thinned <- baseline_WCCTreeValues_selSpp |>
+WCCTreeValues_selSpp_3_Thinned <- WCCTreeValues_selSpp |>
     dplyr::filter(spacing == 3,
                   management == "Thinned")
-baseline_WCCTreeValues_selSpp_3_Thinned |> head()
+WCCTreeValues_selSpp_3_Thinned |> head()
 ```
 
 :::
@@ -723,7 +730,7 @@ Form a new data frame, select the relevant columns, and merge the species compos
 ## Python
 
 ```{python setDF_py}
-df = baseline_WCCTreeValues_selSpp_3_Thinned
+df = WCCTreeValues_selSpp_3_Thinned
 df = df[["speciesCode", "period", "cumTotalCarbon"]]
 df = df.merge(species_composition, on = ["speciesCode"])
 df.head()
@@ -732,7 +739,7 @@ df.head()
 ## R
 
 ```{r setDF_r}
-df <- baseline_WCCTreeValues_selSpp_3_Thinned
+df <- WCCTreeValues_selSpp_3_Thinned
 df <- df |>
     dplyr::select(speciesCode, period, cumTotalCarbon) |>
     dplyr::left_join(species_composition, on = "speciesCode")
@@ -814,7 +821,7 @@ Retrieve the total establishment emissions for the selected spacing and add to t
 ## Python
 
 ```{python establishmentCarbonLoss_py}
-totalEstablishmentC = baseline_WCCEstablishment[(baseline_WCCEstablishment.seedlingSpacing == 1.5) & (baseline_WCCEstablishment.variable == "total")]
+totalEstablishmentC = WCCEstablishment[(WCCEstablishment.seedlingSpacing == 1.5) & (WCCEstablishment.variable == "total")]
 totalEstablishmentC = totalEstablishmentC.drop(columns = ["seedlingSpacing", "variable"]).reset_index(drop = True)
 totalEstablishmentC = totalEstablishmentC.rename(columns = {"totalEmissions": "establishmentCarbonLoss (C)"})
 df["establishmentCarbonLoss (C)"] = totalEstablishmentC._get_value(0, 0, takeable = True)
@@ -824,7 +831,7 @@ df.head()
 ## R
 
 ```{r establishmentCarbonLoss_r}
-totalEstablishmentC = baseline_WCCEstablishment |>
+totalEstablishmentC = WCCEstablishment |>
     dplyr::filter(seedlingSpacing == 1.5) |>
     dplyr::filter(variable == "total") |>
     dplyr::select(-seedlingSpacing, -variable) |>
@@ -880,7 +887,7 @@ Retrieve the soil carbon lost for the selected country, previous land use, and %
 ## Python
 
 ```{python soilCLoss_py}
-soilCLoss = baseline_WCCSoilLoss[baseline_WCCSoilLoss["topsoilCarbonSubtract"] == percSoilLoss]
+soilCLoss = WCCSoilLoss[WCCSoilLoss["topsoilCarbonSubtract"] == percSoilLoss]
 soilCLoss = soilCLoss.set_index("Country")
 soilCLoss = soilCLoss._get_value("England", "Arable")
 
@@ -890,7 +897,7 @@ soilCLoss
 ## R
 
 ```{r soilCLoss_r}
-soilCLoss <- baseline_WCCSoilLoss |>
+soilCLoss <- WCCSoilLoss |>
     dplyr::filter(topsoilCarbonSubtract == percSoilLoss,
                   Country == "England") |>
     dplyr::pull(Arable)
@@ -907,7 +914,7 @@ Calculate the total net soil carbon flux.
 ## Python
 
 ```{python soilCFlux_py}
-soilCFlux = baseline_WCCSoilSeq
+soilCFlux = WCCSoilSeq
 soilCFlux["cumSoilLoss"] = soilCLoss
 soilCFlux["cumSoilCarbonFlux (D)"] = soilCFlux["cumSoilLoss"] + soilCFlux["cumSoilSeq"]
 soilCFlux = soilCFlux.drop(columns = ["cumSoilSeq", "cumSoilLoss"])
@@ -918,7 +925,7 @@ soilCFlux.head()
 ## R
 
 ```{r soilCFlux_r}
-soilCFlux <- baseline_WCCSoilSeq |>
+soilCFlux <- WCCSoilSeq |>
     dplyr::mutate("cumSoilLoss" = soilCLoss,
                   "cumSoilCarbonFlux (D)" = cumSoilLoss + cumSoilSeq) |>
     dplyr::select(-cumSoilSeq, -cumSoilLoss)
