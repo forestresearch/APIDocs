@@ -54,26 +54,6 @@ base_url <- "http://209.97.132.245:8000/ESCTreeResults/"
 
 :::
 
-Set the longitude (lon) and latitude (lat) in EPSG:3857.
-
-::: {.panel-tabset}
-
-## Python
-
-```{python lonlat_py}
-lon = -141102.7542
-lat = 6830259.9735
-```
-
-## R
-
-```{r lonlat_r}
-lon <- -141102.7542
-lat <- 6830259.9735
-```
-
-:::
-
 Establish the Soil Moisture Regime (SMR) and Soil Nutrient Regime (SNR) manual modifier values, if required. Otherwise set to `NA` (R) or `None` (Python).
 
 * smr:float, any number between 0 and 8. Indicative categorical values are as follows:
@@ -101,15 +81,15 @@ Establish the Soil Moisture Regime (SMR) and Soil Nutrient Regime (SNR) manual m
 ## Python
 
 ```{python soilOpts_py}
-smr_modVal = 0
-snr_modVal = 0
+smr_modVal = None
+snr_modVal = None
 ```
 
 ## R
 
 ```{r soilOpts_r}
-smr_modVal <- 0
-snr_modVal <- 0
+smr_modVal <- NA
+snr_modVal <- NA
 ```
 
 :::
@@ -170,7 +150,7 @@ escSiteData = list('climateScen' = climateScen_vals, 'climateYear' = climateYear
 
 Alternatively, the response from the `ESCSiteData` API can be passed to escSiteData.
 
-Establish the site modifier options.
+Establish the site modifier options and species group filter.
 
 * drainage:int
     * 0 = None.
@@ -186,6 +166,12 @@ Establish the site modifier options.
     * 0 = None.
     * 1 = Exposed ridge/Coastal zone.
     * 2 = Local shelter/Less exposed/Underplanting.
+* filter:int
+    * 0 = No filter
+    * 1 = Conifers only
+    * 2 = Broadleaves only
+    * 3 = Natives only
+    * 4 = Non-natives only
 
 ::: {.panel-tabset}
 
@@ -196,6 +182,7 @@ drainage = 0
 brash = 0
 fertiliser = 0
 exposure = 0
+filter = 0
 ```
 
 ## R
@@ -205,6 +192,7 @@ drainage <- 0
 brash <- 0
 fertiliser <- 0
 exposure <- 0
+filter <- 0
 ```
 
 :::
@@ -237,20 +225,22 @@ Compose the request body.
 ## Python
 
 ```{python reqBody_py}
-req_body = {"lon": lon, "lat": lat, 
-            "smr": smr_modVal, "snr": snr_modVal,
+req_body = {"smr": smr_modVal, "snr": snr_modVal,
             "escSiteData": escSiteData,
-            "drainage": drainage, "brash": brash, "fertiliser": fertiliser, "exposure": exposure,
+            "drainage": drainage, "brash": brash, 
+            "fertiliser": fertiliser, "exposure": exposure,
+            "filter": filter,
             "escVersion": escVersion}
 ```
 
 ## R
 
 ```{r reqBody_r}
-req_list <- list("lon" = lon, "lat" = lat, 
-                 "smr" = smr_modVal, "snr" = snr_modVal,
+req_list <- list("smr" = smr_modVal, "snr" = snr_modVal,
                  "escSiteData" = escSiteData,
-                 "drainage" = drainage, "brash" = brash, "fertiliser" =  fertiliser, "exposure" = exposure, 
+                 "drainage" = drainage, "brash" = brash, 
+                 "fertiliser" =  fertiliser, "exposure" = exposure, 
+                 "filter" = filter,
                  "escVersion" = escVersion)
 
 req_body <- jsonlite::toJSON(req_list, auto_unbox = TRUE)

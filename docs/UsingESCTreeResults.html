@@ -4139,24 +4139,6 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 </div>
 </div>
 </div>
-<p>Set the longitude (lon) and latitude (lat) in EPSG:3857.</p>
-<div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">R</a></li></ul>
-<div class="tab-content">
-<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>lon <span class="op">=</span> <span class="op">-</span><span class="fl">141102.7542</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>lat <span class="op">=</span> <span class="fl">6830259.9735</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>lon <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">141102.7542</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>lat <span class="ot">&lt;-</span> <span class="fl">6830259.9735</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-</div>
 <p>Establish the Soil Moisture Regime (SMR) and Soil Nutrient Regime (SNR) manual modifier values, if required. Otherwise set to <code>NA</code> (R) or <code>None</code> (Python).</p>
 <ul>
 <li>smr:float, any number between 0 and 8. Indicative categorical values are as follows:
@@ -4184,74 +4166,74 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 </ul></li>
 </ul>
 <div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">R</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">R</a></li></ul>
 <div class="tab-content">
-<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>smr_modVal <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>snr_modVal <span class="op">=</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>smr_modVal <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>snr_modVal <span class="op">=</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>smr_modVal <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>snr_modVal <span class="ot">&lt;-</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>smr_modVal <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>snr_modVal <span class="ot">&lt;-</span> <span class="cn">NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
 <p>Establish the escSiteData dictionary. To do this, a dictionary containing the values can be composed manually be first establishing lists of values.</p>
 <div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">R</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">R</a></li></ul>
 <div class="tab-content">
-<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>climateScen_vals <span class="op">=</span> [<span class="st">&quot;RCP2.6&quot;</span>, <span class="st">&quot;RCP2.6&quot;</span>]</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>climateYear_vals <span class="op">=</span> [<span class="st">&quot;1980_2000&quot;</span>, <span class="st">&quot;2060_2080&quot;</span>]</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>smr_vals <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">1</span>]</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>snr_vals <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">2</span>]</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>at_vals <span class="op">=</span> [<span class="fl">1300.0447</span>, <span class="fl">1538.3716</span>]</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>ct_vals <span class="op">=</span> [<span class="fl">6.13745</span>, <span class="fl">6.13745</span>]</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>dams_vals <span class="op">=</span> [<span class="fl">15.321886</span>, <span class="fl">15.321886</span>]</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>md_vals <span class="op">=</span> [<span class="fl">100.896255</span>, <span class="fl">92.44555</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>climateScen_vals <span class="op">=</span> [<span class="st">&quot;RCP2.6&quot;</span>, <span class="st">&quot;RCP2.6&quot;</span>]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>climateYear_vals <span class="op">=</span> [<span class="st">&quot;1980_2000&quot;</span>, <span class="st">&quot;2060_2080&quot;</span>]</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>smr_vals <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">1</span>]</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>snr_vals <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">2</span>]</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>at_vals <span class="op">=</span> [<span class="fl">1300.0447</span>, <span class="fl">1538.3716</span>]</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>ct_vals <span class="op">=</span> [<span class="fl">6.13745</span>, <span class="fl">6.13745</span>]</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>dams_vals <span class="op">=</span> [<span class="fl">15.321886</span>, <span class="fl">15.321886</span>]</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>md_vals <span class="op">=</span> [<span class="fl">100.896255</span>, <span class="fl">92.44555</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>climateScen_vals <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;RCP2.6&quot;</span>, <span class="st">&quot;RCP2.6&quot;</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>climateYear_vals <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;1980_2000&quot;</span>, <span class="st">&quot;2060_2080&quot;</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>smr_vals <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>snr_vals <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">2</span>, <span class="dv">2</span>)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>at_vals <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fl">1300.0447</span>, <span class="fl">1538.3716</span>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>ct_vals <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fl">6.13745</span>, <span class="fl">6.13745</span>)</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>dams_vals <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fl">15.321886</span>, <span class="fl">15.321886</span>)</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>md_vals <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fl">100.896255</span>, <span class="fl">92.44555</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>climateScen_vals <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;RCP2.6&quot;</span>, <span class="st">&quot;RCP2.6&quot;</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>climateYear_vals <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;1980_2000&quot;</span>, <span class="st">&quot;2060_2080&quot;</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>smr_vals <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>snr_vals <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>at_vals <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fl">1300.0447</span>, <span class="fl">1538.3716</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>ct_vals <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fl">6.13745</span>, <span class="fl">6.13745</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>dams_vals <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fl">15.321886</span>, <span class="fl">15.321886</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>md_vals <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fl">100.896255</span>, <span class="fl">92.44555</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
 <p>Then form the <code>escSiteData</code> dictionary:</p>
 <div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false">R</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">R</a></li></ul>
 <div class="tab-content">
-<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>escSiteData <span class="op">=</span> {<span class="st">&#39;climateScen&#39;</span>: climateScen_vals, <span class="st">&#39;climateYear&#39;</span>: climateYear_vals, </span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>               <span class="st">&#39;SMR&#39;</span>: smr_vals, <span class="st">&#39;SNR&#39;</span>: snr_vals, <span class="st">&#39;AT&#39;</span>: at_vals, </span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>               <span class="st">&#39;CT&#39;</span>: ct_vals, <span class="st">&#39;DAMS&#39;</span>: dams_vals, <span class="st">&#39;MD&#39;</span>: md_vals}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>escSiteData <span class="op">=</span> {<span class="st">&#39;climateScen&#39;</span>: climateScen_vals, <span class="st">&#39;climateYear&#39;</span>: climateYear_vals, </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>               <span class="st">&#39;SMR&#39;</span>: smr_vals, <span class="st">&#39;SNR&#39;</span>: snr_vals, <span class="st">&#39;AT&#39;</span>: at_vals, </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>               <span class="st">&#39;CT&#39;</span>: ct_vals, <span class="st">&#39;DAMS&#39;</span>: dams_vals, <span class="st">&#39;MD&#39;</span>: md_vals}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>escSiteData <span class="ot">=</span> <span class="fu">list</span>(<span class="st">&#39;climateScen&#39;</span> <span class="ot">=</span> climateScen_vals, <span class="st">&#39;climateYear&#39;</span> <span class="ot">=</span> climateYear_vals, </span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&#39;SMR&#39;</span> <span class="ot">=</span> smr_vals, <span class="st">&#39;SNR&#39;</span> <span class="ot">=</span> snr_vals, <span class="st">&#39;AT&#39;</span> <span class="ot">=</span> at_vals, </span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&#39;CT&#39;</span> <span class="ot">=</span> ct_vals, <span class="st">&#39;DAMS&#39;</span> <span class="ot">=</span> dams_vals, <span class="st">&#39;MD&#39;</span> <span class="ot">=</span> md_vals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>escSiteData <span class="ot">=</span> <span class="fu">list</span>(<span class="st">&#39;climateScen&#39;</span> <span class="ot">=</span> climateScen_vals, <span class="st">&#39;climateYear&#39;</span> <span class="ot">=</span> climateYear_vals, </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&#39;SMR&#39;</span> <span class="ot">=</span> smr_vals, <span class="st">&#39;SNR&#39;</span> <span class="ot">=</span> snr_vals, <span class="st">&#39;AT&#39;</span> <span class="ot">=</span> at_vals, </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&#39;CT&#39;</span> <span class="ot">=</span> ct_vals, <span class="st">&#39;DAMS&#39;</span> <span class="ot">=</span> dams_vals, <span class="st">&#39;MD&#39;</span> <span class="ot">=</span> md_vals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
 <p>Alternatively, the response from the <code>ESCSiteData</code> API can be passed to escSiteData.</p>
-<p>Establish the site modifier options.</p>
+<p>Establish the site modifier options and species group filter.</p>
 <ul>
 <li>drainage:int
 <ul>
@@ -4275,24 +4257,34 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <li>1 = Exposed ridge/Coastal zone.</li>
 <li>2 = Local shelter/Less exposed/Underplanting.</li>
 </ul></li>
+<li>filter:int
+<ul>
+<li>0 = No filter</li>
+<li>1 = Conifers only</li>
+<li>2 = Broadleaves only</li>
+<li>3 = Natives only</li>
+<li>4 = Non-natives only</li>
+</ul></li>
 </ul>
 <div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false">R</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false">R</a></li></ul>
 <div class="tab-content">
-<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>drainage <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>brash <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>fertiliser <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>exposure <span class="op">=</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>drainage <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>brash <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>fertiliser <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>exposure <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="bu">filter</span> <span class="op">=</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>drainage <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>brash <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>fertiliser <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>exposure <span class="ot">&lt;-</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>drainage <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>brash <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>fertiliser <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>exposure <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>filter <span class="ot">&lt;-</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -4305,42 +4297,44 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 </ul></li>
 </ul>
 <div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false">R</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false">R</a></li></ul>
 <div class="tab-content">
-<div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
+<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>escVersion <span class="op">=</span> <span class="st">&quot;4.33&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>escVersion <span class="op">=</span> <span class="st">&quot;4.33&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
+<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>escVersion <span class="ot">&lt;-</span> <span class="st">&quot;4.33&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>escVersion <span class="ot">&lt;-</span> <span class="st">&quot;4.33&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
 <p>Compose the request body.</p>
 <div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false">R</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false">R</a></li></ul>
 <div class="tab-content">
-<div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
+<div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>req_body <span class="op">=</span> {<span class="st">&quot;lon&quot;</span>: lon, <span class="st">&quot;lat&quot;</span>: lat, </span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;smr&quot;</span>: smr_modVal, <span class="st">&quot;snr&quot;</span>: snr_modVal,</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;escSiteData&quot;</span>: escSiteData,</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;drainage&quot;</span>: drainage, <span class="st">&quot;brash&quot;</span>: brash, <span class="st">&quot;fertiliser&quot;</span>: fertiliser, <span class="st">&quot;exposure&quot;</span>: exposure,</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;escVersion&quot;</span>: escVersion}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>req_body <span class="op">=</span> {<span class="st">&quot;smr&quot;</span>: smr_modVal, <span class="st">&quot;snr&quot;</span>: snr_modVal,</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;escSiteData&quot;</span>: escSiteData,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;drainage&quot;</span>: drainage, <span class="st">&quot;brash&quot;</span>: brash, </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;fertiliser&quot;</span>: fertiliser, <span class="st">&quot;exposure&quot;</span>: exposure,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;filter&quot;</span>: <span class="bu">filter</span>,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;escVersion&quot;</span>: escVersion}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
+<div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>req_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;lon&quot;</span> <span class="ot">=</span> lon, <span class="st">&quot;lat&quot;</span> <span class="ot">=</span> lat, </span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;smr&quot;</span> <span class="ot">=</span> smr_modVal, <span class="st">&quot;snr&quot;</span> <span class="ot">=</span> snr_modVal,</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;escSiteData&quot;</span> <span class="ot">=</span> escSiteData,</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;drainage&quot;</span> <span class="ot">=</span> drainage, <span class="st">&quot;brash&quot;</span> <span class="ot">=</span> brash, <span class="st">&quot;fertiliser&quot;</span> <span class="ot">=</span>  fertiliser, <span class="st">&quot;exposure&quot;</span> <span class="ot">=</span> exposure, </span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;escVersion&quot;</span> <span class="ot">=</span> escVersion)</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>req_body <span class="ot">&lt;-</span> jsonlite<span class="sc">::</span><span class="fu">toJSON</span>(req_list, <span class="at">auto_unbox =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>req_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;smr&quot;</span> <span class="ot">=</span> smr_modVal, <span class="st">&quot;snr&quot;</span> <span class="ot">=</span> snr_modVal,</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;escSiteData&quot;</span> <span class="ot">=</span> escSiteData,</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;drainage&quot;</span> <span class="ot">=</span> drainage, <span class="st">&quot;brash&quot;</span> <span class="ot">=</span> brash, </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;fertiliser&quot;</span> <span class="ot">=</span>  fertiliser, <span class="st">&quot;exposure&quot;</span> <span class="ot">=</span> exposure, </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;filter&quot;</span> <span class="ot">=</span> filter,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;escVersion&quot;</span> <span class="ot">=</span> escVersion)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>req_body <span class="ot">&lt;-</span> jsonlite<span class="sc">::</span><span class="fu">toJSON</span>(req_list, <span class="at">auto_unbox =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -4350,21 +4344,21 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <h2 class="anchored" data-anchor-id="make-the-api-call">Make the API call</h2>
 <p>Call the ESCTreeResults API</p>
 <div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false">R</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false">R</a></li></ul>
 <div class="tab-content">
-<div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
+<div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>ESCTreeResultsresponse <span class="op">=</span> requests.post(url <span class="op">=</span> base_url, json <span class="op">=</span> req_body)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>ESCTreeResultsresponse.status_code <span class="op">==</span> <span class="dv">200</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>ESCTreeResultsresponse <span class="op">=</span> requests.post(url <span class="op">=</span> base_url, json <span class="op">=</span> req_body)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>ESCTreeResultsresponse.status_code <span class="op">==</span> <span class="dv">200</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>True</code></pre>
 </div>
 </div>
 </div>
-<div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
+<div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>ESCTreeResultsresponse <span class="ot">&lt;-</span> httr<span class="sc">::</span><span class="fu">POST</span>(<span class="at">url =</span> base_url, <span class="at">body =</span> req_body)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>ESCTreeResultsresponse<span class="sc">$</span>status_code <span class="sc">==</span> <span class="dv">200</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>ESCTreeResultsresponse <span class="ot">&lt;-</span> httr<span class="sc">::</span><span class="fu">POST</span>(<span class="at">url =</span> base_url, <span class="at">body =</span> req_body)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>ESCTreeResultsresponse<span class="sc">$</span>status_code <span class="sc">==</span> <span class="dv">200</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
@@ -4374,54 +4368,54 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 </div>
 <p>Establish a function to deserialize the json response into a nested dictionary or nested list.</p>
 <div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-11-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-1" role="tab" aria-controls="tabset-11-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-2" role="tab" aria-controls="tabset-11-2" aria-selected="false">R</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false">R</a></li></ul>
 <div class="tab-content">
-<div id="tabset-11-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-11-1-tab">
+<div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> deserialize(responseJson:<span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">dict</span>:</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    loadedJson <span class="op">=</span> json.loads(responseJson)</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k,v <span class="kw">in</span> loadedJson.items():</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> w,s <span class="kw">in</span> loadedJson[k].items():</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> t,c <span class="kw">in</span> loadedJson[k][w].items():</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>                loadedJson[k][w][t] <span class="op">=</span> pandas.DataFrame.from_dict(data <span class="op">=</span> json.loads(c))</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> loadedJson</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> deserialize(responseJson:<span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">dict</span>:</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    loadedJson <span class="op">=</span> json.loads(responseJson)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k,v <span class="kw">in</span> loadedJson.items():</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> w,s <span class="kw">in</span> loadedJson[k].items():</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> t,c <span class="kw">in</span> loadedJson[k][w].items():</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>                loadedJson[k][w][t] <span class="op">=</span> pandas.DataFrame.from_dict(data <span class="op">=</span> json.loads(c))</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> loadedJson</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<div id="tabset-11-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-2-tab">
+<div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>deserialize <span class="ot">&lt;-</span> <span class="cf">function</span>(responseJson){</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    responseContent <span class="ot">&lt;-</span> httr<span class="sc">::</span><span class="fu">content</span>(responseJson)</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    responseContent <span class="ot">&lt;-</span> jsonlite<span class="sc">::</span><span class="fu">fromJSON</span>(responseContent)</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">names</span>(responseContent)){</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span>(j <span class="cf">in</span> <span class="fu">names</span>(responseContent[[i]])){</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span>(k <span class="cf">in</span> <span class="fu">names</span>(responseContent[[i]][[j]])){</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>                responseContent[[i]][[j]][[k]] <span class="ot">=</span> jsonlite<span class="sc">::</span><span class="fu">fromJSON</span>(responseContent[[i]][[j]][[k]])</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>            }</span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(responseContent)</span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>deserialize <span class="ot">&lt;-</span> <span class="cf">function</span>(responseJson){</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    responseContent <span class="ot">&lt;-</span> httr<span class="sc">::</span><span class="fu">content</span>(responseJson)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    responseContent <span class="ot">&lt;-</span> jsonlite<span class="sc">::</span><span class="fu">fromJSON</span>(responseContent)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">names</span>(responseContent)){</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span>(j <span class="cf">in</span> <span class="fu">names</span>(responseContent[[i]])){</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span>(k <span class="cf">in</span> <span class="fu">names</span>(responseContent[[i]][[j]])){</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>                responseContent[[i]][[j]][[k]] <span class="ot">=</span> jsonlite<span class="sc">::</span><span class="fu">fromJSON</span>(responseContent[[i]][[j]][[k]])</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(responseContent)</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
 <p>Call the <code>deserializeResults</code> function on the ESC API output.</p>
 <div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-12-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-1" role="tab" aria-controls="tabset-12-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-2" role="tab" aria-controls="tabset-12-2" aria-selected="false">R</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-11-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-1" role="tab" aria-controls="tabset-11-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-2" role="tab" aria-controls="tabset-11-2" aria-selected="false">R</a></li></ul>
 <div class="tab-content">
-<div id="tabset-12-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-12-1-tab">
+<div id="tabset-11-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-11-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>ESCTreeResultsresponse_dict <span class="op">=</span> deserialize(responseJson <span class="op">=</span> ESCTreeResultsresponse.json())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>ESCTreeResultsresponse_dict <span class="op">=</span> deserialize(responseJson <span class="op">=</span> ESCTreeResultsresponse.json())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<div id="tabset-12-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-2-tab">
+<div id="tabset-11-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>ESCTreeResultsresponse_list <span class="ot">&lt;-</span> <span class="fu">deserialize</span>(<span class="at">responseJson =</span> ESCTreeResultsresponse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>ESCTreeResultsresponse_list <span class="ot">&lt;-</span> <span class="fu">deserialize</span>(<span class="at">responseJson =</span> ESCTreeResultsresponse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -4466,39 +4460,39 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <li>Item - The stage of modification of the environmental dose variable values.</li>
 </ul>
 <div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-13-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-1" role="tab" aria-controls="tabset-13-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-13-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-2" role="tab" aria-controls="tabset-13-2" aria-selected="false">R</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-12-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-1" role="tab" aria-controls="tabset-12-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-2" role="tab" aria-controls="tabset-12-2" aria-selected="false">R</a></li></ul>
 <div class="tab-content">
-<div id="tabset-13-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-13-1-tab">
+<div id="tabset-12-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-12-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>ESCDoseVals <span class="op">=</span> ESCTreeResultsresponse_dict.get(<span class="st">&quot;RCP2.6&quot;</span>).get(<span class="st">&quot;1980_2000&quot;</span>).get(<span class="st">&quot;ESCDoseVals&quot;</span>)</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>ESCDoseVals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>ESCDoseVals <span class="op">=</span> ESCTreeResultsresponse_dict.get(<span class="st">&quot;RCP2.6&quot;</span>).get(<span class="st">&quot;1980_2000&quot;</span>).get(<span class="st">&quot;ESCDoseVals&quot;</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>ESCDoseVals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   SMR  SNR         AT       CT       DAMS          MD                   Item
 0  1.0  2.0  1300.0447  6.13745  15.321886  100.896255          Values - Base
-1  0.0  0.0        NaN      NaN        NaN         NaN        Values - Manual
-2  0.0  0.0  1300.0447  6.13745  15.321886  100.896255        Values - PreMod
+1  NaN  NaN        NaN      NaN        NaN         NaN        Values - Manual
+2  1.0  2.0  1300.0447  6.13745  15.321886  100.896255        Values - PreMod
 3  0.0  0.0     0.0000  0.00000   0.000000    0.000000    Modifier - Drainage
 4  0.0  0.0     0.0000  0.00000   0.000000    0.000000       Modifier - Brash
 5  0.0  0.0     0.0000  0.00000   0.000000    0.000000  Modifier - Fertiliser
 6  0.0  0.0     0.0000  0.00000   0.000000    0.000000    Modifier - Exposure
-7  0.0  0.0  1300.0447  6.13745  15.321886  100.896255         Values - Final</code></pre>
+7  1.0  2.0  1300.0447  6.13745  15.321886  100.896255         Values - Final</code></pre>
 </div>
 </div>
 </div>
-<div id="tabset-13-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-13-2-tab">
+<div id="tabset-12-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>ESCDoseVals <span class="ot">=</span> ESCTreeResultsresponse_list<span class="sc">$</span><span class="st">`</span><span class="at">RCP2.6</span><span class="st">`</span><span class="sc">$</span><span class="st">`</span><span class="at">1980_2000</span><span class="st">`</span><span class="sc">$</span>ESCDoseVals</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>ESCDoseVals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>ESCDoseVals <span class="ot">=</span> ESCTreeResultsresponse_list<span class="sc">$</span><span class="st">`</span><span class="at">RCP2.6</span><span class="st">`</span><span class="sc">$</span><span class="st">`</span><span class="at">1980_2000</span><span class="st">`</span><span class="sc">$</span>ESCDoseVals</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>ESCDoseVals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  SMR SNR       AT     CT    DAMS       MD                  Item
 1   1   2 1300.045 6.1375 15.3219 100.8963         Values - Base
-2   0   0       NA     NA      NA       NA       Values - Manual
-3   0   0 1300.045 6.1375 15.3219 100.8963       Values - PreMod
+2  NA  NA       NA     NA      NA       NA       Values - Manual
+3   1   2 1300.045 6.1375 15.3219 100.8963       Values - PreMod
 4   0   0    0.000 0.0000  0.0000   0.0000   Modifier - Drainage
 5   0   0    0.000 0.0000  0.0000   0.0000      Modifier - Brash
 6   0   0    0.000 0.0000  0.0000   0.0000 Modifier - Fertiliser
 7   0   0    0.000 0.0000  0.0000   0.0000   Modifier - Exposure
-8   0   0 1300.045 6.1375 15.3219 100.8963        Values - Final</code></pre>
+8   1   2 1300.045 6.1375 15.3219 100.8963        Values - Final</code></pre>
 </div>
 </div>
 </div>
@@ -4511,12 +4505,12 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <li>response - The response of the tree species to the environmental dose variable. A unitless value between 0 and 1.</li>
 </ul>
 <div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-14-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-1" role="tab" aria-controls="tabset-14-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-14-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-2" role="tab" aria-controls="tabset-14-2" aria-selected="false">R</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-13-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-1" role="tab" aria-controls="tabset-13-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-13-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-2" role="tab" aria-controls="tabset-13-2" aria-selected="false">R</a></li></ul>
 <div class="tab-content">
-<div id="tabset-14-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-14-1-tab">
+<div id="tabset-13-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-13-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>ESCResponseVals <span class="op">=</span> ESCTreeResultsresponse_dict.get(<span class="st">&quot;RCP2.6&quot;</span>).get(<span class="st">&quot;1980_2000&quot;</span>).get(<span class="st">&quot;ESCResponseVals&quot;</span>)</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>ESCResponseVals.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>ESCResponseVals <span class="op">=</span> ESCTreeResultsresponse_dict.get(<span class="st">&quot;RCP2.6&quot;</span>).get(<span class="st">&quot;1980_2000&quot;</span>).get(<span class="st">&quot;ESCResponseVals&quot;</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>ESCResponseVals.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  speciesCode metric  response
 0          AH     AT  1.000000
@@ -4527,10 +4521,10 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 </div>
 </div>
 </div>
-<div id="tabset-14-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-14-2-tab">
+<div id="tabset-13-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-13-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>ESCResponseVals <span class="ot">=</span> ESCTreeResultsresponse_list<span class="sc">$</span><span class="st">`</span><span class="at">RCP2.6</span><span class="st">`</span><span class="sc">$</span><span class="st">`</span><span class="at">1980_2000</span><span class="st">`</span><span class="sc">$</span>ESCResponseVals</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>ESCResponseVals <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>ESCResponseVals <span class="ot">=</span> ESCTreeResultsresponse_list<span class="sc">$</span><span class="st">`</span><span class="at">RCP2.6</span><span class="st">`</span><span class="sc">$</span><span class="st">`</span><span class="at">1980_2000</span><span class="st">`</span><span class="sc">$</span>ESCResponseVals</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>ESCResponseVals <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  speciesCode metric  response
 1          AH     AT 1.0000000
@@ -4560,17 +4554,17 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <li>estimatedYC - The estimated yield class.</li>
 </ul>
 <div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-15-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-15-1" role="tab" aria-controls="tabset-15-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-15-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-15-2" role="tab" aria-controls="tabset-15-2" aria-selected="false">R</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-14-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-1" role="tab" aria-controls="tabset-14-1" aria-selected="true">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-14-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-2" role="tab" aria-controls="tabset-14-2" aria-selected="false">R</a></li></ul>
 <div class="tab-content">
-<div id="tabset-15-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-15-1-tab">
+<div id="tabset-14-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-14-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>ESCSuitMetrics <span class="op">=</span> ESCTreeResultsresponse_dict.get(<span class="st">&quot;RCP2.6&quot;</span>).get(<span class="st">&quot;1980_2000&quot;</span>).get(<span class="st">&quot;ESCSuitMetrics&quot;</span>)</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>ESCSuitMetrics.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>ESCSuitMetrics <span class="op">=</span> ESCTreeResultsresponse_dict.get(<span class="st">&quot;RCP2.6&quot;</span>).get(<span class="st">&quot;1980_2000&quot;</span>).get(<span class="st">&quot;ESCSuitMetrics&quot;</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>ESCSuitMetrics.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  speciesCode   speciesScientific  ... EcologicalSuitability  estimatedYC
 0          AH  Fraxinus excelsior  ...                   0.0          0.0
 1         AMA    Acer macrophylum  ...                   0.0          0.0
-2         ASP     Populus tremula  ...                   0.0          0.0
+2         ASP     Populus tremula  ...                   0.2          2.4
 3          BE     Fagus sylvatica  ...                   0.0          0.0
 4         BPO       Populus nigra  ...                   0.0          0.0
 
@@ -4578,32 +4572,32 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 </div>
 </div>
 </div>
-<div id="tabset-15-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-15-2-tab">
+<div id="tabset-14-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-14-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>ESCSuitMetrics <span class="ot">=</span> ESCTreeResultsresponse_list<span class="sc">$</span><span class="st">`</span><span class="at">RCP2.6</span><span class="st">`</span><span class="sc">$</span><span class="st">`</span><span class="at">1980_2000</span><span class="st">`</span><span class="sc">$</span>ESCSuitMetrics</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>ESCSuitMetrics <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>ESCSuitMetrics <span class="ot">=</span> ESCTreeResultsresponse_list<span class="sc">$</span><span class="st">`</span><span class="at">RCP2.6</span><span class="st">`</span><span class="sc">$</span><span class="st">`</span><span class="at">1980_2000</span><span class="st">`</span><span class="sc">$</span>ESCSuitMetrics</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>ESCSuitMetrics <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  speciesCode  speciesScientific    speciesName maxYC  threat limFactorInclAT
 1          AH Fraxinus excelsior            Ash    12 Chalara             SMR
 2         AMA   Acer macrophylum Big leaf maple    12    None             SMR
 3         ASP    Populus tremula          Aspen    12    None             SMR
 4          BE    Fagus sylvatica          Beech    10    None             SMR
-5         BPO      Populus nigra   Black poplar    16    None             SMR
+5         BPO      Populus nigra   Black poplar    16    None             SNR
 6         CAR    Alnus glutinosa   Common alder    12    None             SNR
   limFactorInclATResponse limFactorExclAT limFactorExclATResponse
-1              0.00000000             SMR              0.00000000
-2              0.00000000             SMR              0.00000000
-3              0.00000000             SMR              0.00000000
-4              0.00000000             SMR              0.00000000
-5              0.00000000             SMR              0.00000000
-6              0.05714286             SNR              0.05714286
+1               0.0000000             SMR               0.0000000
+2               0.0000000             SMR               0.0000000
+3               0.2000000             SMR               0.2000000
+4               0.0000000             SMR               0.0000000
+5               0.0000000             SNR               0.0000000
+6               0.5833333             SNR               0.5833333
   TimberSuitability EcologicalSuitability estimatedYC
-1        0.00000000            0.00000000   0.0000000
-2        0.00000000            0.00000000   0.0000000
-3        0.00000000            0.00000000   0.0000000
-4        0.00000000            0.00000000   0.0000000
-5        0.00000000            0.00000000   0.0000000
-6        0.05690597            0.05714286   0.6828716</code></pre>
+1         0.0000000             0.0000000    0.000000
+2         0.0000000             0.0000000    0.000000
+3         0.2000000             0.2000000    2.400000
+4         0.0000000             0.0000000    0.000000
+5         0.0000000             0.0000000    0.000000
+6         0.5809151             0.5833333    6.970981</code></pre>
 </div>
 </div>
 </div>
