@@ -43,13 +43,13 @@ Establish API POST request URL
 ## Python
 
 ```{python url_py}
-base_url = "http://178.62.35.149:8000/ESCSiteData/"
+base_url = "http://209.97.132.245:8000/ESCSiteData/"
 ```
 
 ## R
 
 ```{r url_r}
-base_url <- "http://178.62.35.149:8000/ESCSiteData/"
+base_url <- "http://209.97.132.245:8000/ESCSiteData/"
 ```
 
 :::
