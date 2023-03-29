@@ -4130,12 +4130,12 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>base_url <span class="op">=</span> <span class="st">&quot;http://209.97.132.245:8000/ESCWCC/&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>base_url <span class="op">=</span> <span class="st">&quot;http://178.62.35.149:8000/ESCWCC/&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>base_url <span class="ot">&lt;-</span> <span class="st">&quot;http://209.97.132.245:8000/ESCWCC/&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>base_url <span class="ot">&lt;-</span> <span class="st">&quot;http://178.62.35.149:8000/ESCWCC/&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -4160,6 +4160,11 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 </div>
 <p>Establish the site modifier options.</p>
 <ul>
+<li>awcAdj:bool
+<ul>
+<li>True</li>
+<li>False</li>
+</ul></li>
 <li>drainage:int
 <ul>
 <li>0 = None.</li>
@@ -4188,18 +4193,20 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <div class="tab-content">
 <div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>drainage <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>brash <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>fertiliser <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>exposure <span class="op">=</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>awcAdj <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>drainage <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>brash <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>fertiliser <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>exposure <span class="op">=</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>drainage <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>brash <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>fertiliser <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>exposure <span class="ot">&lt;-</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>awcAdj <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>drainage <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>brash <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>fertiliser <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>exposure <span class="ot">&lt;-</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -4217,7 +4224,7 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 </ul></li>
 <li>climateYearList:List
 <ul>
-<li>For “UKCP09” a list containing any of the following timeslices: [“1961_1990”, “2000_2020”, “2010_2030”, “2020_2040”, “2030_2050”, “2040_2060”, “2050_2070”, “2060_2080”, “2070_2090”]</li>
+<li>For “UKCP09” a list containing any of the following timeslices: [“1960_1990”, “2000_2020”, “2010_2030”, “2020_2040”, “2030_2050”, “2040_2060”, “2050_2070”, “2060_2080”, “2070_2090”]</li>
 <li>For “UKCP18-1km” a list containing any of the following timeslices: [“1980_2000”, “1990_2010”, “2000_2020”, “2010_2030”, “2020_2040”, “2030_2050”, “2040_2060”, “2050_2070”, “2060_2080”]</li>
 </ul></li>
 </ul>
@@ -4353,14 +4360,15 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># req_body = {&quot;lon&quot;: lon, &quot;lat&quot;: lat}</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>req_body <span class="op">=</span> {<span class="st">&quot;lon&quot;</span>: lon, <span class="st">&quot;lat&quot;</span>: lat, </span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;drainage&quot;</span>: drainage, <span class="st">&quot;brash&quot;</span>: brash, <span class="st">&quot;fertiliser&quot;</span>: fertiliser, <span class="st">&quot;exposure&quot;</span>: exposure, </span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;climateModel&quot;</span>: climateModel,</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;climateScenList&quot;</span>: climateScenList, <span class="st">&quot;climateYearList&quot;</span>: climateYearList,</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;filter&quot;</span>: <span class="bu">filter</span>, <span class="st">&quot;escVersion&quot;</span>: escVersion, <span class="st">&quot;wccVersion&quot;</span>: wccVersion, </span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;smr&quot;</span>: smr, <span class="st">&quot;snr&quot;</span>: snr,</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;wccSpacing&quot;</span>: wccSpacing, <span class="st">&quot;wccManagement&quot;</span>: wccManagement, <span class="st">&quot;wccPeriod&quot;</span>: wccPeriod,</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;wccEstArea&quot;</span>: wccEstArea, <span class="st">&quot;wccRoadLength&quot;</span>: wccRoadLength, <span class="st">&quot;wccSoilArea&quot;</span>: wccSoilArea}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>req_body <span class="op">=</span> {<span class="st">&quot;lon&quot;</span>: lon, <span class="st">&quot;lat&quot;</span>: lat,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;awcAdj&quot;</span>: awcAdj,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;drainage&quot;</span>: drainage, <span class="st">&quot;brash&quot;</span>: brash, <span class="st">&quot;fertiliser&quot;</span>: fertiliser, <span class="st">&quot;exposure&quot;</span>: exposure, </span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;climateModel&quot;</span>: climateModel,</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;climateScenList&quot;</span>: climateScenList, <span class="st">&quot;climateYearList&quot;</span>: climateYearList,</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;filter&quot;</span>: <span class="bu">filter</span>, <span class="st">&quot;escVersion&quot;</span>: escVersion, <span class="st">&quot;wccVersion&quot;</span>: wccVersion, </span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;smr&quot;</span>: smr, <span class="st">&quot;snr&quot;</span>: snr,</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;wccSpacing&quot;</span>: wccSpacing, <span class="st">&quot;wccManagement&quot;</span>: wccManagement, <span class="st">&quot;wccPeriod&quot;</span>: wccPeriod,</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;wccEstArea&quot;</span>: wccEstArea, <span class="st">&quot;wccRoadLength&quot;</span>: wccRoadLength, <span class="st">&quot;wccSoilArea&quot;</span>: wccSoilArea}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
@@ -4368,15 +4376,16 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># req_list = list(&quot;smr&quot; = smr, &quot;snr&quot; = snr)</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>req_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;lon&quot;</span> <span class="ot">=</span> lon, <span class="st">&quot;lat&quot;</span> <span class="ot">=</span> lat, </span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;drainage&quot;</span> <span class="ot">=</span> drainage, <span class="st">&quot;brash&quot;</span> <span class="ot">=</span> brash, <span class="st">&quot;fertiliser&quot;</span> <span class="ot">=</span>  fertiliser, <span class="st">&quot;exposure&quot;</span> <span class="ot">=</span> exposure,</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;climateModel&quot;</span> <span class="ot">=</span> climateModel,</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;climateScenList&quot;</span> <span class="ot">=</span> climateScenList, <span class="st">&quot;climateYearList&quot;</span> <span class="ot">=</span> climateYearList,</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;filter&quot;</span> <span class="ot">=</span> filter, <span class="st">&quot;escVersion&quot;</span> <span class="ot">=</span> escVersion, <span class="st">&quot;wccVersion&quot;</span> <span class="ot">=</span> wccVersion, </span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;smr&quot;</span> <span class="ot">=</span> smr, <span class="st">&quot;snr&quot;</span> <span class="ot">=</span> snr,</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;wccSpacing&quot;</span> <span class="ot">=</span> wccSpacing, <span class="st">&quot;wccManagement&quot;</span> <span class="ot">=</span> wccManagement, <span class="st">&quot;wccPeriod&quot;</span> <span class="ot">=</span> wccPeriod,</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;wccEstArea&quot;</span> <span class="ot">=</span> wccEstArea, <span class="st">&quot;wccRoadLength&quot;</span> <span class="ot">=</span> wccRoadLength, <span class="st">&quot;wccSoilArea&quot;</span> <span class="ot">=</span> wccSoilArea)</span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>req_body <span class="ot">&lt;-</span> jsonlite<span class="sc">::</span><span class="fu">toJSON</span>(req_list, <span class="at">auto_unbox =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;awcAdj&quot;</span> <span class="ot">=</span> awcAdj,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;drainage&quot;</span> <span class="ot">=</span> drainage, <span class="st">&quot;brash&quot;</span> <span class="ot">=</span> brash, <span class="st">&quot;fertiliser&quot;</span> <span class="ot">=</span>  fertiliser, <span class="st">&quot;exposure&quot;</span> <span class="ot">=</span> exposure,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;climateModel&quot;</span> <span class="ot">=</span> climateModel,</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;climateScenList&quot;</span> <span class="ot">=</span> climateScenList, <span class="st">&quot;climateYearList&quot;</span> <span class="ot">=</span> climateYearList,</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;filter&quot;</span> <span class="ot">=</span> filter, <span class="st">&quot;escVersion&quot;</span> <span class="ot">=</span> escVersion, <span class="st">&quot;wccVersion&quot;</span> <span class="ot">=</span> wccVersion, </span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;smr&quot;</span> <span class="ot">=</span> smr, <span class="st">&quot;snr&quot;</span> <span class="ot">=</span> snr,</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;wccSpacing&quot;</span> <span class="ot">=</span> wccSpacing, <span class="st">&quot;wccManagement&quot;</span> <span class="ot">=</span> wccManagement, <span class="st">&quot;wccPeriod&quot;</span> <span class="ot">=</span> wccPeriod,</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;wccEstArea&quot;</span> <span class="ot">=</span> wccEstArea, <span class="st">&quot;wccRoadLength&quot;</span> <span class="ot">=</span> wccRoadLength, <span class="st">&quot;wccSoilArea&quot;</span> <span class="ot">=</span> wccSoilArea)</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>req_body <span class="ot">&lt;-</span> jsonlite<span class="sc">::</span><span class="fu">toJSON</span>(req_list, <span class="at">auto_unbox =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -4535,9 +4544,11 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 4  0.0  0.0     0.000000  ...   0.000000    0.000000       Modifier - Brash
 5  0.0  0.0     0.000000  ...   0.000000    0.000000  Modifier - Fertiliser
 6  0.0  0.0     0.000000  ...   0.000000    0.000000    Modifier - Exposure
-7  3.0  5.0  1694.748779  ...  12.258021  178.133179         Values - Final
+7  3.0  5.0  1694.748779  ...  12.258021  178.133179        Values - preAWC
+8  0.0  0.0     0.000000  ...   0.000000   46.000000         Modifier - AWC
+9  3.0  5.0  1694.748779  ...  12.258021  224.133179         Values - Final
 
-[8 rows x 7 columns]</code></pre>
+[10 rows x 7 columns]</code></pre>
 </div>
 </div>
 </div>
@@ -4546,15 +4557,17 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>ESCDoseVals <span class="ot">=</span> ESCWCCresponse_list<span class="sc">$</span><span class="st">`</span><span class="at">RCP2.6</span><span class="st">`</span><span class="sc">$</span><span class="st">`</span><span class="at">1980_2000</span><span class="st">`</span><span class="sc">$</span>ESCDoseVals</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>ESCDoseVals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  SMR SNR       AT       CT     DAMS       MD                  Item
-1   3   5 1694.749 10.86863 12.25802 178.1332         Values - Base
-2  NA  NA       NA       NA       NA       NA       Values - Manual
-3   3   5 1694.749 10.86863 12.25802 178.1332       Values - PreMod
-4   0   0    0.000  0.00000  0.00000   0.0000   Modifier - Drainage
-5   0   0    0.000  0.00000  0.00000   0.0000      Modifier - Brash
-6   0   0    0.000  0.00000  0.00000   0.0000 Modifier - Fertiliser
-7   0   0    0.000  0.00000  0.00000   0.0000   Modifier - Exposure
-8   3   5 1694.749 10.86863 12.25802 178.1332        Values - Final</code></pre>
+<pre><code>   SMR SNR       AT       CT     DAMS       MD                  Item
+1    3   5 1694.749 10.86863 12.25802 178.1332         Values - Base
+2   NA  NA       NA       NA       NA       NA       Values - Manual
+3    3   5 1694.749 10.86863 12.25802 178.1332       Values - PreMod
+4    0   0    0.000  0.00000  0.00000   0.0000   Modifier - Drainage
+5    0   0    0.000  0.00000  0.00000   0.0000      Modifier - Brash
+6    0   0    0.000  0.00000  0.00000   0.0000 Modifier - Fertiliser
+7    0   0    0.000  0.00000  0.00000   0.0000   Modifier - Exposure
+8    3   5 1694.749 10.86863 12.25802 178.1332       Values - preAWC
+9    0   0    0.000  0.00000  0.00000  46.0000        Modifier - AWC
+10   3   5 1694.749 10.86863 12.25802 224.1332        Values - Final</code></pre>
 </div>
 </div>
 </div>
@@ -4578,7 +4591,7 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 0          AH     AT  1.000000
 1          AH     CT  1.000000
 2          AH   DAMS  0.964892
-3          AH     MD  0.793451
+3          AH     MD  0.110731
 4          AH    SMR  0.755714</code></pre>
 </div>
 </div>
@@ -4592,7 +4605,7 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 1          AH     AT 1.0000000
 2          AH     CT 1.0000000
 3          AH   DAMS 0.9648923
-4          AH     MD 0.7934513
+4          AH     MD 0.1107305
 5          AH    SMR 0.7557143
 6          AH    SNR 1.0000000</code></pre>
 </div>
@@ -4624,11 +4637,11 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>ESCSuitMetrics.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  speciesCode   speciesScientific  ... EcologicalSuitability  estimatedYC
-0          AH  Fraxinus excelsior  ...              0.755714     9.068572
+0          AH  Fraxinus excelsior  ...              0.110731     1.328766
 1         AMA    Acer macrophylum  ...              0.000000     0.000000
-2         ASP     Populus tremula  ...              0.962698    11.552382
+2         ASP     Populus tremula  ...              0.819736     9.836833
 3          BE     Fagus sylvatica  ...              0.305714     3.057143
-4         BPO       Populus nigra  ...              0.978258    15.652131
+4         BPO       Populus nigra  ...              0.908384    14.534138
 
 [5 rows x 12 columns]</code></pre>
 </div>
@@ -4640,25 +4653,25 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>ESCSuitMetrics <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  speciesCode  speciesScientific    speciesName maxYC  threat limFactorInclAT
-1          AH Fraxinus excelsior            Ash    12 Chalara             SMR
+1          AH Fraxinus excelsior            Ash    12 Chalara              MD
 2         AMA   Acer macrophylum Big leaf maple    12    None              CT
-3         ASP    Populus tremula          Aspen    12    None             SNR
+3         ASP    Populus tremula          Aspen    12    None              MD
 4          BE    Fagus sylvatica          Beech    10    None             SMR
-5         BPO      Populus nigra   Black poplar    16    None            DAMS
+5         BPO      Populus nigra   Black poplar    16    None              MD
 6         CAR    Alnus glutinosa   Common alder    12    None            DAMS
   limFactorInclATResponse limFactorExclAT limFactorExclATResponse
-1               0.7557143             SMR               0.7557143
+1               0.1107305              MD               0.1107305
 2               0.0000000              CT               0.0000000
-3               0.9626985             SNR               0.9626985
+3               0.8197361              MD               0.8197361
 4               0.3057143             SMR               0.3057143
-5               0.9782582            DAMS               0.9782582
+5               0.9083836              MD               0.9083836
 6               0.8542166            DAMS               0.8542166
   TimberSuitability EcologicalSuitability estimatedYC
-1         0.7557143             0.7557143    9.068572
+1         0.1107305             0.1107305    1.328766
 2         0.0000000             0.0000000    0.000000
-3         0.9626985             0.9626985   11.552382
+3         0.8197361             0.8197361    9.836833
 4         0.3057143             0.3057143    3.057143
-5         0.9782582             0.9782582   15.652131
+5         0.9083836             0.9083836   14.534138
 6         0.8542166             0.8542166   10.250599</code></pre>
 </div>
 </div>
@@ -4712,11 +4725,11 @@ Warning
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>WCCTreeValues.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  speciesCode wccCode  ... periodEnd clearfellCapCarbon
-0          AH     SAB  ...       5.0                6.5
-1          AH     SAB  ...      10.0               13.0
-2          AH     SAB  ...      15.0               64.0
-3          AH     SAB  ...      20.0              115.0
-4          AH     SAB  ...      25.0              175.0
+0          AH     SAB  ...       NaN                NaN
+1          AH     SAB  ...       NaN                NaN
+2          AH     SAB  ...       NaN                NaN
+3          AH     SAB  ...       NaN                NaN
+4          AH     SAB  ...       NaN                NaN
 
 [5 rows x 22 columns]</code></pre>
 </div>
@@ -4728,33 +4741,33 @@ Warning
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>WCCTreeValues <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  speciesCode wccCode  speciesScientific speciesName estimatedYC roundedYC
-1          AH     SAB Fraxinus excelsior         Ash    9.068572        10
-2          AH     SAB Fraxinus excelsior         Ash    9.068572        10
-3          AH     SAB Fraxinus excelsior         Ash    9.068572        10
-4          AH     SAB Fraxinus excelsior         Ash    9.068572        10
-5          AH     SAB Fraxinus excelsior         Ash    9.068572        10
-6          AH     SAB Fraxinus excelsior         Ash    9.068572        10
+1          AH     SAB Fraxinus excelsior         Ash    1.328766         2
+2          AH     SAB Fraxinus excelsior         Ash    1.328766         2
+3          AH     SAB Fraxinus excelsior         Ash    1.328766         2
+4          AH     SAB Fraxinus excelsior         Ash    1.328766         2
+5          AH     SAB Fraxinus excelsior         Ash    1.328766         2
+6          AH     SAB Fraxinus excelsior         Ash    1.328766         2
   minWCCYC maxWCCYC finalYC spacing management period standingCarbonYr
-1        2       12      10     1.5    NO_thin    0-5             4.07
-2        2       12      10     1.5    NO_thin   5-10            12.42
-3        2       12      10     1.5    NO_thin  10-15            29.50
-4        2       12      10     1.5    NO_thin  15-20            26.84
-5        2       12      10     1.5    NO_thin  20-25            19.91
-6        2       12      10     1.5    NO_thin  25-30            14.58
+1        2       12       2     1.5    NO_thin    0-5               NA
+2        2       12       2     1.5    NO_thin   5-10               NA
+3        2       12       2     1.5    NO_thin  10-15               NA
+4        2       12       2     1.5    NO_thin  15-20               NA
+5        2       12       2     1.5    NO_thin  20-25               NA
+6        2       12       2     1.5    NO_thin  25-30               NA
   debrisCarbonYr totalCarbonYr cumCarbon5Yr cumBiomassCarbon cumEmissionsMgmt
-1           0.52          4.59         23.0             23.0                0
-2           0.65         13.06         65.3             88.3                0
-3           1.34         30.84        154.2            242.5                0
-4           0.82         27.66        138.3            380.8                0
-5           3.53         23.44        117.2            498.0                0
-6          12.91         27.49        137.5            635.5                0
+1             NA            NA           NA               NA               NA
+2             NA            NA           NA               NA               NA
+3             NA            NA           NA               NA               NA
+4             NA            NA           NA               NA               NA
+5             NA            NA           NA               NA               NA
+6             NA            NA           NA               NA               NA
   cumTotalCarbon remCarbonYr periodEnd clearfellCapCarbon
-1           23.0           0         5                6.5
-2           88.3           0        10               13.0
-3          242.5           0        15               64.0
-4          380.8           0        20              115.0
-5          498.0           0        25              175.0
-6          635.5           0        30              235.0</code></pre>
+1            2.7          NA        NA                 NA
+2            9.6          NA        NA                 NA
+3           28.9          NA        NA                 NA
+4           76.4          NA        NA                 NA
+5          120.6          NA        NA                 NA
+6          159.7          NA        NA                 NA</code></pre>
 </div>
 </div>
 </div>
@@ -4904,11 +4917,11 @@ Warning
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>WCCTreeValues_selSpp.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    speciesCode wccCode  ... periodEnd clearfellCapCarbon
-720         HOL     SAB  ...       NaN                NaN
-721         HOL     SAB  ...       NaN                NaN
-722         HOL     SAB  ...       NaN                NaN
-723         HOL     SAB  ...       NaN                NaN
-724         HOL     SAB  ...       NaN                NaN
+480         HOL     SAB  ...       NaN                NaN
+481         HOL     SAB  ...       NaN                NaN
+482         HOL     SAB  ...       NaN                NaN
+483         HOL     SAB  ...       NaN                NaN
+484         HOL     SAB  ...       NaN                NaN
 
 [5 rows x 22 columns]</code></pre>
 </div>
@@ -4974,24 +4987,24 @@ Warning
 <div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>WCCTreeValues_selSpp[[<span class="st">&quot;speciesCode&quot;</span>, <span class="st">&quot;spacing&quot;</span>, <span class="st">&quot;management&quot;</span>]].drop_duplicates().reset_index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    index speciesCode  spacing management
-0     720         HOL      1.5    NO_thin
-1     760         HOL      1.5    Thinned
-2     800         HOL      2.5    NO_thin
-3     840         HOL      2.5    Thinned
-4     880         HOL      3.0    NO_thin
-5     920         HOL      3.0    Thinned
-6    5520          BE      1.2    NO_thin
-7    5560          BE      1.2    Thinned
-8    5600          BE      2.5    NO_thin
-9    5640          BE      2.5    Thinned
-10   5680          BE      3.0    NO_thin
-11   5720          BE      3.0    Thinned
-12   8960         POK      1.2    NO_thin
-13   9000         POK      1.2    Thinned
-14   9040         POK      2.5    NO_thin
-15   9080         POK      2.5    Thinned
-16   9120         POK      3.0    NO_thin
-17   9160         POK      3.0    Thinned</code></pre>
+0     480         HOL      1.5    NO_thin
+1     520         HOL      1.5    Thinned
+2     560         HOL      2.5    NO_thin
+3     600         HOL      2.5    Thinned
+4     640         HOL      3.0    NO_thin
+5     680         HOL      3.0    Thinned
+6    5760          BE      1.2    NO_thin
+7    5800          BE      1.2    Thinned
+8    5840          BE      2.5    NO_thin
+9    5880          BE      2.5    Thinned
+10   5920          BE      3.0    NO_thin
+11   5960          BE      3.0    Thinned
+12   9440         POK      1.2    NO_thin
+13   9480         POK      1.2    Thinned
+14   9520         POK      2.5    NO_thin
+15   9560         POK      2.5    Thinned
+16   9600         POK      3.0    NO_thin
+17   9640         POK      3.0    Thinned</code></pre>
 </div>
 </div>
 </div>
@@ -5035,11 +5048,11 @@ Warning
 <span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>WCCTreeValues_selSpp_3_Thinned.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    speciesCode wccCode  ... periodEnd clearfellCapCarbon
-920         HOL     SAB  ...       NaN                NaN
-921         HOL     SAB  ...       NaN                NaN
-922         HOL     SAB  ...       NaN                NaN
-923         HOL     SAB  ...       NaN                NaN
-924         HOL     SAB  ...       NaN                NaN
+680         HOL     SAB  ...       NaN                NaN
+681         HOL     SAB  ...       NaN                NaN
+682         HOL     SAB  ...       NaN                NaN
+683         HOL     SAB  ...       NaN                NaN
+684         HOL     SAB  ...       NaN                NaN
 
 [5 rows x 22 columns]</code></pre>
 </div>
@@ -5205,11 +5218,11 @@ Warning
 <span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   period  cumTotalCarbonSite (A)
-0     0-5                   24.72
-1    5-10                  130.80
-2   10-15                  522.24
-3   15-20                 1452.00
-4   20-25                 2017.68</code></pre>
+0     0-5                   13.68
+1    5-10                   62.16
+2   10-15                  223.68
+3   15-20                  748.32
+4   20-25                 1666.32</code></pre>
 </div>
 </div>
 </div>
@@ -5224,12 +5237,12 @@ Warning
 <pre><code># A tibble: 6 × 2
   period   `cumTotalCarbonSite (A)`
   &lt;chr&gt;                       &lt;dbl&gt;
-1 &quot;  0-5&quot;                      24.7
-2 &quot;  5-10&quot;                    131. 
-3 &quot; 10-15&quot;                    522. 
-4 &quot; 15-20&quot;                   1452  
-5 &quot; 20-25&quot;                   2018. 
-6 &quot; 25-30&quot;                   2543. </code></pre>
+1 &quot;  0-5&quot;                      13.7
+2 &quot;  5-10&quot;                     62.2
+3 &quot; 10-15&quot;                    224. 
+4 &quot; 15-20&quot;                    748. 
+5 &quot; 20-25&quot;                   1666. 
+6 &quot; 25-30&quot;                   2377. </code></pre>
 </div>
 </div>
 </div>
@@ -5245,11 +5258,11 @@ Warning
 <span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   period  cumTotalCarbonSite (A)  cumTotalCarbonSiteReduced (B)
-0     0-5                   24.72                         19.776
-1    5-10                  130.80                        104.640
-2   10-15                  522.24                        417.792
-3   15-20                 1452.00                       1161.600
-4   20-25                 2017.68                       1614.144</code></pre>
+0     0-5                   13.68                         10.944
+1    5-10                   62.16                         49.728
+2   10-15                  223.68                        178.944
+3   15-20                  748.32                        598.656
+4   20-25                 1666.32                       1333.056</code></pre>
 </div>
 </div>
 </div>
@@ -5262,12 +5275,12 @@ Warning
 <pre><code># A tibble: 6 × 3
   period   `cumTotalCarbonSite (A)` `cumTotalCarbonSiteReduced (B)`
   &lt;chr&gt;                       &lt;dbl&gt;                           &lt;dbl&gt;
-1 &quot;  0-5&quot;                      24.7                            19.8
-2 &quot;  5-10&quot;                    131.                            105. 
-3 &quot; 10-15&quot;                    522.                            418. 
-4 &quot; 15-20&quot;                   1452                            1162. 
-5 &quot; 20-25&quot;                   2018.                           1614. 
-6 &quot; 25-30&quot;                   2543.                           2035. </code></pre>
+1 &quot;  0-5&quot;                      13.7                            10.9
+2 &quot;  5-10&quot;                     62.2                            49.7
+3 &quot; 10-15&quot;                    224.                            179. 
+4 &quot; 15-20&quot;                    748.                            599. 
+5 &quot; 20-25&quot;                   1666.                           1333. 
+6 &quot; 25-30&quot;                   2377.                           1902. </code></pre>
 </div>
 </div>
 </div>
@@ -5313,12 +5326,12 @@ Warning
 <pre><code># A tibble: 6 × 4
   period   `cumTotalCarbonSite (A)` `cumTotalCarbonSiteReduced (B)` establishm…¹
   &lt;chr&gt;                       &lt;dbl&gt;                           &lt;dbl&gt;        &lt;dbl&gt;
-1 &quot;  0-5&quot;                      24.7                            19.8        -81.4
-2 &quot;  5-10&quot;                    131.                            105.         -81.4
-3 &quot; 10-15&quot;                    522.                            418.         -81.4
-4 &quot; 15-20&quot;                   1452                            1162.         -81.4
-5 &quot; 20-25&quot;                   2018.                           1614.         -81.4
-6 &quot; 25-30&quot;                   2543.                           2035.         -81.4
+1 &quot;  0-5&quot;                      13.7                            10.9        -81.4
+2 &quot;  5-10&quot;                     62.2                            49.7        -81.4
+3 &quot; 10-15&quot;                    224.                            179.         -81.4
+4 &quot; 15-20&quot;                    748.                            599.         -81.4
+5 &quot; 20-25&quot;                   1666.                           1333.         -81.4
+6 &quot; 25-30&quot;                   2377.                           1902.         -81.4
 # … with abbreviated variable name ¹​`establishmentCarbonLoss (C)`</code></pre>
 </div>
 </div>
@@ -5469,12 +5482,12 @@ Warning
 <pre><code># A tibble: 6 × 5
   period   `cumTotalCarbonSite (A)` cumTotalCarbonSiteReduced …¹ estab…² cumSo…³
   &lt;chr&gt;                       &lt;dbl&gt;                        &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-1 &quot;  0-5&quot;                      24.7                         19.8   -81.4   0.367
-2 &quot;  5-10&quot;                    131.                         105.    -81.4   5.87 
-3 &quot; 10-15&quot;                    522.                         418.    -81.4  11.4  
-4 &quot; 15-20&quot;                   1452                         1162.    -81.4  16.9  
-5 &quot; 20-25&quot;                   2018.                        1614.    -81.4  22.4  
-6 &quot; 25-30&quot;                   2543.                        2035.    -81.4  27.9  
+1 &quot;  0-5&quot;                      13.7                         10.9   -81.4   0.367
+2 &quot;  5-10&quot;                     62.2                         49.7   -81.4   5.87 
+3 &quot; 10-15&quot;                    224.                         179.    -81.4  11.4  
+4 &quot; 15-20&quot;                    748.                         599.    -81.4  16.9  
+5 &quot; 20-25&quot;                   1666.                        1333.    -81.4  22.4  
+6 &quot; 25-30&quot;                   2377.                        1902.    -81.4  27.9  
 # … with abbreviated variable names ¹​`cumTotalCarbonSiteReduced (B)`,
 #   ²​`establishmentCarbonLoss (C)`, ³​`cumSoilCarbonFlux (D)`</code></pre>
 </div>
@@ -5493,11 +5506,11 @@ Warning
 <span id="cb113-3"><a href="#cb113-3" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   period  ...  totalProjectCarbonSeq (E)
-0     0-5  ...                 -61.269333
-1    5-10  ...                  29.094667
-2   10-15  ...                 347.746667
-3   15-20  ...                1097.054667
-4   20-25  ...                1555.098667
+0     0-5  ...                 -70.101333
+1    5-10  ...                 -25.817333
+2   10-15  ...                 108.898667
+3   15-20  ...                 534.110667
+4   20-25  ...                1274.010667
 
 [5 rows x 6 columns]</code></pre>
 </div>
@@ -5513,12 +5526,12 @@ Warning
 <pre><code># A tibble: 6 × 6
   period   `cumTotalCarbonSite (A)` cumTotalCarbonSite…¹ estab…² cumSo…³ total…⁴
   &lt;chr&gt;                       &lt;dbl&gt;                &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-1 &quot;  0-5&quot;                      24.7                 19.8   -81.4   0.367   -61.3
-2 &quot;  5-10&quot;                    131.                 105.    -81.4   5.87     29.1
-3 &quot; 10-15&quot;                    522.                 418.    -81.4  11.4     348. 
-4 &quot; 15-20&quot;                   1452                 1162.    -81.4  16.9    1097. 
-5 &quot; 20-25&quot;                   2018.                1614.    -81.4  22.4    1555. 
-6 &quot; 25-30&quot;                   2543.                2035.    -81.4  27.9    1981. 
+1 &quot;  0-5&quot;                      13.7                 10.9   -81.4   0.367   -70.1
+2 &quot;  5-10&quot;                     62.2                 49.7   -81.4   5.87    -25.8
+3 &quot; 10-15&quot;                    224.                 179.    -81.4  11.4     109. 
+4 &quot; 15-20&quot;                    748.                 599.    -81.4  16.9     534. 
+5 &quot; 20-25&quot;                   1666.                1333.    -81.4  22.4    1274. 
+6 &quot; 25-30&quot;                   2377.                1902.    -81.4  27.9    1848. 
 # … with abbreviated variable names ¹​`cumTotalCarbonSiteReduced (B)`,
 #   ²​`establishmentCarbonLoss (C)`, ³​`cumSoilCarbonFlux (D)`,
 #   ⁴​`totalProjectCarbonSeq (E)`</code></pre>
@@ -5540,11 +5553,11 @@ Warning
 <span id="cb117-5"><a href="#cb117-5" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   period  cumTotalCarbonSite (A)  ...  Leakage (G)  netTotalProjectCarbonSeq (H)
-0     0-5                   24.72  ...            0                    -61.269333
-1    5-10                  130.80  ...            0                     29.094667
-2   10-15                  522.24  ...            0                    347.746667
-3   15-20                 1452.00  ...            0                   1097.054667
-4   20-25                 2017.68  ...            0                   1555.098667
+0     0-5                   13.68  ...            0                    -70.101333
+1    5-10                   62.16  ...            0                    -25.817333
+2   10-15                  223.68  ...            0                    108.898667
+3   15-20                  748.32  ...            0                    534.110667
+4   20-25                 1666.32  ...            0                   1274.010667
 
 [5 rows x 9 columns]</code></pre>
 </div>
@@ -5561,12 +5574,12 @@ Warning
 <pre><code># A tibble: 6 × 9
   period   cumTotalCar…¹ cumTo…² estab…³ cumSo…⁴ total…⁵ Basel…⁶ Leaka…⁷ netTo…⁸
   &lt;chr&gt;            &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-1 &quot;  0-5&quot;           24.7    19.8   -81.4   0.367   -61.3       0       0   -61.3
-2 &quot;  5-10&quot;         131.    105.    -81.4   5.87     29.1       0       0    29.1
-3 &quot; 10-15&quot;         522.    418.    -81.4  11.4     348.        0       0   348. 
-4 &quot; 15-20&quot;        1452    1162.    -81.4  16.9    1097.        0       0  1097. 
-5 &quot; 20-25&quot;        2018.   1614.    -81.4  22.4    1555.        0       0  1555. 
-6 &quot; 25-30&quot;        2543.   2035.    -81.4  27.9    1981.        0       0  1981. 
+1 &quot;  0-5&quot;           13.7    10.9   -81.4   0.367   -70.1       0       0   -70.1
+2 &quot;  5-10&quot;          62.2    49.7   -81.4   5.87    -25.8       0       0   -25.8
+3 &quot; 10-15&quot;         224.    179.    -81.4  11.4     109.        0       0   109. 
+4 &quot; 15-20&quot;         748.    599.    -81.4  16.9     534.        0       0   534. 
+5 &quot; 20-25&quot;        1666.   1333.    -81.4  22.4    1274.        0       0  1274. 
+6 &quot; 25-30&quot;        2377.   1902.    -81.4  27.9    1848.        0       0  1848. 
 # … with abbreviated variable names ¹​`cumTotalCarbonSite (A)`,
 #   ²​`cumTotalCarbonSiteReduced (B)`, ³​`establishmentCarbonLoss (C)`,
 #   ⁴​`cumSoilCarbonFlux (D)`, ⁵​`totalProjectCarbonSeq (E)`, ⁶​`Baseline (F)`,
@@ -5586,11 +5599,11 @@ Warning
 <span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   period  ...  claimableCarbonSeq (J)
-0     0-5  ...              -49.015467
-1    5-10  ...               23.275733
-2   10-15  ...              278.197333
-3   15-20  ...              877.643733
-4   20-25  ...             1244.078933
+0     0-5  ...              -56.081067
+1    5-10  ...              -20.653867
+2   10-15  ...               87.118933
+3   15-20  ...              427.288533
+4   20-25  ...             1019.208533
 
 [5 rows x 10 columns]</code></pre>
 </div>
@@ -5606,12 +5619,12 @@ Warning
 <pre><code># A tibble: 6 × 10
   period cumTo…¹ cumTo…² estab…³ cumSo…⁴ total…⁵ Basel…⁶ Leaka…⁷ netTo…⁸ claim…⁹
   &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-1 &quot;  0-…    24.7    19.8   -81.4   0.367   -61.3       0       0   -61.3   -49.0
-2 &quot;  5-…   131.    105.    -81.4   5.87     29.1       0       0    29.1    23.3
-3 &quot; 10-…   522.    418.    -81.4  11.4     348.        0       0   348.    278. 
-4 &quot; 15-…  1452    1162.    -81.4  16.9    1097.        0       0  1097.    878. 
-5 &quot; 20-…  2018.   1614.    -81.4  22.4    1555.        0       0  1555.   1244. 
-6 &quot; 25-…  2543.   2035.    -81.4  27.9    1981.        0       0  1981.   1585. 
+1 &quot;  0-…    13.7    10.9   -81.4   0.367   -70.1       0       0   -70.1   -56.1
+2 &quot;  5-…    62.2    49.7   -81.4   5.87    -25.8       0       0   -25.8   -20.7
+3 &quot; 10-…   224.    179.    -81.4  11.4     109.        0       0   109.     87.1
+4 &quot; 15-…   748.    599.    -81.4  16.9     534.        0       0   534.    427. 
+5 &quot; 20-…  1666.   1333.    -81.4  22.4    1274.        0       0  1274.   1019. 
+6 &quot; 25-…  2377.   1902.    -81.4  27.9    1848.        0       0  1848.   1479. 
 # … with abbreviated variable names ¹​`cumTotalCarbonSite (A)`,
 #   ²​`cumTotalCarbonSiteReduced (B)`, ³​`establishmentCarbonLoss (C)`,
 #   ⁴​`cumSoilCarbonFlux (D)`, ⁵​`totalProjectCarbonSeq (E)`, ⁶​`Baseline (F)`,
@@ -5631,11 +5644,11 @@ Warning
 <span id="cb125-2"><a href="#cb125-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   period  ...  meanClaimableCarbonSeqPerHa (K)
-0     0-5  ...                        -4.084622
-1    5-10  ...                         1.939644
-2   10-15  ...                        23.183111
-3   15-20  ...                        73.136978
-4   20-25  ...                       103.673244
+0     0-5  ...                        -4.673422
+1    5-10  ...                        -1.721156
+2   10-15  ...                         7.259911
+3   15-20  ...                        35.607378
+4   20-25  ...                        84.934044
 
 [5 rows x 11 columns]</code></pre>
 </div>
@@ -5651,12 +5664,12 @@ Warning
 <pre><code># A tibble: 6 × 11
   period cumTo…¹ cumTo…² estab…³ cumSo…⁴ total…⁵ Basel…⁶ Leaka…⁷ netTo…⁸ claim…⁹
   &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-1 &quot;  0-…    24.7    19.8   -81.4   0.367   -61.3       0       0   -61.3   -49.0
-2 &quot;  5-…   131.    105.    -81.4   5.87     29.1       0       0    29.1    23.3
-3 &quot; 10-…   522.    418.    -81.4  11.4     348.        0       0   348.    278. 
-4 &quot; 15-…  1452    1162.    -81.4  16.9    1097.        0       0  1097.    878. 
-5 &quot; 20-…  2018.   1614.    -81.4  22.4    1555.        0       0  1555.   1244. 
-6 &quot; 25-…  2543.   2035.    -81.4  27.9    1981.        0       0  1981.   1585. 
+1 &quot;  0-…    13.7    10.9   -81.4   0.367   -70.1       0       0   -70.1   -56.1
+2 &quot;  5-…    62.2    49.7   -81.4   5.87    -25.8       0       0   -25.8   -20.7
+3 &quot; 10-…   224.    179.    -81.4  11.4     109.        0       0   109.     87.1
+4 &quot; 15-…   748.    599.    -81.4  16.9     534.        0       0   534.    427. 
+5 &quot; 20-…  1666.   1333.    -81.4  22.4    1274.        0       0  1274.   1019. 
+6 &quot; 25-…  2377.   1902.    -81.4  27.9    1848.        0       0  1848.   1479. 
 # … with 1 more variable: `meanClaimableCarbonSeqPerHa (K)` &lt;dbl&gt;, and
 #   abbreviated variable names ¹​`cumTotalCarbonSite (A)`,
 #   ²​`cumTotalCarbonSiteReduced (B)`, ³​`establishmentCarbonLoss (C)`,

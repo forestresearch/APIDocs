@@ -43,13 +43,13 @@ Establish API POST request URL
 ## Python
 
 ```{python url_py}
-base_url = "http://209.97.132.245:8000/ESCTreeResults/"
+base_url = "http://178.62.35.149:8000/ESCTreeResults/"
 ```
 
 ## R
 
 ```{r url_r}
-base_url <- "http://209.97.132.245:8000/ESCTreeResults/"
+base_url <- "http://178.62.35.149:8000/ESCTreeResults/"
 ```
 
 :::
@@ -152,6 +152,9 @@ Alternatively, the response from the `ESCSiteData` API can be passed to escSiteD
 
 Establish the site modifier options and species group filter.
 
+* awcAdj:bool
+    * True
+    * False
 * drainage:int
     * 0 = None.
     * 1 = Drainage installed.
@@ -178,6 +181,7 @@ Establish the site modifier options and species group filter.
 ## Python
 
 ```{python siteMod_py}
+awcAdj = True
 drainage = 0
 brash = 0
 fertiliser = 0
@@ -188,6 +192,7 @@ filter = 0
 ## R
 
 ```{r siteMod_r}
+awcAdj <- TRUE
 drainage <- 0
 brash <- 0
 fertiliser <- 0
@@ -227,6 +232,7 @@ Compose the request body.
 ```{python reqBody_py}
 req_body = {"smr": smr_modVal, "snr": snr_modVal,
             "escSiteData": escSiteData,
+            "awcAdj": awcAdj,
             "drainage": drainage, "brash": brash, 
             "fertiliser": fertiliser, "exposure": exposure,
             "filter": filter,
@@ -238,6 +244,7 @@ req_body = {"smr": smr_modVal, "snr": snr_modVal,
 ```{r reqBody_r}
 req_list <- list("smr" = smr_modVal, "snr" = snr_modVal,
                  "escSiteData" = escSiteData,
+                 "awcAdj" = awcAdj,
                  "drainage" = drainage, "brash" = brash, 
                  "fertiliser" =  fertiliser, "exposure" = exposure, 
                  "filter" = filter,

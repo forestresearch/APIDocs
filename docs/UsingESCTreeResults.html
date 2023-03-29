@@ -4129,12 +4129,12 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>base_url <span class="op">=</span> <span class="st">&quot;http://209.97.132.245:8000/ESCTreeResults/&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>base_url <span class="op">=</span> <span class="st">&quot;http://178.62.35.149:8000/ESCTreeResults/&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>base_url <span class="ot">&lt;-</span> <span class="st">&quot;http://209.97.132.245:8000/ESCTreeResults/&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>base_url <span class="ot">&lt;-</span> <span class="st">&quot;http://178.62.35.149:8000/ESCTreeResults/&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -4235,6 +4235,11 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <p>Alternatively, the response from the <code>ESCSiteData</code> API can be passed to escSiteData.</p>
 <p>Establish the site modifier options and species group filter.</p>
 <ul>
+<li>awcAdj:bool
+<ul>
+<li>True</li>
+<li>False</li>
+</ul></li>
 <li>drainage:int
 <ul>
 <li>0 = None.</li>
@@ -4271,20 +4276,22 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <div class="tab-content">
 <div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>drainage <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>brash <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>fertiliser <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>exposure <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="bu">filter</span> <span class="op">=</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>awcAdj <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>drainage <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>brash <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>fertiliser <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>exposure <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="bu">filter</span> <span class="op">=</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>drainage <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>brash <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>fertiliser <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>exposure <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>filter <span class="ot">&lt;-</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>awcAdj <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>drainage <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>brash <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>fertiliser <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>exposure <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>filter <span class="ot">&lt;-</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -4319,22 +4326,24 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>req_body <span class="op">=</span> {<span class="st">&quot;smr&quot;</span>: smr_modVal, <span class="st">&quot;snr&quot;</span>: snr_modVal,</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;escSiteData&quot;</span>: escSiteData,</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;drainage&quot;</span>: drainage, <span class="st">&quot;brash&quot;</span>: brash, </span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;fertiliser&quot;</span>: fertiliser, <span class="st">&quot;exposure&quot;</span>: exposure,</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;filter&quot;</span>: <span class="bu">filter</span>,</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;escVersion&quot;</span>: escVersion}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;awcAdj&quot;</span>: awcAdj,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;drainage&quot;</span>: drainage, <span class="st">&quot;brash&quot;</span>: brash, </span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;fertiliser&quot;</span>: fertiliser, <span class="st">&quot;exposure&quot;</span>: exposure,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;filter&quot;</span>: <span class="bu">filter</span>,</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;escVersion&quot;</span>: escVersion}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>req_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;smr&quot;</span> <span class="ot">=</span> smr_modVal, <span class="st">&quot;snr&quot;</span> <span class="ot">=</span> snr_modVal,</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;escSiteData&quot;</span> <span class="ot">=</span> escSiteData,</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;drainage&quot;</span> <span class="ot">=</span> drainage, <span class="st">&quot;brash&quot;</span> <span class="ot">=</span> brash, </span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;fertiliser&quot;</span> <span class="ot">=</span>  fertiliser, <span class="st">&quot;exposure&quot;</span> <span class="ot">=</span> exposure, </span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;filter&quot;</span> <span class="ot">=</span> filter,</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;escVersion&quot;</span> <span class="ot">=</span> escVersion)</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>req_body <span class="ot">&lt;-</span> jsonlite<span class="sc">::</span><span class="fu">toJSON</span>(req_list, <span class="at">auto_unbox =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;awcAdj&quot;</span> <span class="ot">=</span> awcAdj,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;drainage&quot;</span> <span class="ot">=</span> drainage, <span class="st">&quot;brash&quot;</span> <span class="ot">=</span> brash, </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;fertiliser&quot;</span> <span class="ot">=</span>  fertiliser, <span class="st">&quot;exposure&quot;</span> <span class="ot">=</span> exposure, </span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;filter&quot;</span> <span class="ot">=</span> filter,</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;escVersion&quot;</span> <span class="ot">=</span> escVersion)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>req_body <span class="ot">&lt;-</span> jsonlite<span class="sc">::</span><span class="fu">toJSON</span>(req_list, <span class="at">auto_unbox =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -4475,7 +4484,9 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 4  0.0  0.0     0.0000  0.00000   0.000000    0.000000       Modifier - Brash
 5  0.0  0.0     0.0000  0.00000   0.000000    0.000000  Modifier - Fertiliser
 6  0.0  0.0     0.0000  0.00000   0.000000    0.000000    Modifier - Exposure
-7  1.0  2.0  1300.0447  6.13745  15.321886  100.896255         Values - Final</code></pre>
+7  1.0  2.0  1300.0447  6.13745  15.321886  100.896255        Values - preAWC
+8  0.0  0.0     0.0000  0.00000   0.000000   30.000000         Modifier - AWC
+9  1.0  2.0  1300.0447  6.13745  15.321886  130.896255         Values - Final</code></pre>
 </div>
 </div>
 </div>
@@ -4484,15 +4495,17 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>ESCDoseVals <span class="ot">=</span> ESCTreeResultsresponse_list<span class="sc">$</span><span class="st">`</span><span class="at">RCP2.6</span><span class="st">`</span><span class="sc">$</span><span class="st">`</span><span class="at">1980_2000</span><span class="st">`</span><span class="sc">$</span>ESCDoseVals</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>ESCDoseVals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  SMR SNR       AT     CT    DAMS       MD                  Item
-1   1   2 1300.045 6.1375 15.3219 100.8963         Values - Base
-2  NA  NA       NA     NA      NA       NA       Values - Manual
-3   1   2 1300.045 6.1375 15.3219 100.8963       Values - PreMod
-4   0   0    0.000 0.0000  0.0000   0.0000   Modifier - Drainage
-5   0   0    0.000 0.0000  0.0000   0.0000      Modifier - Brash
-6   0   0    0.000 0.0000  0.0000   0.0000 Modifier - Fertiliser
-7   0   0    0.000 0.0000  0.0000   0.0000   Modifier - Exposure
-8   1   2 1300.045 6.1375 15.3219 100.8963        Values - Final</code></pre>
+<pre><code>   SMR SNR       AT     CT    DAMS       MD                  Item
+1    1   2 1300.045 6.1375 15.3219 100.8963         Values - Base
+2   NA  NA       NA     NA      NA       NA       Values - Manual
+3    1   2 1300.045 6.1375 15.3219 100.8963       Values - PreMod
+4    0   0    0.000 0.0000  0.0000   0.0000   Modifier - Drainage
+5    0   0    0.000 0.0000  0.0000   0.0000      Modifier - Brash
+6    0   0    0.000 0.0000  0.0000   0.0000 Modifier - Fertiliser
+7    0   0    0.000 0.0000  0.0000   0.0000   Modifier - Exposure
+8    1   2 1300.045 6.1375 15.3219 100.8963       Values - preAWC
+9    0   0    0.000 0.0000  0.0000  30.0000        Modifier - AWC
+10   1   2 1300.045 6.1375 15.3219 130.8963        Values - Final</code></pre>
 </div>
 </div>
 </div>
