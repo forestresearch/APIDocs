@@ -127,7 +127,7 @@ Establish the climate model (climateModel), climate scenario/s (climateScenList)
     * For "UKCP09" a list containing any of: ["A1b3q0"]
     * For "UKCP18-1km" a list containing any of: ["RCP2.6", "RCP4.5", "RCP6.0", "RCP8.5"]
 * climateYearList:List
-    * For "UKCP09" a list containing any of the following timeslices: ["1960_1990", "2000_2020", "2010_2030", "2020_2040", "2030_2050", "2040_2060", "2050_2070", "2060_2080", "2070_2090"]
+    * For "UKCP09" a list containing any of the following timeslices: ["1961_1990", "2000_2020", "2010_2030", "2020_2040", "2030_2050", "2040_2060", "2050_2070", "2060_2080", "2070_2090"]
     * For "UKCP18-1km" a list containing any of the following timeslices: ["1980_2000", "1990_2010", "2000_2020", "2010_2030", "2020_2040", "2030_2050", "2040_2060", "2050_2070", "2060_2080"]
 
 ::: {.panel-tabset}
