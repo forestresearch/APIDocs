@@ -21,6 +21,7 @@ This notebook details how to call the ESCTreeResults API endpoint to retrieve tr
 import requests
 import json
 import pandas
+import pprint
 pandas.options.mode.chained_assignment = None
 ```
 
@@ -101,27 +102,27 @@ Establish the escSiteData dictionary. To do this, a dictionary containing the va
 ## Python
 
 ```{python otherOpts_py}
-climateScen_vals = ["RCP2.6", "RCP2.6"]
-climateYear_vals = ["1980_2000", "2060_2080"]
-smr_vals = [1, 1]
-snr_vals = [2, 2]
-at_vals = [1300.0447, 1538.3716]
-ct_vals = [6.13745, 6.13745]
-dams_vals = [15.321886, 15.321886]
-md_vals = [100.896255, 92.44555]
+climateScen_vals = ["RCP2.6", "RCP2.6", "RCP8.5", "RCP8.5"]
+climateYear_vals = ["1980_2000", "2040_2060", "1980_2000", "2040_2060"]
+smr_vals = [5, 5, 5, 5]
+snr_vals = [1, 1, 1, 1]
+at_vals = [1102.599, 1614.481, 1102.599, 1846.440]
+ct_vals = [8.454323, 8.454323, 8.454323, 8.454323]
+dams_vals = [18.60297, 18.60297, 18.60297, 18.60297]
+md_vals = [63.12716, 115.40047, 63.12716, 123.29279]
 ```
 
 ## R
 
 ```{r otherOpts_r}
-climateScen_vals <- list("RCP2.6", "RCP2.6")
-climateYear_vals <- list("1980_2000", "2060_2080")
-smr_vals <- list(1, 1)
-snr_vals <- list(2, 2)
-at_vals <- list(1300.0447, 1538.3716)
-ct_vals <- list(6.13745, 6.13745)
-dams_vals <- list(15.321886, 15.321886)
-md_vals <- list(100.896255, 92.44555)
+climateScen_vals <- list("RCP2.6", "RCP2.6", "RCP8.5", "RCP8.5")
+climateYear_vals <- list("1980_2000", "2040_2060", "1980_2000", "2040_2060")
+smr_vals <- list(5, 5, 5, 5)
+snr_vals <- list(1, 1, 1, 1)
+at_vals <- list(1102.599, 1614.481, 1102.599, 1846.440)
+ct_vals <- list(8.454323, 8.454323, 8.454323, 8.454323)
+dams_vals <- list(18.60297, 18.60297, 18.60297, 18.60297)
+md_vals <- list(63.12716, 115.40047, 63.12716, 123.29279)
 ```
 
 :::
@@ -367,6 +368,22 @@ ESCresponse_dict (dict)
     │   ├── ESCResponseVals (DataFrame)
     │   ├── ESCSuitMetrics (DataFrame)
 ```
+
+::: {.panel-tabset}
+
+## Python
+
+```{python ESCTreeResultsresponse_names_py}
+pprint.pprint(ESCTreeResultsresponse_dict, depth = 2)
+```
+
+## R
+
+```{r ESCTreeResultsresponse_names_r}
+str(ESCTreeResultsresponse_list, max.level = 3)
+```
+
+:::
 
 Access the ESC data frames from the API response using the following code.
 

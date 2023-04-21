@@ -22,6 +22,7 @@ such as the claimable carbon sequestration using R and Python.
 import requests
 import json
 import pandas
+import pprint
 pandas.options.mode.chained_assignment = None
 ```
 
@@ -438,6 +439,22 @@ ESCresponse_dict (dict or list)
     │   ├── WCCSoilSeq (DataFrame)
     │   ├── WCCEstablishment (DataFrame)
 ```
+
+::: {.panel-tabset}
+
+## Python
+
+```{python ESCWCCresponse_names_py}
+pprint.pprint(ESCWCCresponse_dict, depth = 2)
+```
+
+## R
+
+```{r ESCWCCresponse_names_r}
+str(ESCWCCresponse_list, max.level = 3)
+```
+
+:::
 
 Access the ESC & WCC data frames from the API response for a given climate scenario using the following code.
 

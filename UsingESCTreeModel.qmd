@@ -21,6 +21,7 @@ This notebook details how to call the ESCTreeModel API endpoint to retrieve tree
 import requests
 import json
 import pandas
+import pprint
 pandas.options.mode.chained_assignment = None
 ```
 
@@ -351,6 +352,22 @@ ESCresponse_dict (dict)
     │   ├── ESCSuitMetrics (DataFrame)
 
 ```
+
+::: {.panel-tabset}
+
+## Python
+
+```{python ESCTreeModelresponse_names_py}
+pprint.pprint(ESCTreeModelresponse_dict, depth = 2)
+```
+
+## R
+
+```{r ESCTreeModelresponse_names_r}
+str(ESCTreeModelresponse_list, max.level = 3)
+```
+
+:::
 
 Access the ESC data frames from the API response for a given climate scenario using the following code.
 
