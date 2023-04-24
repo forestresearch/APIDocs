@@ -4258,7 +4258,7 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 </div>
 </div>
 </div>
-<p>Establish the Woodland Carbon Code (WCC) version (wccVersion), the planting spacing (wccSpacing), management regime (thinning or no thinning) (wccManagement), period (wccPeriod), area of the site to be established (wccEstArea) in hectares (ha), the length of roads to be constructed (wccRoadLength) in km, and the area, if any, of arable land with mineral soil to be planted (wccSoilArea) in ha.</p>
+<p>Establish the Woodland Carbon Code (WCC) version (wccVersion), the planting spacing (wccSpacing), management regime (thinning or no thinning) (wccManagement), period (wccPeriod), area of the site to be established/planted with seedlings (wccSeedlingArea) in hectares (ha), the area to which ground preparation (requiring fuel) is applied (wccGroundPrepFuelArea), the area for which tree shelters will be required (wccTreeSheltersArea), the area to be fenced (wccFencingArea), the area that herbicide will be applied (wccHerbicideArea), the length of roads to be constructed (wccRoadLength) in km, and the area, if any, of arable land with mineral soil to be planted (wccSoilArea) in ha.</p>
 <ul>
 <li>wccVersion:str
 <ul>
@@ -4275,10 +4275,6 @@ Attaching package: &#39;dplyr&#39;</code></pre>
 <li>wccPeriod:list
 <ul>
 <li>0 = ‘all’, equivalent to {0: [“0”, “0-5”, “5-10”, “10-15”, “15-20”, “20-25”, “25-30”, “30-35”, “35-40”, “40-45”, “45-50”, “50-55”, “55-60”, “60-65”, “65-70”, “70-75”, “75-80”, “80-85”, “85-90”, “90-95”, “95-100”, “100-105”, “105-110”, “110-115”, “115-120”, “120-125”, “125-130”, “130-135”, “135-140”, “140-145”, “145-150”, “150-155”, “155-160”, “160-165”, “165-170”, “170-175”, “175-180”, “180-185”, “185-190”, “190-195”, “195-200”]}</li>
-</ul></li>
-<li>wccEstArea:float
-<ul>
-<li>0 by default, any positive number.</li>
 </ul></li>
 <li>wccSeedlingArea:float
 <ul>
