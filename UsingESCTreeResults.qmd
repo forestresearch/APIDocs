@@ -44,13 +44,13 @@ Establish API POST request URL
 ## Python
 
 ```{python url_py}
-base_url = "http://209.97.132.245:8000/ESCTreeResults/"
+base_url = "https://escapi.frdss.org.uk/ESCTreeResults/"
 ```
 
 ## R
 
 ```{r url_r}
-base_url <- "http://209.97.132.245:8000/ESCTreeResults/"
+base_url <- "https://escapi.frdss.org.uk/ESCTreeResults/"
 ```
 
 :::
