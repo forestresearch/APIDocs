@@ -151,7 +151,7 @@ escSiteData = list('climateScen' = climateScen_vals, 'climateYear' = climateYear
 
 Alternatively, the response from the `ESCSiteData` API can be passed to escSiteData.
 
-Establish the site modifier options and species group filter.
+Establish the site modifier options.
 
 * awcAdj:bool
     * True
@@ -170,12 +170,6 @@ Establish the site modifier options and species group filter.
     * 0 = None.
     * 1 = Exposed ridge/Coastal zone.
     * 2 = Local shelter/Less exposed/Underplanting.
-* filter:int
-    * 0 = No filter
-    * 1 = Conifers only
-    * 2 = Broadleaves only
-    * 3 = Natives only
-    * 4 = Non-natives only
 
 ::: {.panel-tabset}
 
@@ -187,7 +181,6 @@ drainage = 0
 brash = 0
 fertiliser = 0
 exposure = 0
-filter = 0
 ```
 
 ## R
@@ -198,7 +191,43 @@ drainage <- 0
 brash <- 0
 fertiliser <- 0
 exposure <- 0
+```
+
+:::
+
+Establish the species filter parameters.
+
+* filter:int
+    * An integer, one of: 0 (broadleaves and conifers), 1 (conifers only), or 2 (broadleaves only). 0  by default.
+* filterNative:str
+    * A string, one of: "Yes" (native species) or "No" (non-native species). None by default.
+* filterMainSpp:str
+    * A string, one of: "Yes" (main forestry species in the UK) or "No" (other forestry species in the UK). None by default.
+* filterWaneStatus:str
+    * A string, one of: "Exempt" (approved species for planting in Scotland), "Exempt mainland only" (approved species for planting in the mainland of Scotland only), or "Not exempt" (species not approved for planting in Scotland). None by default.
+* filterAF:str
+    * A string, one of: "Yes" (species used in agroforestry systems) or "No" (species not used in agroforestry systems). None by default.
+
+::: {.panel-tabset}
+
+## Python
+
+```{python filters_py}
+filter = 0
+filterNative = None
+filterMainSpp = None
+filterWaneStatus = "Exempt"
+filterAF = None
+```
+
+## R
+
+```{r filters_r}
 filter <- 0
+filterNative <- NA
+filterMainSpp <- NA
+filterWaneStatus <- "Exempt"
+filterAF <- NA
 ```
 
 :::
@@ -206,7 +235,7 @@ filter <- 0
 Establish the ESC version.
 
 * escVersion:str
-    * "4.33" = "4.33"
+    * A string representing the version of the ESC species suitability function parameters to use. One of: "4.33", "4.4".
 
 ::: {.panel-tabset}
 
@@ -236,7 +265,8 @@ req_body = {"smr": smr_modVal, "snr": snr_modVal,
             "awcAdj": awcAdj,
             "drainage": drainage, "brash": brash, 
             "fertiliser": fertiliser, "exposure": exposure,
-            "filter": filter,
+            "filter": filter, "filterNative": filterNative,
+            "filterMainSpp": filterMainSpp, "filterWaneStatus": filterWaneStatus, "filterAF": filterAF,
             "escVersion": escVersion}
 ```
 
@@ -248,7 +278,8 @@ req_list <- list("smr" = smr_modVal, "snr" = snr_modVal,
                  "awcAdj" = awcAdj,
                  "drainage" = drainage, "brash" = brash, 
                  "fertiliser" =  fertiliser, "exposure" = exposure, 
-                 "filter" = filter,
+                 "filter" = filter, "filterNative" = filterNative,
+                 "filterMainSpp" = filterMainSpp, "filterWaneStatus" = filterWaneStatus, "filterAF" = filterAF,
                  "escVersion" = escVersion)
 
 req_body <- jsonlite::toJSON(req_list, auto_unbox = TRUE)
@@ -411,7 +442,7 @@ ESCDoseVals
 ## R
 
 ```{r ESCDoseVals_r}
-ESCDoseVals = ESCTreeResultsresponse_list$`RCP2.6`$`1980_2000`$ESCDoseVals
+ESCDoseVals <- ESCTreeResultsresponse_list$`RCP2.6`$`1980_2000`$ESCDoseVals
 ESCDoseVals
 ```
 
@@ -436,7 +467,7 @@ ESCResponseVals.head()
 ## R
 
 ```{r ESCResponseVals_r}
-ESCResponseVals = ESCTreeResultsresponse_list$`RCP2.6`$`1980_2000`$ESCResponseVals
+ESCResponseVals <- ESCTreeResultsresponse_list$`RCP2.6`$`1980_2000`$ESCResponseVals
 ESCResponseVals |> head()
 ```
 
@@ -470,7 +501,7 @@ ESCSuitMetrics.head()
 ## R
 
 ```{r ESCSuitMetrics_r}
-ESCSuitMetrics = ESCTreeResultsresponse_list$`RCP2.6`$`1980_2000`$ESCSuitMetrics
+ESCSuitMetrics <- ESCTreeResultsresponse_list$`RCP2.6`$`1980_2000`$ESCSuitMetrics
 ESCSuitMetrics |> head()
 ```
 

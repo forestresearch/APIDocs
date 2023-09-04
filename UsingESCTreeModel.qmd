@@ -119,7 +119,7 @@ exposure <- 0
 
 :::
 
-Establish the climate model (climateModel), climate scenario/s (climateScenList), climate years (climateYearList), species group filter (filter), and ESC version (escVersion).
+Establish the climate model (climateModel), climate scenario/s (climateScenList), climate years (climateYearList), and ESC version (escVersion).
 
 * climateModel:str
     * A string, either "UKCP09" or "UKCP18-1km"
@@ -129,14 +129,8 @@ Establish the climate model (climateModel), climate scenario/s (climateScenList)
 * climateYearList:List
     * For "UKCP09" a list containing any of the following timeslices: ["1961_1990", "2000_2020", "2010_2030", "2020_2040", "2030_2050", "2040_2060", "2050_2070", "2060_2080", "2070_2090"]
     * For "UKCP18-1km" a list containing any of the following timeslices: ["1980_2000", "1990_2010", "2000_2020", "2010_2030", "2020_2040", "2030_2050", "2040_2060", "2050_2070", "2060_2080"]
-* filter:int
-    * 0 = No filter
-    * 1 = Conifers only
-    * 2 = Broadleaves only
-    * 3 = Natives only
-    * 4 = Non-natives only
 * escVersion:str
-    * "4.33" = "4.33"
+    * A string representing the version of the ESC species suitability function parameters to use. One of: "4.33", "4.4".
 
 ::: {.panel-tabset}
 
@@ -146,7 +140,6 @@ Establish the climate model (climateModel), climate scenario/s (climateScenList)
 climateModel = "UKCP18-1km"
 climateScenList = ["RCP2.6", "RCP8.5"]
 climateYearList = ["1980_2000", "2060_2080"]
-filter = 0
 escVersion = "4.33"
 ```
 
@@ -156,8 +149,44 @@ escVersion = "4.33"
 climateModel <- "UKCP18-1km"
 climateScenList <- list("RCP2.6", "RCP8.5")
 climateYearList <- list("1980_2000", "2060_2080")
-filter <- 0
 escVersion <- "4.33"
+```
+
+:::
+
+Establish the species filter parameters.
+
+* filter:int
+    * An integer, one of: 0 (broadleaves and conifers), 1 (conifers only), or 2 (broadleaves only). 0  by default.
+* filterNative:str
+    * A string, one of: "Yes" (native species) or "No" (non-native species). None by default.
+* filterMainSpp:str
+    * A string, one of: "Yes" (main forestry species in the UK) or "No" (other forestry species in the UK). None by default.
+* filterWaneStatus:str
+    * A string, one of: "Exempt" (approved species for planting in Scotland), "Exempt mainland only" (approved species for planting in the mainland of Scotland only), or "Not exempt" (species not approved for planting in Scotland). None by default.
+* filterAF:str
+    * A string, one of: "Yes" (species used in agroforestry systems) or "No" (species not used in agroforestry systems). None by default.
+
+::: {.panel-tabset}
+
+## Python
+
+```{python filters_py}
+filter = 0
+filterNative = None
+filterMainSpp = None
+filterWaneStatus = "Exempt"
+filterAF = None
+```
+
+## R
+
+```{r filters_r}
+filter <- 0
+filterNative <- NA
+filterMainSpp <- NA
+filterWaneStatus <- "Exempt"
+filterAF <- NA
 ```
 
 :::
@@ -217,7 +246,9 @@ req_body = {"lon": lon, "lat": lat,
             "drainage": drainage, "brash": brash, "fertiliser": fertiliser, "exposure": exposure, 
             "climateModel": climateModel,
             "climateScenList": climateScenList, "climateYearList": climateYearList,
-            "filter": filter, "escVersion": escVersion,
+            "filter": filter, "filterNative": filterNative,
+            "filterMainSpp": filterMainSpp, "filterWaneStatus": filterWaneStatus, "filterAF": filterAF,
+            "escVersion": escVersion,
             "smr": smr, "snr": snr}
 ```
 
@@ -231,7 +262,9 @@ req_list <- list("lon" = lon, "lat" = lat,
                  "drainage" = drainage, "brash" = brash, "fertiliser" =  fertiliser, "exposure" = exposure, 
                  "climateModel" = climateModel,
                  "climateScenList" = climateScenList, "climateYearList" = climateYearList,
-                 "filter" = filter, "escVersion" = escVersion,
+                 "filter" = filter, "filterNative" = filterNative,
+                 "filterMainSpp" = filterMainSpp, "filterWaneStatus" = filterWaneStatus, "filterAF" = filterAF,
+                 "escVersion" = escVersion,
                  "smr" = smr, "snr" = snr)
 
 req_body <- jsonlite::toJSON(req_list, auto_unbox = TRUE)
@@ -395,7 +428,7 @@ ESCDoseVals
 ## R
 
 ```{r ESCDoseVals_r}
-ESCDoseVals = ESCTreeModelresponse_list$`RCP2.6`$`1980_2000`$ESCDoseVals
+ESCDoseVals <- ESCTreeModelresponse_list$`RCP2.6`$`1980_2000`$ESCDoseVals
 ESCDoseVals
 ```
 
@@ -420,7 +453,7 @@ ESCResponseVals.head()
 ## R
 
 ```{r ESCResponseVals_r}
-ESCResponseVals = ESCTreeModelresponse_list$`RCP2.6`$`1980_2000`$ESCResponseVals
+ESCResponseVals <- ESCTreeModelresponse_list$`RCP2.6`$`1980_2000`$ESCResponseVals
 ESCResponseVals |> head()
 ```
 
@@ -454,7 +487,7 @@ ESCSuitMetrics.head()
 ## R
 
 ```{r ESCSuitMetrics_r}
-ESCSuitMetrics = ESCTreeModelresponse_list$`RCP2.6`$`1980_2000`$ESCSuitMetrics
+ESCSuitMetrics <- ESCTreeModelresponse_list$`RCP2.6`$`1980_2000`$ESCSuitMetrics
 ESCSuitMetrics |> head()
 ```
 

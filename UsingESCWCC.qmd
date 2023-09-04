@@ -9,8 +9,7 @@ css: styles.css
 
 ## Outline
 
-This notebook details how to call the ESCWCC API endpoint and use the response data to obtain woodland carbon code (WCC) metrics
-such as the claimable carbon sequestration using R and Python.
+This notebook details how to call the ESCWCC API endpoint to obtain a set of Woodland Carbon Code (WCC) lookup tables for ESC-predicted yield classes using R and Python.
 
 ## Import required packages
 
@@ -130,6 +129,8 @@ Establish the climate model (climateModel), climate scenario/s (climateScenList)
 * climateYearList:List
     * For "UKCP09" a list containing any of the following timeslices: ["1961_1990", "2000_2020", "2010_2030", "2020_2040", "2030_2050", "2040_2060", "2050_2070", "2060_2080", "2070_2090"]
     * For "UKCP18-1km" a list containing any of the following timeslices: ["1980_2000", "1990_2010", "2000_2020", "2010_2030", "2020_2040", "2030_2050", "2040_2060", "2050_2070", "2060_2080"]
+* escVersion:str
+    * A string representing the version of the ESC species suitability function parameters to use. One of: "4.33", "4.4".
 
 ::: {.panel-tabset}
 
@@ -139,7 +140,6 @@ Establish the climate model (climateModel), climate scenario/s (climateScenList)
 climateModel = "UKCP18-1km"
 climateScenList = ["RCP2.6", "RCP8.5"]
 climateYearList = ["1980_2000", "2060_2080"]
-filter = 0
 escVersion = "4.33"
 ```
 
@@ -149,22 +149,52 @@ escVersion = "4.33"
 climateModel <- "UKCP18-1km"
 climateScenList <- list("RCP2.6", "RCP8.5")
 climateYearList <- list("1980_2000", "2060_2080")
-filter <- 0
 escVersion <- "4.33"
 ```
 
 :::
 
-Establish the Woodland Carbon Code (WCC) version (wccVersion), the planting spacing (wccSpacing), management regime (thinning or no thinning) (wccManagement), period (wccPeriod), area of the site to be established/planted with seedlings (wccSeedlingArea) in hectares (ha), the area to which ground preparation (requiring fuel) is applied (wccGroundPrepFuelArea), the area for which tree shelters will be required (wccTreeSheltersArea), the area to be fenced (wccFencingArea), the area that herbicide will be applied (wccHerbicideArea), the length of roads to be constructed (wccRoadLength) in km, and the area, if any, of arable land with mineral soil to be planted (wccSoilArea) in ha.
+Establish the species filter parameters.
+
+* filter:int
+    * An integer, one of: 0 (broadleaves and conifers), 1 (conifers only), or 2 (broadleaves only). 0  by default.
+* filterNative:str
+    * A string, one of: "Yes" (native species) or "No" (non-native species). None by default.
+* filterMainSpp:str
+    * A string, one of: "Yes" (main forestry species in the UK) or "No" (other forestry species in the UK). None by default.
+* filterWaneStatus:str
+    * A string, one of: "Exempt" (approved species for planting in Scotland), "Exempt mainland only" (approved species for planting in the mainland of Scotland only), or "Not exempt" (species not approved for planting in Scotland). None by default.
+* filterAF:str
+    * A string, one of: "Yes" (species used in agroforestry systems) or "No" (species not used in agroforestry systems). None by default.
+
+::: {.panel-tabset}
+
+## Python
+
+```{python filters_py}
+filter = 0
+filterNative = None
+filterMainSpp = None
+filterWaneStatus = "Exempt"
+filterAF = None
+```
+
+## R
+
+```{r filters_r}
+filter <- 0
+filterNative <- NA
+filterMainSpp <- NA
+filterWaneStatus <- "Exempt"
+filterAF <- NA
+```
+
+:::
+
+Establish the Woodland Carbon Code (WCC) version (wccVersion), area of the site to be established/planted with seedlings (wccSeedlingArea) in hectares (ha), the area to which ground preparation (requiring fuel) is applied (wccGroundPrepFuelArea), the area for which tree shelters will be required (wccTreeSheltersArea), the area to be fenced (wccFencingArea), the area that herbicide will be applied (wccHerbicideArea), the length of roads to be constructed (wccRoadLength) in km, and the area, if any, of arable land with mineral soil to be planted (wccSoilArea) in ha.
 
 * wccVersion:str
     * "2.4" = "2.4", (March 2021)
-* wccSpacing:list
-    * 0 = 'all', equivalent to {0: [1.2, 2.5, 3.0, 1.4, 1.7, 1.8, 1.5, 2.0]}
-* wccManagement:list
-    * 0 = 'all', equivalent to {0: ["NO_thin", "Thinned"]}
-* wccPeriod:list
-    * 0 = 'all', equivalent to {0: ["0", "0-5", "5-10", "10-15", "15-20", "20-25", "25-30", "30-35", "35-40", "40-45", "45-50", "50-55", "55-60", "60-65", "65-70", "70-75", "75-80", "80-85", "85-90", "90-95", "95-100", "100-105", "105-110", "110-115", "115-120", "120-125", "125-130", "130-135", "135-140", "140-145", "145-150", "150-155", "155-160", "160-165", "165-170", "170-175", "175-180", "180-185", "185-190", "190-195", "195-200"]}
 * wccSeedlingArea:float
     * 0 by default, any positive number.
 * wccGroundPrepFuelArea:float
@@ -186,9 +216,6 @@ Establish the Woodland Carbon Code (WCC) version (wccVersion), the planting spac
 
 ```{python wccOpts_py}
 wccVersion = "2.4"
-wccSpacing = 0
-wccManagement = 0
-wccPeriod = 0
 wccSeedlingArea = 12
 wccGroundPrepFuelArea = 24
 wccTreeSheltersArea = 12
@@ -202,9 +229,6 @@ wccSoilArea = 2
 
 ```{r wccOpts_r}
 wccVersion <- "2.4"
-wccSpacing <- 0
-wccManagement <- 0
-wccPeriod <- 0
 wccSeedlingArea <- 12
 wccGroundPrepFuelArea <- 24
 wccTreeSheltersArea <- 12
@@ -271,9 +295,10 @@ req_body = {"lon": lon, "lat": lat,
             "drainage": drainage, "brash": brash, "fertiliser": fertiliser, "exposure": exposure, 
             "climateModel": climateModel,
             "climateScenList": climateScenList, "climateYearList": climateYearList,
-            "filter": filter, "escVersion": escVersion, "wccVersion": wccVersion, 
+            "filter": filter, "filterNative": filterNative,
+            "filterMainSpp": filterMainSpp, "filterWaneStatus": filterWaneStatus, "filterAF": filterAF,
+            "escVersion": escVersion, "wccVersion": wccVersion, 
             "smr": smr, "snr": snr,
-            "wccSpacing": wccSpacing, "wccManagement": wccManagement, "wccPeriod": wccPeriod,
             "wccSeedlingArea": wccSeedlingArea,
             "wccGroundPrepFuelArea": wccGroundPrepFuelArea,
             "wccTreeSheltersArea": wccTreeSheltersArea,
@@ -292,9 +317,10 @@ req_list <- list("lon" = lon, "lat" = lat,
                  "drainage" = drainage, "brash" = brash, "fertiliser" =  fertiliser, "exposure" = exposure,
                  "climateModel" = climateModel,
                  "climateScenList" = climateScenList, "climateYearList" = climateYearList,
-                 "filter" = filter, "escVersion" = escVersion, "wccVersion" = wccVersion, 
+                 "filter" = filter, "filterNative" = filterNative,
+                 "filterMainSpp" = filterMainSpp, "filterWaneStatus" = filterWaneStatus, "filterAF" = filterAF,
+                 "escVersion" = escVersion, "wccVersion" = wccVersion, 
                  "smr" = smr, "snr" = snr,
-                 "wccSpacing" = wccSpacing, "wccManagement" = wccManagement, "wccPeriod" = wccPeriod,
                  "wccSeedlingArea" = wccSeedlingArea,
                  "wccGroundPrepFuelArea" = wccGroundPrepFuelArea,
                  "wccTreeSheltersArea" = wccTreeSheltersArea,
@@ -755,7 +781,7 @@ WCCTreeValues_selSpp_3_Thinned |> head()
 
 :::
 
-Define a species composition for the site and join to a trimmed WCCTreeValues dataframe.
+Define a species composition for the site.
 
 ::: {.panel-tabset}
 
