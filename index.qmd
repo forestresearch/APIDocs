@@ -28,7 +28,7 @@ Here the use of various Forest Research (FR) Decision Support System (DSS) tool 
 
 ## ESC
 
-[![Generic badge](https://img.shields.io/badge/Version-0.9-green.svg)]()
+[![Generic badge](https://img.shields.io/badge/Version-0.91-green.svg)]()
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Lifecycle:Experimental](https://img.shields.io/badge/Lifecycle-Experimental-339999.svg)]()
 <!-- [![Licence badge](https://img.shields.io/badge/Licence-OGL-informational.svg)](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/) -->
@@ -38,7 +38,7 @@ OpenAPI documentation can be found [here](https://escapi.frdss.org.uk/docs).
 
 Please note that the API is in active development and the licence conditions are under consideration.
 
-<!-- The current version is **v0.9**, the API is licenced under the [Open Government Licence (OGL)](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/) version 3. -->
+<!-- The current version is **v0.91**, the API is licenced under the [Open Government Licence (OGL)](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/) version 3. -->
 
 :::
 
