@@ -13,7 +13,8 @@ website:
           - UsingESCSiteData.qmd
           - UsingESCTreeResults.qmd
           - UsingESCTreeModel.qmd
-          - UsingESCWCC.qmd
+          # - UsingESCWCC.qmd
+          # - UsingWCCCCS.qmd
           # - UsingESCFDT.qmd
           # - UsingESCNVC.qmd
 

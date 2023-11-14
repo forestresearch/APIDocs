@@ -1,0 +1,290 @@
+---
+title: "Using the WCCCCS API"
+# subtitle: "v0.5"
+execute: 
+  enabled: true
+title-block-banner: "#491656"
+css: styles.css
+# jupyter: python3
+---
+
+## Outline
+
+This notebook details how to call the WCCCCS API endpoint using R and Python to obtain the Woodland Carbon Code (WCC) "Summary Carbon Sequestration over time" table.
+
+## Import required packages
+
+::: {.panel-tabset}
+
+## Python
+
+```{python import_packages_py}
+import requests
+import json
+import pandas
+pandas.options.mode.chained_assignment = None
+```
+
+## R
+
+```{r import_packages_r}
+library(httr)
+library(jsonlite)
+library(dplyr)
+```
+
+:::
+
+## Compose API request
+
+Establish API POST request URL
+
+::: {.panel-tabset}
+
+## Python
+
+```{python url_py}
+base_url = "https://escapi.frdss.org.uk/WCCCCS/"
+```
+
+## R
+
+```{r url_r}
+base_url <- "https://escapi.frdss.org.uk/WCCCCS/"
+```
+
+:::
+
+Establish a dictionary or list containing the following data:
+
+* speciesCode:list
+    * A list of species codes.
+* estimatedYC:list
+    * A list of yield class estimates for the associated species, usually obtained through ESC.
+* spacing:list
+    * A list of spacings for the associated species.
+* management:list
+    * A list of management options ("Thinned" or "NO_thin") for the associated species.
+* proportion:list
+    * A list of values between 0 and 1, which must sum to 1, representing the proportions of each of the associated species.
+
+
+::: {.callout-warning}
+## Please Note
+
+At present the estimatedYC value is rounded to the nearest yield class available in the WCC biomass carbon lookup table values (BCLT).
+However, at present and in contrast the correctness of available spacing and management options must be checked by the user. Solutions to this are being explored.
+
+:::
+
+::: {.panel-tabset}
+
+## Python
+
+```{python speciesData_py}
+speciesData = {"speciesCode": ["BE", "HOL", "POK"], 
+               "estimatedYC": [3.06, 1.98, 7.08],
+               "spacing": [2.5, 1.5, 1.2],
+               "management": ["Thinned", "Thinned", "NO_thin"],
+               "proportion": [0.3, 0.3, 0.4]}
+```
+
+## R
+
+```{r speciesData_r}
+speciesData <- list("speciesCode" = list("BE", "HOL", "POK"), 
+                    "estimatedYC" = list(3.06, 1.98, 7.08),
+                    "spacing" = list(2.5, 1.5, 1.2),
+                    "management" = list("Thinned", "Thinned", "NO_thin"),
+                    "proportion" = list(0.3, 0.3, 0.4))
+```
+
+:::
+
+Establish the area of the site to be established/planted with seedlings (wccSeedlingArea) in hectares (ha), the area to which ground preparation (requiring fuel) is applied (wccGroundPrepFuelArea), the area for which tree shelters will be required (wccTreeSheltersArea), the area to be fenced (wccFencingArea), the area that herbicide will be applied (wccHerbicideArea), the length of roads to be constructed (wccRoadLength) in km, and the area, if any, of arable land with mineral soil to be planted (wccSoilArea) in ha.
+
+* wccSeedlingArea:float
+    * 0 by default, any positive number.
+* wccFormerLandUse:str
+    * One of "Arable", "Pasture", or "Seminatural".
+* wccBaselineCarbon:float
+    * 0 by default, any positive number.
+* wccLeakageCarbon:float
+    * 0 by default, any positive number.
+* wccGroundPrepFuelArea:float
+    * 0 by default, any positive number.
+* wccTreeSheltersArea:float
+    * 0 by default, any positive number.
+* wccFencingArea:float
+    * 0 by default, any positive number.
+* wccHerbicideArea:float
+    * 0 by default, any positive number.
+* wccRoadLength:float
+    * 0 by default, any positive number.
+* wccSoilArea:float
+    * 0 by default, any positive number.
+
+::: {.panel-tabset}
+
+## Python
+
+```{python wccOpts_py}
+wccSeedlingArea = 12
+wccFormerLandUse = "Arable"
+wccBaselineCarbon = 0
+wccLeakageCarbon = 0
+wccGroundPrepFuelArea = 24
+wccTreeSheltersArea = 12
+wccFencingArea = 6
+wccHerbicideArea = 6
+wccRoadLength = 1
+wccSoilArea = 2
+```
+
+## R
+
+```{r wccOpts_r}
+wccSeedlingArea <- 12
+wccFormerLandUse <- "Arable"
+wccBaselineCarbon <- 0
+wccLeakageCarbon <- 0
+wccGroundPrepFuelArea <- 24
+wccTreeSheltersArea <- 12
+wccFencingArea <- 6
+wccHerbicideArea <- 6
+wccRoadLength <- 1
+wccSoilArea <- 2
+```
+
+:::
+
+::: {.panel-tabset}
+
+## Python
+
+```{python reqBody_py}
+
+req_body = {"speciesData": speciesData,
+            "wccSeedlingArea": wccSeedlingArea,
+            "wccFormerLandUse": wccFormerLandUse,
+            "wccBaselineCarbon": wccBaselineCarbon,
+            "wccLeakageCarbon": wccLeakageCarbon,
+            "wccGroundPrepFuelArea": wccGroundPrepFuelArea,
+            "wccTreeSheltersArea": wccTreeSheltersArea,
+            "wccFencingArea": wccFencingArea,
+            "wccHerbicideArea": wccHerbicideArea,
+            "wccRoadLength": wccRoadLength,
+            "wccSoilArea": wccSoilArea}
+```
+
+## R
+
+```{r reqBody_r}
+
+req_list <- list("speciesData" = speciesData,
+                 "wccSeedlingArea" = wccSeedlingArea,
+                 "wccFormerLandUse" = wccFormerLandUse,
+                 "wccBaselineCarbon" = wccBaselineCarbon,
+                 "wccLeakageCarbon" = wccLeakageCarbon,
+                 "wccGroundPrepFuelArea" = wccGroundPrepFuelArea,
+                 "wccTreeSheltersArea" = wccTreeSheltersArea,
+                 "wccFencingArea" = wccFencingArea,
+                 "wccHerbicideArea" = wccHerbicideArea,
+                 "wccRoadLength" = wccRoadLength,
+                 "wccSoilArea" = wccSoilArea)
+
+req_body <- jsonlite::toJSON(req_list, auto_unbox = TRUE)
+```
+
+:::
+
+
+## Make the API call
+
+Call the ESCWCC API.
+
+::: {.panel-tabset}
+
+## Python
+
+```{python apiCall_py}
+WCCCCSresponse = requests.post(url = base_url, json = req_body)
+WCCCCSresponse.status_code == 200
+```
+
+## R
+
+```{r apiCall_r}
+WCCCCSresponse <- httr::POST(url = base_url, body = req_body)
+WCCCCSresponse$status_code == 200
+```
+
+:::
+
+Establish a function to deserialize the json response into a nested dictionary or nested list.
+
+::: {.panel-tabset}
+
+## Python
+
+```{python deserializeFunc_py}
+def deserialize(responseJson:str) -> dict:
+    
+    wcc_response_df = pandas.DataFrame.from_dict(data = json.loads(responseJson.json()))
+            
+    return wcc_response_df
+```
+
+## R
+
+```{r deserializeFunc_r}
+deserialize <- function(responseJson){
+
+    responseContent <- httr::content(responseJson)
+    wcc_response_df <- jsonlite::fromJSON(responseContent)
+
+    return(wcc_response_df)
+}
+```
+
+:::
+
+Call the `deserializeResults` function on the WCCCCS API output.
+
+::: {.panel-tabset}
+
+## Python
+
+```{python deserialize_py}
+WCCCCSresponse_df = deserialize(responseJson = WCCCCSresponse)
+```
+
+## R
+
+```{r deserialize_r}
+WCCCCSresponse_df <- deserialize(responseJson = WCCCCSresponse)
+```
+
+:::
+
+
+## Explore results
+
+The object produced (`WCCCCSresponse_df` or `WCCCCSResponse_df`) is a data frame equivalent to the WCC "Summary Carbon Sequestration over time" table which is found in columns CB-CM in the "StandardProjectCarbonCalculator" sheet in the "WCC_CarbonCalculationSpreadsheet" excel workbook.
+
+::: {.panel-tabset}
+
+## Python
+
+```{python results_py}
+WCCCCSresponse_df
+```
+
+## R
+
+```{r results_r}
+WCCCCSresponse_df
+```
+
+:::
+
