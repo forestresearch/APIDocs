@@ -5,7 +5,7 @@ execute:
   enabled: true
 title-block-banner: "#491656"
 css: styles.css
-# jupyter: python3
+jupyter: python3
 ---
 
 ## Outline
